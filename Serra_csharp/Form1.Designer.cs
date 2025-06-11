@@ -92,8 +92,8 @@ namespace Serra_csharp
             this.label27 = new System.Windows.Forms.Label();
             this.SensoreFCBottom = new System.Windows.Forms.TextBox();
             this.SensorePiantaPronta = new System.Windows.Forms.TextBox();
-            this.SensoreTemperaturaMax = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.SensoreTempMax = new System.Windows.Forms.TextBox();
+            this.SensoreTempMin = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
@@ -427,6 +427,7 @@ namespace Serra_csharp
             this.SensoreSerbatoioOn.Name = "SensoreSerbatoioOn";
             this.SensoreSerbatoioOn.Size = new System.Drawing.Size(48, 20);
             this.SensoreSerbatoioOn.TabIndex = 73;
+            this.SensoreSerbatoioOn.Text = "False";
             // 
             // label15
             // 
@@ -452,6 +453,7 @@ namespace Serra_csharp
             this.SensoreNastroOccupato.Name = "SensoreNastroOccupato";
             this.SensoreNastroOccupato.Size = new System.Drawing.Size(48, 20);
             this.SensoreNastroOccupato.TabIndex = 70;
+            this.SensoreNastroOccupato.Text = "False";
             // 
             // SensoreUmidificatore
             // 
@@ -459,6 +461,7 @@ namespace Serra_csharp
             this.SensoreUmidificatore.Name = "SensoreUmidificatore";
             this.SensoreUmidificatore.Size = new System.Drawing.Size(48, 20);
             this.SensoreUmidificatore.TabIndex = 69;
+            this.SensoreUmidificatore.Text = "False";
             // 
             // SensoreSerbatoioEmpty
             // 
@@ -466,6 +469,7 @@ namespace Serra_csharp
             this.SensoreSerbatoioEmpty.Name = "SensoreSerbatoioEmpty";
             this.SensoreSerbatoioEmpty.Size = new System.Drawing.Size(48, 20);
             this.SensoreSerbatoioEmpty.TabIndex = 68;
+            this.SensoreSerbatoioEmpty.Text = "False";
             // 
             // SensoreLuci
             // 
@@ -473,6 +477,7 @@ namespace Serra_csharp
             this.SensoreLuci.Name = "SensoreLuci";
             this.SensoreLuci.Size = new System.Drawing.Size(48, 20);
             this.SensoreLuci.TabIndex = 67;
+            this.SensoreLuci.Text = "False";
             // 
             // label17
             // 
@@ -517,6 +522,7 @@ namespace Serra_csharp
             this.SensoreSerbatoioFull.Name = "SensoreSerbatoioFull";
             this.SensoreSerbatoioFull.Size = new System.Drawing.Size(48, 20);
             this.SensoreSerbatoioFull.TabIndex = 62;
+            this.SensoreSerbatoioFull.Text = "False";
             // 
             // label21
             // 
@@ -535,6 +541,7 @@ namespace Serra_csharp
             this.SensoreRelease.Name = "SensoreRelease";
             this.SensoreRelease.Size = new System.Drawing.Size(48, 20);
             this.SensoreRelease.TabIndex = 60;
+            this.SensoreRelease.Text = "False";
             // 
             // label22
             // 
@@ -560,6 +567,7 @@ namespace Serra_csharp
             this.SensoreGrasp.Name = "SensoreGrasp";
             this.SensoreGrasp.Size = new System.Drawing.Size(48, 20);
             this.SensoreGrasp.TabIndex = 57;
+            this.SensoreGrasp.Text = "False";
             // 
             // SensoreFCD
             // 
@@ -567,6 +575,7 @@ namespace Serra_csharp
             this.SensoreFCD.Name = "SensoreFCD";
             this.SensoreFCD.Size = new System.Drawing.Size(48, 20);
             this.SensoreFCD.TabIndex = 56;
+            this.SensoreFCD.Text = "False";
             // 
             // SensoreFCTop
             // 
@@ -574,6 +583,7 @@ namespace Serra_csharp
             this.SensoreFCTop.Name = "SensoreFCTop";
             this.SensoreFCTop.Size = new System.Drawing.Size(48, 20);
             this.SensoreFCTop.TabIndex = 55;
+            this.SensoreFCTop.Text = "False";
             // 
             // SensoreFCS
             // 
@@ -581,6 +591,7 @@ namespace Serra_csharp
             this.SensoreFCS.Name = "SensoreFCS";
             this.SensoreFCS.Size = new System.Drawing.Size(48, 20);
             this.SensoreFCS.TabIndex = 54;
+            this.SensoreFCS.Text = "False";
             // 
             // label24
             // 
@@ -624,6 +635,7 @@ namespace Serra_csharp
             this.SensoreFCBottom.Name = "SensoreFCBottom";
             this.SensoreFCBottom.Size = new System.Drawing.Size(48, 20);
             this.SensoreFCBottom.TabIndex = 49;
+            this.SensoreFCBottom.Text = "False";
             // 
             // SensorePiantaPronta
             // 
@@ -631,20 +643,23 @@ namespace Serra_csharp
             this.SensorePiantaPronta.Name = "SensorePiantaPronta";
             this.SensorePiantaPronta.Size = new System.Drawing.Size(48, 20);
             this.SensorePiantaPronta.TabIndex = 81;
+            this.SensorePiantaPronta.Text = "False";
             // 
-            // SensoreTemperaturaMax
+            // SensoreTempMax
             // 
-            this.SensoreTemperaturaMax.Location = new System.Drawing.Point(1290, 136);
-            this.SensoreTemperaturaMax.Name = "SensoreTemperaturaMax";
-            this.SensoreTemperaturaMax.Size = new System.Drawing.Size(48, 20);
-            this.SensoreTemperaturaMax.TabIndex = 80;
+            this.SensoreTempMax.Location = new System.Drawing.Point(1290, 136);
+            this.SensoreTempMax.Name = "SensoreTempMax";
+            this.SensoreTempMax.Size = new System.Drawing.Size(48, 20);
+            this.SensoreTempMax.TabIndex = 80;
+            this.SensoreTempMax.Text = "False";
             // 
-            // textBox3
+            // SensoreTempMin
             // 
-            this.textBox3.Location = new System.Drawing.Point(1290, 173);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(48, 20);
-            this.textBox3.TabIndex = 79;
+            this.SensoreTempMin.Location = new System.Drawing.Point(1290, 173);
+            this.SensoreTempMin.Name = "SensoreTempMin";
+            this.SensoreTempMin.Size = new System.Drawing.Size(48, 20);
+            this.SensoreTempMin.TabIndex = 79;
+            this.SensoreTempMin.Text = "False";
             // 
             // label28
             // 
@@ -688,11 +703,12 @@ namespace Serra_csharp
             this.SensoreFinestra.Name = "SensoreFinestra";
             this.SensoreFinestra.Size = new System.Drawing.Size(48, 20);
             this.SensoreFinestra.TabIndex = 74;
+            this.SensoreFinestra.Text = "False";
             // 
             // Braccio2
             // 
             this.Braccio2.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.Braccio2.Location = new System.Drawing.Point(526, 491);
+            this.Braccio2.Location = new System.Drawing.Point(523, 491);
             this.Braccio2.Name = "Braccio2";
             this.Braccio2.Size = new System.Drawing.Size(24, 138);
             this.Braccio2.TabIndex = 35;
@@ -701,7 +717,7 @@ namespace Serra_csharp
             // Braccio1
             // 
             this.Braccio1.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.Braccio1.Location = new System.Drawing.Point(227, 491);
+            this.Braccio1.Location = new System.Drawing.Point(225, 492);
             this.Braccio1.Name = "Braccio1";
             this.Braccio1.Size = new System.Drawing.Size(24, 137);
             this.Braccio1.TabIndex = 34;
@@ -710,18 +726,18 @@ namespace Serra_csharp
             // BraccioMain
             // 
             this.BraccioMain.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.BraccioMain.Location = new System.Drawing.Point(227, 491);
+            this.BraccioMain.Location = new System.Drawing.Point(225, 491);
             this.BraccioMain.Name = "BraccioMain";
-            this.BraccioMain.Size = new System.Drawing.Size(323, 20);
+            this.BraccioMain.Size = new System.Drawing.Size(322, 20);
             this.BraccioMain.TabIndex = 32;
             this.BraccioMain.TabStop = false;
             // 
             // Rullo
             // 
             this.Rullo.Image = ((System.Drawing.Image)(resources.GetObject("Rullo.Image")));
-            this.Rullo.Location = new System.Drawing.Point(944, 754);
+            this.Rullo.Location = new System.Drawing.Point(944, 758);
             this.Rullo.Name = "Rullo";
-            this.Rullo.Size = new System.Drawing.Size(293, 54);
+            this.Rullo.Size = new System.Drawing.Size(398, 54);
             this.Rullo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.Rullo.TabIndex = 26;
             this.Rullo.TabStop = false;
@@ -729,7 +745,7 @@ namespace Serra_csharp
             // pictureBox3
             // 
             this.pictureBox3.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pictureBox3.Location = new System.Drawing.Point(186, 724);
+            this.pictureBox3.Location = new System.Drawing.Point(187, 743);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(109, 14);
             this.pictureBox3.TabIndex = 3;
@@ -738,7 +754,7 @@ namespace Serra_csharp
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(31, 521);
+            this.pictureBox2.Location = new System.Drawing.Point(29, 541);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(159, 236);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -750,7 +766,7 @@ namespace Serra_csharp
             this.ImmaginePianta.Image = global::Serra_csharp.Properties.Resources.Pianta1;
             this.ImmaginePianta.Location = new System.Drawing.Point(291, 627);
             this.ImmaginePianta.Name = "ImmaginePianta";
-            this.ImmaginePianta.Size = new System.Drawing.Size(191, 131);
+            this.ImmaginePianta.Size = new System.Drawing.Size(190, 131);
             this.ImmaginePianta.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ImmaginePianta.TabIndex = 1;
             this.ImmaginePianta.TabStop = false;
@@ -767,7 +783,7 @@ namespace Serra_csharp
             // Gancio
             // 
             this.Gancio.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.Gancio.Location = new System.Drawing.Point(372, 439);
+            this.Gancio.Location = new System.Drawing.Point(370, 439);
             this.Gancio.Name = "Gancio";
             this.Gancio.Size = new System.Drawing.Size(32, 56);
             this.Gancio.TabIndex = 83;
@@ -781,8 +797,8 @@ namespace Serra_csharp
             this.Controls.Add(this.Gancio);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.SensorePiantaPronta);
-            this.Controls.Add(this.SensoreTemperaturaMax);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.SensoreTempMax);
+            this.Controls.Add(this.SensoreTempMin);
             this.Controls.Add(this.label28);
             this.Controls.Add(this.label29);
             this.Controls.Add(this.label30);
@@ -939,8 +955,8 @@ namespace Serra_csharp
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.TextBox SensoreFCBottom;
         private System.Windows.Forms.TextBox SensorePiantaPronta;
-        private System.Windows.Forms.TextBox SensoreTemperaturaMax;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox SensoreTempMax;
+        private System.Windows.Forms.TextBox SensoreTempMin;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label30;
