@@ -12,7 +12,7 @@ namespace Serra_csharp
 {
     public partial class Form1 : Form
     {
-        int[] statoInizialeBraccio = new int[6];
+        int[] statoInizialeBraccio = new int[8];
         int delta; // delta tempo
         int initBraccioMainY; // posizione verticale braccio main
         int initBraccioMainX; // posizione orizzontale braccio main
@@ -20,13 +20,21 @@ namespace Serra_csharp
         int initBraccio1X; // posizione orizzontale braccio 1
         int initBraccio2Y; // posizione verticale braccio 2
         int initBraccio2X; // posizione orizzontale braccio 2
+        int initGancioX; // posizione orizzontale gancio
         int spostamentoBraccioY = 80; // spostamento in pixel verticale
-        int spostamentoBraccioX = 80; // spostamento in pixel verticale
+        int spostamentoBraccioX = 240; // spostamento in pixel verticale
         int duratay = 2000; // durata spostamento verticale
         int duratax = 2000;
         int ypos = 0; // delta spostamento verticale
         int xpos = 0; // delta spostamento orizzontale
         bool presa = false;
+        int crescita;
+        int altezzaPianta;
+        int maxHeightBraccio;
+        int FCS;
+        int FCD;
+        int maxAperturaBraccio;
+        int minAperturaBraccio;
         public Form1()
         {
             InitializeComponent();
@@ -39,6 +47,16 @@ namespace Serra_csharp
             statoInizialeBraccio[3] = Braccio1.Top;
             statoInizialeBraccio[4] = Braccio2.Left;
             statoInizialeBraccio[5] = Braccio2.Top;
+            statoInizialeBraccio[6] = Gancio.Left;
+            statoInizialeBraccio[7] = Gancio.Top;
+
+            crescita = 1;
+            altezzaPianta = ImmaginePianta.Top;
+            maxHeightBraccio = BraccioMain.Top;
+            FCS = BraccioMain.Left;
+            FCD = (int) Rullo.Left + (Rullo.Width / 2) - (BraccioMain.Width / 2);
+            maxAperturaBraccio = Braccio1.Left;
+            minAperturaBraccio = ImmaginePianta.Left - (BraccioMain.Left + Braccio1.Width);
         }
 
         // **** START, STOP, RESET ****
@@ -62,6 +80,8 @@ namespace Serra_csharp
             Braccio1.Top = statoInizialeBraccio[3];
             Braccio2.Left = statoInizialeBraccio[4];
             Braccio2.Top = statoInizialeBraccio[5];
+            Gancio.Left = statoInizialeBraccio[6];
+            Gancio.Top = statoInizialeBraccio[7];
 
             AttuatBraccioSu.Text = "";
             AttuatBraccioSx.Text = "";
@@ -69,11 +89,32 @@ namespace Serra_csharp
             AttuatBraccioGiu.Text = "";
             AttuatBraccioPresa.Text = "";
             AttuatBraccioRilascio.Text = "";
+
+            ImmaginePianta.Image = Properties.Resources.Pianta1;
+            crescita = 1;
         }
 
         // **** MASTER TIMER ****
         private void MasterTimer_Tick(object sender, EventArgs e)
         {
+            Random rand = new Random();
+            int probCrescita = rand.Next(1, 101);
+            if (probCrescita < 10)
+            {
+                if (crescita == 1)
+                {
+                    ImmaginePianta.Image = Properties.Resources.Pianta2;
+                    crescita = 2;
+                    Console.WriteLine("Immagine cambiata");
+                }
+                else if (crescita == 2)
+                {
+                    ImmaginePianta.Image = Properties.Resources.Pianta3;
+                    crescita = 3;
+                    Console.WriteLine("Immagine cambiata");
+                }
+            }
+
             delta = MasterTimer.Interval;
             initBraccioMainX = BraccioMain.Left;
             initBraccioMainY = BraccioMain.Top;
@@ -81,43 +122,66 @@ namespace Serra_csharp
             initBraccio1Y = Braccio1.Top;
             initBraccio2X = Braccio2.Left;
             initBraccio2Y = Braccio2.Top;
+            initGancioX = Gancio.Left;
             ypos = (int) spostamentoBraccioY * delta / duratay;
-            xpos = (int)spostamentoBraccioX * delta / duratax;
+            xpos = (int)spostamentoBraccioX * delta / duratax; 
 
             if(AttuatBraccioGiu.Text == "True")
             {
-                BraccioMain.Top = initBraccioMainY + ypos;
-                Braccio1.Top = initBraccio1Y + ypos;
-                Braccio2.Top = initBraccio2Y + ypos;
+                if (initBraccioMainY < altezzaPianta - BraccioMain.Height)
+                {
+                    BraccioMain.Top = initBraccioMainY + ypos;
+                    Braccio1.Top = initBraccio1Y + ypos;
+                    Braccio2.Top = initBraccio2Y + ypos;
+                    Gancio.Height += ypos;
+                }
             }
             else if (AttuatBraccioSu.Text == "True")
             {
-                BraccioMain.Top = initBraccioMainY - ypos;
-                Braccio1.Top = initBraccio1Y - ypos;
-                Braccio2.Top = initBraccio2Y - ypos;
+                if (initBraccioMainY > maxHeightBraccio)
+                {
+                    BraccioMain.Top = initBraccioMainY - ypos;
+                    Braccio1.Top = initBraccio1Y - ypos;
+                    Braccio2.Top = initBraccio2Y - ypos;
+                    Gancio.Height -= ypos;
+                }
             }
             else if (AttuatBraccioSx.Text == "True")
             {
-                BraccioMain.Left = initBraccioMainX - xpos;
-                Braccio1.Left = initBraccio1X - xpos;
-                Braccio2.Left = initBraccio2X - xpos;
+                if (initBraccioMainX > FCS)
+                {
+                    BraccioMain.Left = initBraccioMainX - xpos;
+                    Braccio1.Left = initBraccio1X - xpos;
+                    Braccio2.Left = initBraccio2X - xpos;
+                    Gancio.Left = initGancioX - xpos;
+                }
             }
             else if (AttuatBraccioDx.Text == "True")
             {
-                BraccioMain.Left = initBraccioMainX + xpos;
-                Braccio1.Left = initBraccio1X + xpos;
-                Braccio2.Left = initBraccio2X + xpos;
+                if (initBraccioMainX < FCD)
+                {
+                    BraccioMain.Left = initBraccioMainX + xpos;
+                    Braccio1.Left = initBraccio1X + xpos;
+                    Braccio2.Left = initBraccio2X + xpos;
+                    Gancio.Left = initGancioX + xpos;
+                }
             }
 
             if (AttuatBraccioPresa.Text == "True")
             {
-                Braccio1.Left = initBraccio1X + xpos;
-                Braccio2.Left = initBraccio2X - xpos;
+                if (initBraccio1X < (initBraccioMainX + minAperturaBraccio))
+                {
+                    Braccio1.Left = (int) initBraccio1X + xpos / 2;
+                    Braccio2.Left = (int) initBraccio2X - xpos / 2;
+                }
             }
             else if (AttuatBraccioRilascio.Text == "True")
             {
-                Braccio1.Left = initBraccio1X - xpos;
-                Braccio2.Left = initBraccio2X + xpos;
+                if (initBraccio1X > initBraccioMainX)
+                {
+                    Braccio1.Left = (int) initBraccio1X - xpos / 2;
+                    Braccio2.Left = (int) initBraccio2X + xpos / 2;
+                }
             }
         }
 
