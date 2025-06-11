@@ -31,16 +31,11 @@ namespace Serra_csharp
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.Braccio = new System.Windows.Forms.PictureBox();
-            this.StartVerticalMov = new System.Windows.Forms.Button();
-            this.SensBraccioGiu = new System.Windows.Forms.TextBox();
-            this.SensBraccioSu = new System.Windows.Forms.TextBox();
-            this.SensBraccioSx = new System.Windows.Forms.TextBox();
-            this.SensBraccioDx = new System.Windows.Forms.TextBox();
+            this.AttuatBraccioGiu = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -50,21 +45,25 @@ namespace Serra_csharp
             this.RightButton = new System.Windows.Forms.Button();
             this.DownButton = new System.Windows.Forms.Button();
             this.LeftButton = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.StartButton = new System.Windows.Forms.Button();
+            this.ResetButton = new System.Windows.Forms.Button();
+            this.StopButton = new System.Windows.Forms.Button();
+            this.AttuatBraccioSx = new System.Windows.Forms.TextBox();
+            this.AttuatBraccioSu = new System.Windows.Forms.TextBox();
+            this.AttuatBraccioDx = new System.Windows.Forms.TextBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.AttuatBraccioRilascio = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.AttuatBraccioPresa = new System.Windows.Forms.TextBox();
+            this.Presa_Rilascio = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Braccio)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(272, 12);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(257, 20);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "Serra Idroponica";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // pictureBox1
             // 
@@ -99,52 +98,19 @@ namespace Serra_csharp
             // 
             this.Braccio.BackColor = System.Drawing.Color.Transparent;
             this.Braccio.Image = ((System.Drawing.Image)(resources.GetObject("Braccio.Image")));
-            this.Braccio.Location = new System.Drawing.Point(243, 277);
+            this.Braccio.Location = new System.Drawing.Point(214, 277);
             this.Braccio.Name = "Braccio";
-            this.Braccio.Size = new System.Drawing.Size(293, 58);
+            this.Braccio.Size = new System.Drawing.Size(350, 58);
             this.Braccio.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.Braccio.TabIndex = 4;
             this.Braccio.TabStop = false;
             // 
-            // StartVerticalMov
+            // AttuatBraccioGiu
             // 
-            this.StartVerticalMov.Location = new System.Drawing.Point(35, 51);
-            this.StartVerticalMov.Name = "StartVerticalMov";
-            this.StartVerticalMov.Size = new System.Drawing.Size(111, 32);
-            this.StartVerticalMov.TabIndex = 5;
-            this.StartVerticalMov.Text = "StartVerticalMov";
-            this.StartVerticalMov.UseVisualStyleBackColor = true;
-            this.StartVerticalMov.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // SensBraccioGiu
-            // 
-            this.SensBraccioGiu.Location = new System.Drawing.Point(98, 103);
-            this.SensBraccioGiu.Name = "SensBraccioGiu";
-            this.SensBraccioGiu.Size = new System.Drawing.Size(134, 20);
-            this.SensBraccioGiu.TabIndex = 6;
-            this.SensBraccioGiu.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
-            // 
-            // SensBraccioSu
-            // 
-            this.SensBraccioSu.Location = new System.Drawing.Point(98, 138);
-            this.SensBraccioSu.Name = "SensBraccioSu";
-            this.SensBraccioSu.Size = new System.Drawing.Size(134, 20);
-            this.SensBraccioSu.TabIndex = 7;
-            this.SensBraccioSu.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
-            // 
-            // SensBraccioSx
-            // 
-            this.SensBraccioSx.Location = new System.Drawing.Point(98, 175);
-            this.SensBraccioSx.Name = "SensBraccioSx";
-            this.SensBraccioSx.Size = new System.Drawing.Size(134, 20);
-            this.SensBraccioSx.TabIndex = 8;
-            // 
-            // SensBraccioDx
-            // 
-            this.SensBraccioDx.Location = new System.Drawing.Point(98, 214);
-            this.SensBraccioDx.Name = "SensBraccioDx";
-            this.SensBraccioDx.Size = new System.Drawing.Size(134, 20);
-            this.SensBraccioDx.TabIndex = 9;
+            this.AttuatBraccioGiu.Location = new System.Drawing.Point(98, 103);
+            this.AttuatBraccioGiu.Name = "AttuatBraccioGiu";
+            this.AttuatBraccioGiu.Size = new System.Drawing.Size(48, 20);
+            this.AttuatBraccioGiu.TabIndex = 6;
             // 
             // label1
             // 
@@ -154,7 +120,6 @@ namespace Serra_csharp
             this.label1.Size = new System.Drawing.Size(60, 13);
             this.label1.TabIndex = 10;
             this.label1.Text = "Braccio giù";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -190,7 +155,7 @@ namespace Serra_csharp
             // UpButton
             // 
             this.UpButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UpButton.Location = new System.Drawing.Point(362, 66);
+            this.UpButton.Location = new System.Drawing.Point(812, 451);
             this.UpButton.Name = "UpButton";
             this.UpButton.Size = new System.Drawing.Size(54, 37);
             this.UpButton.TabIndex = 14;
@@ -201,7 +166,7 @@ namespace Serra_csharp
             // RightButton
             // 
             this.RightButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RightButton.Location = new System.Drawing.Point(422, 103);
+            this.RightButton.Location = new System.Drawing.Point(872, 494);
             this.RightButton.Name = "RightButton";
             this.RightButton.Size = new System.Drawing.Size(54, 37);
             this.RightButton.TabIndex = 15;
@@ -212,7 +177,7 @@ namespace Serra_csharp
             // DownButton
             // 
             this.DownButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DownButton.Location = new System.Drawing.Point(362, 138);
+            this.DownButton.Location = new System.Drawing.Point(812, 537);
             this.DownButton.Name = "DownButton";
             this.DownButton.Size = new System.Drawing.Size(54, 37);
             this.DownButton.TabIndex = 16;
@@ -223,7 +188,7 @@ namespace Serra_csharp
             // LeftButton
             // 
             this.LeftButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LeftButton.Location = new System.Drawing.Point(302, 103);
+            this.LeftButton.Location = new System.Drawing.Point(752, 494);
             this.LeftButton.Name = "LeftButton";
             this.LeftButton.Size = new System.Drawing.Size(54, 37);
             this.LeftButton.TabIndex = 17;
@@ -231,11 +196,138 @@ namespace Serra_csharp
             this.LeftButton.UseVisualStyleBackColor = true;
             this.LeftButton.Click += new System.EventHandler(this.LeftButton_Click);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(378, 9);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(254, 37);
+            this.label6.TabIndex = 19;
+            this.label6.Text = "Serra Idroponica";
+            // 
+            // StartButton
+            // 
+            this.StartButton.Location = new System.Drawing.Point(27, 51);
+            this.StartButton.Name = "StartButton";
+            this.StartButton.Size = new System.Drawing.Size(61, 30);
+            this.StartButton.TabIndex = 20;
+            this.StartButton.Text = "START";
+            this.StartButton.UseVisualStyleBackColor = true;
+            this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
+            // 
+            // ResetButton
+            // 
+            this.ResetButton.Location = new System.Drawing.Point(161, 51);
+            this.ResetButton.Name = "ResetButton";
+            this.ResetButton.Size = new System.Drawing.Size(61, 30);
+            this.ResetButton.TabIndex = 21;
+            this.ResetButton.Text = "RESET";
+            this.ResetButton.UseVisualStyleBackColor = true;
+            this.ResetButton.Click += new System.EventHandler(this.ResetButton_Click);
+            // 
+            // StopButton
+            // 
+            this.StopButton.Location = new System.Drawing.Point(94, 51);
+            this.StopButton.Name = "StopButton";
+            this.StopButton.Size = new System.Drawing.Size(61, 30);
+            this.StopButton.TabIndex = 22;
+            this.StopButton.Text = "STOP";
+            this.StopButton.UseVisualStyleBackColor = true;
+            this.StopButton.Click += new System.EventHandler(this.StopButton_Click);
+            // 
+            // AttuatBraccioSx
+            // 
+            this.AttuatBraccioSx.Location = new System.Drawing.Point(98, 175);
+            this.AttuatBraccioSx.Name = "AttuatBraccioSx";
+            this.AttuatBraccioSx.Size = new System.Drawing.Size(48, 20);
+            this.AttuatBraccioSx.TabIndex = 23;
+            // 
+            // AttuatBraccioSu
+            // 
+            this.AttuatBraccioSu.Location = new System.Drawing.Point(98, 138);
+            this.AttuatBraccioSu.Name = "AttuatBraccioSu";
+            this.AttuatBraccioSu.Size = new System.Drawing.Size(48, 20);
+            this.AttuatBraccioSu.TabIndex = 24;
+            // 
+            // AttuatBraccioDx
+            // 
+            this.AttuatBraccioDx.Location = new System.Drawing.Point(98, 211);
+            this.AttuatBraccioDx.Name = "AttuatBraccioDx";
+            this.AttuatBraccioDx.Size = new System.Drawing.Size(48, 20);
+            this.AttuatBraccioDx.TabIndex = 25;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+            this.pictureBox4.Location = new System.Drawing.Point(728, 383);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(289, 54);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 26;
+            this.pictureBox4.TabStop = false;
+            // 
+            // AttuatBraccioRilascio
+            // 
+            this.AttuatBraccioRilascio.Location = new System.Drawing.Point(265, 135);
+            this.AttuatBraccioRilascio.Name = "AttuatBraccioRilascio";
+            this.AttuatBraccioRilascio.Size = new System.Drawing.Size(48, 20);
+            this.AttuatBraccioRilascio.TabIndex = 30;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(187, 138);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(78, 13);
+            this.label5.TabIndex = 29;
+            this.label5.Text = "Braccio rilascio";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(187, 103);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(72, 13);
+            this.label7.TabIndex = 28;
+            this.label7.Text = "Braccio presa";
+            // 
+            // AttuatBraccioPresa
+            // 
+            this.AttuatBraccioPresa.Location = new System.Drawing.Point(265, 100);
+            this.AttuatBraccioPresa.Name = "AttuatBraccioPresa";
+            this.AttuatBraccioPresa.Size = new System.Drawing.Size(48, 20);
+            this.AttuatBraccioPresa.TabIndex = 27;
+            // 
+            // Presa_Rilascio
+            // 
+            this.Presa_Rilascio.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Presa_Rilascio.Location = new System.Drawing.Point(812, 494);
+            this.Presa_Rilascio.Name = "Presa_Rilascio";
+            this.Presa_Rilascio.Size = new System.Drawing.Size(54, 37);
+            this.Presa_Rilascio.TabIndex = 31;
+            this.Presa_Rilascio.Text = "P/R";
+            this.Presa_Rilascio.UseVisualStyleBackColor = true;
+            this.Presa_Rilascio.Click += new System.EventHandler(this.Presa_Rilascio_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1029, 642);
+            this.ClientSize = new System.Drawing.Size(1029, 585);
+            this.Controls.Add(this.Presa_Rilascio);
+            this.Controls.Add(this.AttuatBraccioRilascio);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.AttuatBraccioPresa);
+            this.Controls.Add(this.pictureBox4);
+            this.Controls.Add(this.AttuatBraccioDx);
+            this.Controls.Add(this.AttuatBraccioSu);
+            this.Controls.Add(this.AttuatBraccioSx);
+            this.Controls.Add(this.StopButton);
+            this.Controls.Add(this.ResetButton);
+            this.Controls.Add(this.StartButton);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.LeftButton);
             this.Controls.Add(this.DownButton);
             this.Controls.Add(this.RightButton);
@@ -244,16 +336,11 @@ namespace Serra_csharp
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.SensBraccioDx);
-            this.Controls.Add(this.SensBraccioSx);
-            this.Controls.Add(this.SensBraccioSu);
-            this.Controls.Add(this.SensBraccioGiu);
-            this.Controls.Add(this.StartVerticalMov);
+            this.Controls.Add(this.AttuatBraccioGiu);
             this.Controls.Add(this.Braccio);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.textBox1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -261,23 +348,18 @@ namespace Serra_csharp
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Braccio)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox Braccio;
-        private System.Windows.Forms.Button StartVerticalMov;
-        private System.Windows.Forms.TextBox SensBraccioGiu;
-        private System.Windows.Forms.TextBox SensBraccioSu;
-        private System.Windows.Forms.TextBox SensBraccioSx;
-        private System.Windows.Forms.TextBox SensBraccioDx;
+        private System.Windows.Forms.TextBox AttuatBraccioGiu;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -287,6 +369,19 @@ namespace Serra_csharp
         private System.Windows.Forms.Button RightButton;
         private System.Windows.Forms.Button DownButton;
         private System.Windows.Forms.Button LeftButton;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button StartButton;
+        private System.Windows.Forms.Button ResetButton;
+        private System.Windows.Forms.Button StopButton;
+        private System.Windows.Forms.TextBox AttuatBraccioSx;
+        private System.Windows.Forms.TextBox AttuatBraccioSu;
+        private System.Windows.Forms.TextBox AttuatBraccioDx;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.TextBox AttuatBraccioRilascio;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox AttuatBraccioPresa;
+        private System.Windows.Forms.Button Presa_Rilascio;
     }
 }
 

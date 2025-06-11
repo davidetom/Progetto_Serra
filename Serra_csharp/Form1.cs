@@ -21,6 +21,7 @@ namespace Serra_csharp
         int duratax = 2000;
         int ypos = 0; // delta spostamento verticale
         int xpos = 0; // delta spostamento orizzontale
+        bool presa = false;
         public Form1()
         {
             InitializeComponent();
@@ -31,25 +32,29 @@ namespace Serra_csharp
 
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        // **** START, STOP, RESET ****
+        private void StartButton_Click(object sender, EventArgs e)
         {
             MasterTimer.Enabled = true;
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void StopButton_Click(object sender, EventArgs e)
         {
-
+            MasterTimer.Enabled = false;
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void ResetButton_Click(object sender, EventArgs e)
         {
-
+            MasterTimer.Enabled = false;
+            AttuatBraccioSu.Text = "";
+            AttuatBraccioSx.Text = "";
+            AttuatBraccioDx.Text = "";
+            AttuatBraccioGiu.Text = "";
+            AttuatBraccioPresa.Text = "";
+            AttuatBraccioRilascio.Text = "";
         }
+
+        // **** MASTER TIMER ****
         private void MasterTimer_Tick(object sender, EventArgs e)
         {
             delta = MasterTimer.Interval;
@@ -58,61 +63,107 @@ namespace Serra_csharp
             ypos = (int) spostamentoBraccioY * delta / duratay;
             xpos = (int)spostamentoBraccioX * delta / duratax;
 
-            if(SensBraccioGiu.Text == "True")
+            if(AttuatBraccioGiu.Text == "True")
             {
                 Braccio.Top = initBraccioY + ypos;
             }
-            else if (SensBraccioSu.Text == "True")
+            else if (AttuatBraccioSu.Text == "True")
             {
                 Braccio.Top = initBraccioY - ypos;
             }
-            else if (SensBraccioSx.Text == "True")
+            else if (AttuatBraccioSx.Text == "True")
             {
                 Braccio.Left = initBraccioX - xpos;
             }
-            else if (SensBraccioDx.Text == "True")
+            else if (AttuatBraccioDx.Text == "True")
             {
                 Braccio.Left = initBraccioX + xpos;
             }
-        }
 
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
+            if (AttuatBraccioPresa.Text == "True")
+            {
+                Braccio.Width -= xpos;
+                Braccio.Left = (int) initBraccioX + (xpos/2);
+            }
+            else if (AttuatBraccioRilascio.Text == "True")
+            {
+                Braccio.Width += xpos;
+                Braccio.Left = (int) initBraccioX - (xpos/2);
+            }
         }
 
         // **** COMANDI BRACCIO ****
 
         private void UpButton_Click(object sender, EventArgs e)
         {
-            SensBraccioSu.Text = "True";
-            SensBraccioSx.Text = "False";
-            SensBraccioDx.Text = "False";
-            SensBraccioGiu.Text = "False";
+            Reset_PresaRilascio_Braccio();
+
+            AttuatBraccioSu.Text = "True";
+            AttuatBraccioSx.Text = "False";
+            AttuatBraccioDx.Text = "False";
+            AttuatBraccioGiu.Text = "False";
         }
 
         private void LeftButton_Click(object sender, EventArgs e)
         {
-            SensBraccioSu.Text = "False";
-            SensBraccioSx.Text = "True";
-            SensBraccioDx.Text = "False";
-            SensBraccioGiu.Text = "False";
+            Reset_PresaRilascio_Braccio();
+
+            AttuatBraccioSu.Text = "False";
+            AttuatBraccioSx.Text = "True";
+            AttuatBraccioDx.Text = "False";
+            AttuatBraccioGiu.Text = "False";
         }
 
         private void RightButton_Click(object sender, EventArgs e)
         {
-            SensBraccioSu.Text = "False";
-            SensBraccioSx.Text = "False";
-            SensBraccioDx.Text = "True";
-            SensBraccioGiu.Text = "False";
+            Reset_PresaRilascio_Braccio();
+
+            AttuatBraccioSu.Text = "False";
+            AttuatBraccioSx.Text = "False";
+            AttuatBraccioDx.Text = "True";
+            AttuatBraccioGiu.Text = "False";
         }
 
         private void DownButton_Click(object sender, EventArgs e)
         {
-            SensBraccioSu.Text = "False";
-            SensBraccioSx.Text = "False";
-            SensBraccioDx.Text = "False";
-            SensBraccioGiu.Text = "True";
+            Reset_PresaRilascio_Braccio();
+
+            AttuatBraccioSu.Text = "False";
+            AttuatBraccioSx.Text = "False";
+            AttuatBraccioDx.Text = "False";
+            AttuatBraccioGiu.Text = "True";
+        }
+
+        private void Presa_Rilascio_Click(object sender, EventArgs e)
+        {
+            Reset_Comandi_Braccio();
+
+            if (!presa)
+            {
+                AttuatBraccioPresa.Text = "True";
+                AttuatBraccioRilascio.Text = "False";
+            }
+            else
+            {
+                AttuatBraccioRilascio.Text = "True";
+                AttuatBraccioPresa.Text = "False";
+            }
+
+            presa = !presa;
+        }
+
+        private void Reset_Comandi_Braccio()
+        {
+            AttuatBraccioSu.Text = "False";
+            AttuatBraccioSx.Text = "False";
+            AttuatBraccioDx.Text = "False";
+            AttuatBraccioGiu.Text = "False";
+        }
+
+        private void Reset_PresaRilascio_Braccio()
+        {
+            AttuatBraccioPresa.Text = "";
+            AttuatBraccioRilascio.Text = "";
         }
     }
 }
