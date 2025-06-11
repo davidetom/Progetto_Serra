@@ -194,5 +194,6 @@ namespace Serra_csharp
             AttuatBraccioPresa.Text = "";
             AttuatBraccioRilascio.Text = "";
         }
+
     }
 }
