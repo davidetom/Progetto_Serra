@@ -12,9 +12,14 @@ namespace Serra_csharp
 {
     public partial class Form1 : Form
     {
+        int[] statoInizialeBraccio = new int[6];
         int delta; // delta tempo
-        int initBraccioY; // posizione verticale braccio
-        int initBraccioX; // posizione orizzontale braccio
+        int initBraccioMainY; // posizione verticale braccio main
+        int initBraccioMainX; // posizione orizzontale braccio main
+        int initBraccio1Y; // posizione verticale braccio 1
+        int initBraccio1X; // posizione orizzontale braccio 1
+        int initBraccio2Y; // posizione verticale braccio 2
+        int initBraccio2X; // posizione orizzontale braccio 2
         int spostamentoBraccioY = 80; // spostamento in pixel verticale
         int spostamentoBraccioX = 80; // spostamento in pixel verticale
         int duratay = 2000; // durata spostamento verticale
@@ -26,10 +31,14 @@ namespace Serra_csharp
         {
             InitializeComponent();
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            statoInizialeBraccio[0] = BraccioMain.Left;
+            statoInizialeBraccio[1] = BraccioMain.Top;
+            statoInizialeBraccio[2] = Braccio1.Left;
+            statoInizialeBraccio[3] = Braccio1.Top;
+            statoInizialeBraccio[4] = Braccio2.Left;
+            statoInizialeBraccio[5] = Braccio2.Top;
         }
 
         // **** START, STOP, RESET ****
@@ -46,6 +55,14 @@ namespace Serra_csharp
         private void ResetButton_Click(object sender, EventArgs e)
         {
             MasterTimer.Enabled = false;
+
+            BraccioMain.Left = statoInizialeBraccio[0];
+            BraccioMain.Top =  statoInizialeBraccio[1];
+            Braccio1.Left = statoInizialeBraccio[2];
+            Braccio1.Top = statoInizialeBraccio[3];
+            Braccio2.Left = statoInizialeBraccio[4];
+            Braccio2.Top = statoInizialeBraccio[5];
+
             AttuatBraccioSu.Text = "";
             AttuatBraccioSx.Text = "";
             AttuatBraccioDx.Text = "";
@@ -58,37 +75,49 @@ namespace Serra_csharp
         private void MasterTimer_Tick(object sender, EventArgs e)
         {
             delta = MasterTimer.Interval;
-            initBraccioY = Braccio.Top;
-            initBraccioX = Braccio.Left;
+            initBraccioMainX = BraccioMain.Left;
+            initBraccioMainY = BraccioMain.Top;
+            initBraccio1X = Braccio1.Left;
+            initBraccio1Y = Braccio1.Top;
+            initBraccio2X = Braccio2.Left;
+            initBraccio2Y = Braccio2.Top;
             ypos = (int) spostamentoBraccioY * delta / duratay;
             xpos = (int)spostamentoBraccioX * delta / duratax;
 
             if(AttuatBraccioGiu.Text == "True")
             {
-                Braccio.Top = initBraccioY + ypos;
+                BraccioMain.Top = initBraccioMainY + ypos;
+                Braccio1.Top = initBraccio1Y + ypos;
+                Braccio2.Top = initBraccio2Y + ypos;
             }
             else if (AttuatBraccioSu.Text == "True")
             {
-                Braccio.Top = initBraccioY - ypos;
+                BraccioMain.Top = initBraccioMainY - ypos;
+                Braccio1.Top = initBraccio1Y - ypos;
+                Braccio2.Top = initBraccio2Y - ypos;
             }
             else if (AttuatBraccioSx.Text == "True")
             {
-                Braccio.Left = initBraccioX - xpos;
+                BraccioMain.Left = initBraccioMainX - xpos;
+                Braccio1.Left = initBraccio1X - xpos;
+                Braccio2.Left = initBraccio2X - xpos;
             }
             else if (AttuatBraccioDx.Text == "True")
             {
-                Braccio.Left = initBraccioX + xpos;
+                BraccioMain.Left = initBraccioMainX + xpos;
+                Braccio1.Left = initBraccio1X + xpos;
+                Braccio2.Left = initBraccio2X + xpos;
             }
 
             if (AttuatBraccioPresa.Text == "True")
             {
-                Braccio.Width -= xpos;
-                Braccio.Left = (int) initBraccioX + (xpos/2);
+                Braccio1.Left = initBraccio1X + xpos;
+                Braccio2.Left = initBraccio2X - xpos;
             }
             else if (AttuatBraccioRilascio.Text == "True")
             {
-                Braccio.Width += xpos;
-                Braccio.Left = (int) initBraccioX - (xpos/2);
+                Braccio1.Left = initBraccio1X - xpos;
+                Braccio2.Left = initBraccio2X + xpos;
             }
         }
 

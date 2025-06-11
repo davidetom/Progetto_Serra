@@ -34,7 +34,6 @@ namespace Serra_csharp
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.Braccio = new System.Windows.Forms.PictureBox();
             this.AttuatBraccioGiu = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -58,11 +57,16 @@ namespace Serra_csharp
             this.label7 = new System.Windows.Forms.Label();
             this.AttuatBraccioPresa = new System.Windows.Forms.TextBox();
             this.Presa_Rilascio = new System.Windows.Forms.Button();
+            this.BraccioMain = new System.Windows.Forms.PictureBox();
+            this.Braccio1 = new System.Windows.Forms.PictureBox();
+            this.Braccio2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Braccio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BraccioMain)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Braccio1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Braccio2)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -93,17 +97,6 @@ namespace Serra_csharp
             this.pictureBox3.Size = new System.Drawing.Size(105, 14);
             this.pictureBox3.TabIndex = 3;
             this.pictureBox3.TabStop = false;
-            // 
-            // Braccio
-            // 
-            this.Braccio.BackColor = System.Drawing.Color.Transparent;
-            this.Braccio.Image = ((System.Drawing.Image)(resources.GetObject("Braccio.Image")));
-            this.Braccio.Location = new System.Drawing.Point(214, 277);
-            this.Braccio.Name = "Braccio";
-            this.Braccio.Size = new System.Drawing.Size(350, 58);
-            this.Braccio.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.Braccio.TabIndex = 4;
-            this.Braccio.TabStop = false;
             // 
             // AttuatBraccioGiu
             // 
@@ -310,11 +303,41 @@ namespace Serra_csharp
             this.Presa_Rilascio.UseVisualStyleBackColor = true;
             this.Presa_Rilascio.Click += new System.EventHandler(this.Presa_Rilascio_Click);
             // 
+            // BraccioMain
+            // 
+            this.BraccioMain.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.BraccioMain.Location = new System.Drawing.Point(247, 277);
+            this.BraccioMain.Name = "BraccioMain";
+            this.BraccioMain.Size = new System.Drawing.Size(280, 30);
+            this.BraccioMain.TabIndex = 32;
+            this.BraccioMain.TabStop = false;
+            // 
+            // Braccio1
+            // 
+            this.Braccio1.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.Braccio1.Location = new System.Drawing.Point(247, 306);
+            this.Braccio1.Name = "Braccio1";
+            this.Braccio1.Size = new System.Drawing.Size(26, 49);
+            this.Braccio1.TabIndex = 34;
+            this.Braccio1.TabStop = false;
+            // 
+            // Braccio2
+            // 
+            this.Braccio2.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.Braccio2.Location = new System.Drawing.Point(501, 306);
+            this.Braccio2.Name = "Braccio2";
+            this.Braccio2.Size = new System.Drawing.Size(26, 49);
+            this.Braccio2.TabIndex = 35;
+            this.Braccio2.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1029, 585);
+            this.Controls.Add(this.Braccio2);
+            this.Controls.Add(this.Braccio1);
+            this.Controls.Add(this.BraccioMain);
             this.Controls.Add(this.Presa_Rilascio);
             this.Controls.Add(this.AttuatBraccioRilascio);
             this.Controls.Add(this.label5);
@@ -337,7 +360,6 @@ namespace Serra_csharp
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.AttuatBraccioGiu);
-            this.Controls.Add(this.Braccio);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
@@ -347,8 +369,10 @@ namespace Serra_csharp
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Braccio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BraccioMain)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Braccio1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Braccio2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -358,7 +382,6 @@ namespace Serra_csharp
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox Braccio;
         private System.Windows.Forms.TextBox AttuatBraccioGiu;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -382,6 +405,9 @@ namespace Serra_csharp
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox AttuatBraccioPresa;
         private System.Windows.Forms.Button Presa_Rilascio;
+        private System.Windows.Forms.PictureBox BraccioMain;
+        private System.Windows.Forms.PictureBox Braccio1;
+        private System.Windows.Forms.PictureBox Braccio2;
     }
 }
 
