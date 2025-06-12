@@ -23,19 +23,21 @@ namespace Serra_csharp
         int initBraccio2Y; // posizione verticale braccio 2
         int initBraccio2X; // posizione orizzontale braccio 2
         int initGancioX; // posizione orizzontale gancio
+        int metaGancio;
         int initPianta1Y; //posizione verticale pianta
         int initPianta1X; //posizione orizzontale pianta
         int initPianta2X; //posizione orizzontale pianta 2
         int initPianta2Y; //posiziono orizzontale pianta 2
         int spostamentoBraccioY = 80; // spostamento in pixel verticale
         int spostamentoBraccioX = 240; // spostamento in pixel verticale
+        bool prelievo1 = false; // prelievo pianta 1
+        bool prelievo2 = false; // prelievo pianta 2;
         int duratay = 2000; // durata spostamento verticale
         int duratax = 2000;
         int ypos = 0; // delta spostamento verticale
         int xpos = 0; // delta spostamento orizzontale
         bool presa = false;
-        bool sulRullo1 = false;
-        bool sulRullo2 = false;
+        bool sulRullo = false;
         bool consentiMovimento = false;
         //Variabili di controllo
         int crescita1; //indice di crescita pianta 1
@@ -46,6 +48,7 @@ namespace Serra_csharp
         int altezzaPianta;
         int maxHeightBraccio;
         int FCS;
+        int FCP;
         int FCD;
         int maxAperturaBraccio;
         int minAperturaBraccio;
@@ -79,7 +82,14 @@ namespace Serra_csharp
             statoInizialeBraccio[8] = Gancio.Top;
             statoInizialeBraccio[9] = Gancio.Height;
 
-            // Raccolta posizione iniziale pianta
+            metaGancio = (int) Gancio.Width / 2;
+
+            FCS = (int) ImmaginePianta1.Left + (ImmaginePianta1.Width / 2);
+            FCP = (int) ImmaginePianta2.Left + (ImmaginePianta2.Width / 2);
+            FCD = (int) Gancio.Left + metaGancio;
+            altezzaPianta = ImmaginePianta1.Top;
+
+            // Raccolta posizione iniziale piante
             statoInizialePianta[0] = ImmaginePianta1.Left;
             statoInizialePianta[1] = ImmaginePianta1.Top;
             statoInizialePianta[2] = ImmaginePianta2.Left;
@@ -119,12 +129,9 @@ namespace Serra_csharp
             crescita2 = 1;
             grasped1 = false;
             grasped2 = false;
-            altezzaPianta = ImmaginePianta1.Top;
             maxHeightBraccio = BraccioMain.Top;
-            FCS = (int) ImmaginePianta1.Left + (ImmaginePianta1.Width / 2) - (Gancio.Width / 2);
-            FCD = (int) Rullo.Left + (BraccioMain.Width / 2);
-            maxAperturaBraccio = Braccio1.Left;
-            minAperturaBraccio = ImmaginePianta1.Left - (BraccioMain.Left + Braccio1.Width);
+            maxAperturaBraccio = Braccio2.Left - Braccio1.Left;
+            minAperturaBraccio = ImmaginePianta1.Width + Braccio1.Width;
 
             altezzaVasca = Vasca.Height;
             altezzaSerbatoio = Acqua.Height;
@@ -189,6 +196,11 @@ namespace Serra_csharp
             AttuatBraccioRilascio.Text = "";
             grasped1 = false;
             grasped2 = false;
+            prelievo1 = false;
+            prelievo2 = false;
+
+            Laser1.BringToFront();
+            Laser2.BringToFront();
         }
 
         // **** MASTER TIMER ****
@@ -203,14 +215,14 @@ namespace Serra_csharp
             {
                 crescita1++;
                 Crescita_Pianta(ImmaginePianta1, 1);
-                Laser_Check();
             }
             else if(Prob_Evento(10) && crescita2 < 3)
             {
                 crescita2++;
                 Crescita_Pianta(ImmaginePianta2, 2);
-                Laser_Check();
             }
+
+            Laser_Check();
 
             // Movimento braccio e pianta
             delta = MasterTimer.Interval;
@@ -232,8 +244,14 @@ namespace Serra_csharp
 
             if (AttuatBraccioGiu.Text == "True")
             {
+                int dist;
                 if (initBraccioMainY < altezzaPianta - BraccioMain.Height)
                 {
+                    dist = (altezzaPianta - BraccioMain.Height) - initBraccioMainY;
+                    if (dist >= 0 && dist <= xpos)
+                    {
+                        xpos = dist;
+                    }
                     BraccioMain.Top = initBraccioMainY + ypos;
                     Braccio1.Top = initBraccio1Y + ypos;
                     Braccio2.Top = initBraccio2Y + ypos;
@@ -250,8 +268,14 @@ namespace Serra_csharp
             }
             else if (AttuatBraccioSu.Text == "True")
             {
+                int dist;
                 if (initBraccioMainY > maxHeightBraccio)
                 {
+                    dist = initBraccioMainY - maxHeightBraccio;
+                    if (dist >= 0 && dist <= xpos)
+                    {
+                        xpos = dist;
+                    }
                     BraccioMain.Top = initBraccioMainY - ypos;
                     Braccio1.Top = initBraccio1Y - ypos;
                     Braccio2.Top = initBraccio2Y - ypos;
@@ -268,8 +292,46 @@ namespace Serra_csharp
             }
             else if (AttuatBraccioSx.Text == "True")
             {
-                if (initGancioX > FCS)
+                int dist;
+                if ( (prelievo1 && (initGancioX + metaGancio) > FCS) || (prelievo2 && (initGancioX + metaGancio) > FCP) )
                 {
+                    if (prelievo1)
+                    {
+                        dist = (initGancioX + metaGancio) - FCS;
+                        if (dist >= 0 && dist <= xpos)
+                        {
+                            xpos = dist;
+                        }       
+                    }
+                    else if (prelievo2)
+                    {
+                        dist = (initGancioX + metaGancio) - FCP;
+                        if (dist >= 0 && dist <= xpos)
+                        {
+                            xpos = dist;
+                        }
+                    }
+                    BraccioMain.Left = initBraccioMainX - xpos;
+                    Braccio1.Left = initBraccio1X - xpos;
+                    Braccio2.Left = initBraccio2X - xpos;
+                    Gancio.Left = initGancioX - xpos;
+                    if (grasped1)
+                    {
+                        ImmaginePianta1.Left = initPianta1X - xpos;
+                    }
+                    if (grasped2)
+                    {
+                        ImmaginePianta2.Left = initPianta2X - xpos;
+                    }
+                }
+                // OPZIONALE : SE AUTOMATIZZIAMO IL BRACCIO PER MUOVERLO SOLO IN CASO DI CRESCITA PIANTE NON SERVE
+                else if ((initGancioX + metaGancio) > FCS)
+                {
+                    dist = (initGancioX + metaGancio) - FCS;
+                    if (dist >= 0 && dist <= xpos)
+                    {
+                        xpos = dist;
+                    }
                     BraccioMain.Left = initBraccioMainX - xpos;
                     Braccio1.Left = initBraccio1X - xpos;
                     Braccio2.Left = initBraccio2X - xpos;
@@ -286,8 +348,14 @@ namespace Serra_csharp
             }
             else if (AttuatBraccioDx.Text == "True")
             {
-                if (initGancioX < FCD)
+                int dist;
+                if ((initGancioX + metaGancio) < FCD)
                 {
+                    dist = FCD - (initGancioX + metaGancio);
+                    if (dist >= 0 && dist <= xpos)
+                    {
+                        xpos = dist;
+                    }
                     BraccioMain.Left = initBraccioMainX + xpos;
                     Braccio1.Left = initBraccio1X + xpos;
                     Braccio2.Left = initBraccio2X + xpos;
@@ -306,8 +374,14 @@ namespace Serra_csharp
             // Chiusura/Apertura braccio
             if (AttuatBraccioPresa.Text == "True")
             {
-                if (initBraccio1X < ((initGancioX + Gancio.Width / 2) - (statoInizialeBraccio[2] / 2) + minAperturaBraccio))
+                int dist;
+                if ((initBraccio2X - initBraccio1X) > minAperturaBraccio)
                 {
+                    dist = (initBraccio2X - initBraccio1X) - minAperturaBraccio;
+                    if (dist >= 0 && dist <= xpos)
+                    {
+                        xpos = dist;
+                    }
                     Braccio1.Left = (int) initBraccio1X + xpos / 2;
                     Braccio2.Left = (int) initBraccio2X - xpos / 2;
                     BraccioMain.Width -= xpos;
@@ -316,30 +390,38 @@ namespace Serra_csharp
             }
             else if (AttuatBraccioRilascio.Text == "True")
             {
-                if (initBraccio1X > ((initGancioX + Gancio.Width / 2) - (statoInizialeBraccio[2] / 2)))
+                int dist;
+                if ((initBraccio2X - initBraccio1X) < maxAperturaBraccio)
                 {
+                    dist = maxAperturaBraccio - (initBraccio2X - initBraccio1X);
+                    if (dist >= 0 && dist <= xpos)
+                    {
+                        xpos = dist;
+                    }
                     Braccio1.Left = (int) initBraccio1X - xpos / 2;
                     Braccio2.Left = (int) initBraccio2X + xpos / 2;
                     BraccioMain.Width += xpos;
                     BraccioMain.Left -= xpos / 2;
                 }
             }
-
-            Movimento_Rullo(initPianta1X, ImmaginePianta1, 1);
-            Movimento_Rullo(initPianta2X, ImmaginePianta2, 2);
+            
+            if (prelievo1)
+            {
+                Movimento_Rullo(initPianta1X, ImmaginePianta1);
+            }
+            else if (prelievo2)
+            {
+                Movimento_Rullo(initPianta2X, ImmaginePianta2);
+            }
 
             // Gestione sensori
             Check_Sensori();
 
-            if (initBraccio1X <= (initGancioX + Gancio.Width / 2) - (statoInizialeBraccio[2] / 2))
+            if (initBraccio1X <= (initGancioX + metaGancio) - (statoInizialeBraccio[2] / 2))
             {
                 grasped1 = false;
-            }
-            if (initBraccio1X == (initGancioX + Gancio.Width / 2) - (statoInizialeBraccio[2] / 2))
-            {
                 grasped2 = false;
             }
-
         }
 
         // **** SEZIONE SENSORI ****
@@ -351,28 +433,44 @@ namespace Serra_csharp
             SensoreFCTop.Text = initBraccioMainY > maxHeightBraccio ? "False" : "True";
             SensoreFCTop.ForeColor = initBraccioMainY > maxHeightBraccio ? Color.Black : Color.Red;
 
-            SensoreFCS.Text = initGancioX > FCS ? "False" : "True";
-            SensoreFCS.ForeColor = initGancioX > FCS ? Color.Black : Color.Red;
-
-            SensoreFCD.Text = initGancioX < FCD ? "False" : "True";
-            SensoreFCD.ForeColor = initGancioX < FCD ? Color.Black : Color.Red;
-
-            if (initBraccio1X >= ((initGancioX + Gancio.Width / 2) - (statoInizialeBraccio[2] / 2) + minAperturaBraccio) && SensoreFCBottom.Text == "True")
+            SensoreFCS.Text = (prelievo1 && (initGancioX + metaGancio) <= FCS) ? "True" : "False";
+            if (SensoreFCS.Text == "True")
             {
-                if((initGancioX + Gancio.Width / 2) == (initPianta1X + ImmaginePianta1.Width / 2))
+                Console.WriteLine("Pos Gancio = " + (Gancio.Left + metaGancio));
+                Console.WriteLine("FCS = " + FCS);
+            }
+            SensoreFCS.ForeColor = (prelievo1 && (initGancioX + metaGancio) <= FCS) ? Color.Red : Color.Black;
+
+            SensoreFineCorsaPianta2.Text = (prelievo2 && (initGancioX + metaGancio) <= FCP) ? "True" : "False";
+            if (SensoreFineCorsaPianta2.Text == "True")
+            {
+                Console.WriteLine("Pos Gancio = " + (Gancio.Left + metaGancio));
+                Console.WriteLine("FCP = " + FCP);
+            }
+            SensoreFineCorsaPianta2.ForeColor = (prelievo2 && (initGancioX + metaGancio) <= FCP) ? Color.Red : Color.Black;
+
+            SensoreFCD.Text = (initGancioX + (Gancio.Width / 2)) < FCD ? "False" : "True";
+            if (SensoreFCD.Text == "True")
+            {
+                Console.WriteLine("Pos Gancio = " + (Gancio.Left + metaGancio));
+                Console.WriteLine("FCD = " + FCD);
+            }
+            SensoreFCD.ForeColor = (initGancioX + metaGancio) < FCD ? Color.Black : Color.Red;
+
+            if ((initBraccio2X - initBraccio1X) <= minAperturaBraccio && SensoreFCBottom.Text == "True")
+            {
+                if(SensoreFCS.Text == "True")
                 {
                     SensoreGrasp.Text = "True";
                     SensoreGrasp.ForeColor = Color.Red;
                     grasped1 = true;
                 }
-                if((initGancioX + Gancio.Width / 2) == (initPianta2X + ImmaginePianta2.Width / 2))
+                else if(SensoreFineCorsaPianta2.Text == "True")
                 {
                     SensoreGrasp.Text = "True";
                     SensoreGrasp.ForeColor = Color.Red;
                     grasped2 = true;
                 }
-
-
             }
             else
             {
@@ -380,7 +478,7 @@ namespace Serra_csharp
                 SensoreGrasp.ForeColor = Color.Black;
             }
 
-            if (grasped1 && AttuatBraccioRilascio.Text == "True"  && initBraccio1X > (initGancioX + Gancio.Width / 2) - (statoInizialeBraccio[2] / 2))
+            if (grasped1 && AttuatBraccioRilascio.Text == "True"  && (initBraccio2X - initBraccio1X) > minAperturaBraccio)
             {
                 SensoreRelease.Text = "True";
                 SensoreRelease.ForeColor = Color.Red;
@@ -391,8 +489,8 @@ namespace Serra_csharp
                 SensoreRelease.ForeColor = Color.Black;
             }
 
-            SensoreNastroOccupato.Text = sulRullo1 ? "True" : "False";
-            SensoreNastroOccupato.ForeColor = sulRullo1 ? Color.Red : Color.Black;
+            SensoreNastroOccupato.Text = sulRullo ? "True" : "False";
+            SensoreNastroOccupato.ForeColor = sulRullo ? Color.Red : Color.Black;
         }
 
         private void Reset_Sensori()
@@ -422,47 +520,55 @@ namespace Serra_csharp
         }
 
         // **** GESTIONE RULLO ****
-        private void Movimento_Rullo(int posPianta, PictureBox pianta, int numPianta)
+        private void Movimento_Rullo(int posPianta, PictureBox pianta)
         {
             if ((pianta.Top + pianta.Height >= Rullo.Top) && (pianta.Left >= Rullo.Left))
             {
-                sulRullo1 = true;
+                sulRullo = true;
             }
-            if (sulRullo1 && SensoreFCTop.Text == "True")
+            if (sulRullo && SensoreFCTop.Text == "True")
             {
                 consentiMovimento = true;
             }
-            if (sulRullo1 && consentiMovimento)
+            if (sulRullo && consentiMovimento)
             {
                 pianta.Left = posPianta + xpos;
                 if (pianta.Right >= this.ClientSize.Width)
                 {
-                    Rigenera_Pianta(pianta, numPianta);
-                    sulRullo1 = false;
+                    Rigenera_Pianta(pianta);
+                    sulRullo = false;
                     consentiMovimento = false;
                 }
             }
         }
 
         // **** GESTIONE SMALTIMENTO E RIPOSIZIONAMENTO PIANTA ****
-        private void Rigenera_Pianta(PictureBox pianta, int numPianta)
+        private void Rigenera_Pianta(PictureBox pianta)
         {
             // Rimuovila "visivamente"
             pianta.Visible = false;
 
             // ... Poi "ricreala" nel punto iniziale
-            numPianta = numPianta * 2;
-            pianta.Left = statoInizialePianta[numPianta-2];
-            pianta.Top = statoInizialePianta[numPianta-1];
-            if(numPianta == 1)
-            {
-                crescita1 = 1;
-            }
-            else
-            {
-                crescita2 = 1;
-            }
+            int numPianta = prelievo1 ? 1 : 2;
+            pianta.Left = statoInizialePianta[numPianta*2 - 2];
+            pianta.Top = statoInizialePianta[numPianta*2 - 1];
+
+            crescita1 = prelievo1 ? 1 : crescita1;
+            crescita2 = prelievo2 ? 1 : crescita2;
+
             Crescita_Pianta(pianta, numPianta);
+
+            if (prelievo1)
+            {
+                prelievo1 = false;
+                Laser1.BringToFront();
+            }
+            else if (prelievo2)
+            {
+                prelievo2 = false;
+                Laser2.BringToFront();
+            }
+
             pianta.Visible = true;
         }
 
@@ -483,7 +589,7 @@ namespace Serra_csharp
                         break;
                 }
             }
-            else
+            else if (numPianta == 2)
             {
                 switch (crescita2)
                 {
@@ -547,18 +653,9 @@ namespace Serra_csharp
         {
             Reset_Comandi_Braccio();
 
-            if (!presa)
-            {
-                AttuatBraccioPresa.Text = "True";
-                AttuatBraccioRilascio.Text = "False";
-            }
-            else
-            {
-                AttuatBraccioRilascio.Text = "True";
-                AttuatBraccioPresa.Text = "False";
-            }
-
             presa = !presa;
+            AttuatBraccioPresa.Text = presa ? "True" : "False";
+            AttuatBraccioRilascio.Text = presa ? "False" : "True";
         }
 
         private void Reset_Comandi_Braccio()
@@ -577,15 +674,37 @@ namespace Serra_csharp
 
         private void Laser_Check()
         {
+            bool prel1 = false;
+            bool prel2 = false;
             if(crescita1 == 3)
             {
                 Laser1.SendToBack();
                 SensorePianta1Pronta.Text = "True";
+                if (!prelievo2)
+                {
+                    prel1 = true;
+                }
             }
-            else if(crescita2 == 3)
+            if(crescita2 == 3)
             {
                 Laser2.SendToBack();
                 SensorePianta1Pronta.Text = "True";
+                if (!prelievo1)
+                {
+                    prel2 = true;
+                }
+            }
+
+            // priorità alla pianta più vicina al rullo
+            if (prel1 && prel2)
+            {
+                prelievo2 = true;
+                prelievo1 = false;
+            }
+            else
+            {
+                prelievo1 = prel1;
+                prelievo2 = prel2;
             }
         }
 
@@ -631,10 +750,8 @@ namespace Serra_csharp
 
                     Acqua.Height = quantitaSerbatoio;
                     Acqua.Top += 2;
-                    Console.WriteLine("Livello serbatoio: " + Acqua.Height);
                     Vasca.Height = quantitaVasca;
                     Vasca.Top = vasca_top;
-                    Console.WriteLine("Livello Vasca: " + Vasca.Height);
 
                     TuboVasca.BackColor = Color.SkyBlue;
                     SensoreSerbatoioFull.Text = "False";

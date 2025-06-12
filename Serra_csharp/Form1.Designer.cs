@@ -766,8 +766,8 @@ namespace Serra_csharp
             // 
             // ImmaginePianta2
             // 
-            this.ImmaginePianta2.Image = global::Serra_csharp.Properties.Resources.Pianta2;
-            this.ImmaginePianta2.Location = new System.Drawing.Point(643, 627);
+            this.ImmaginePianta2.Image = global::Serra_csharp.Properties.Resources.Pianta1;
+            this.ImmaginePianta2.Location = new System.Drawing.Point(644, 627);
             this.ImmaginePianta2.Name = "ImmaginePianta2";
             this.ImmaginePianta2.Size = new System.Drawing.Size(190, 131);
             this.ImmaginePianta2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -823,7 +823,7 @@ namespace Serra_csharp
             // Gancio
             // 
             this.Gancio.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.Gancio.Location = new System.Drawing.Point(464, 419);
+            this.Gancio.Location = new System.Drawing.Point(1134, 413);
             this.Gancio.Name = "Gancio";
             this.Gancio.Size = new System.Drawing.Size(32, 56);
             this.Gancio.TabIndex = 83;
@@ -832,7 +832,7 @@ namespace Serra_csharp
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.pictureBox1.Location = new System.Drawing.Point(-1, 382);
+            this.pictureBox1.Location = new System.Drawing.Point(-1, 373);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(1389, 40);
             this.pictureBox1.TabIndex = 82;
@@ -841,7 +841,7 @@ namespace Serra_csharp
             // Braccio2
             // 
             this.Braccio2.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.Braccio2.Location = new System.Drawing.Point(617, 472);
+            this.Braccio2.Location = new System.Drawing.Point(1287, 469);
             this.Braccio2.Name = "Braccio2";
             this.Braccio2.Size = new System.Drawing.Size(24, 138);
             this.Braccio2.TabIndex = 35;
@@ -850,7 +850,7 @@ namespace Serra_csharp
             // Braccio1
             // 
             this.Braccio1.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.Braccio1.Location = new System.Drawing.Point(319, 472);
+            this.Braccio1.Location = new System.Drawing.Point(989, 469);
             this.Braccio1.Name = "Braccio1";
             this.Braccio1.Size = new System.Drawing.Size(24, 137);
             this.Braccio1.TabIndex = 34;
@@ -859,7 +859,7 @@ namespace Serra_csharp
             // BraccioMain
             // 
             this.BraccioMain.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.BraccioMain.Location = new System.Drawing.Point(319, 471);
+            this.BraccioMain.Location = new System.Drawing.Point(989, 469);
             this.BraccioMain.Name = "BraccioMain";
             this.BraccioMain.Size = new System.Drawing.Size(322, 20);
             this.BraccioMain.TabIndex = 32;
@@ -898,7 +898,7 @@ namespace Serra_csharp
             // 
             // ImmaginePianta1
             // 
-            this.ImmaginePianta1.Image = global::Serra_csharp.Properties.Resources.Pianta2;
+            this.ImmaginePianta1.Image = global::Serra_csharp.Properties.Resources.Pianta1;
             this.ImmaginePianta1.Location = new System.Drawing.Point(385, 627);
             this.ImmaginePianta1.Name = "ImmaginePianta1";
             this.ImmaginePianta1.Size = new System.Drawing.Size(190, 131);
@@ -909,7 +909,7 @@ namespace Serra_csharp
             // pictureBox5
             // 
             this.pictureBox5.Image = global::Serra_csharp.Properties.Resources.Condizionatore_off;
-            this.pictureBox5.Location = new System.Drawing.Point(790, 269);
+            this.pictureBox5.Location = new System.Drawing.Point(790, 266);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(180, 107);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1007,7 +1007,6 @@ namespace Serra_csharp
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.Laser2);
-            this.Controls.Add(this.ImmaginePianta2);
             this.Controls.Add(this.TuboRefill3);
             this.Controls.Add(this.Laser1);
             this.Controls.Add(this.Gancio);
@@ -1084,6 +1083,7 @@ namespace Serra_csharp
             this.Controls.Add(this.label1);
             this.Controls.Add(this.AttuatBraccioGiu);
             this.Controls.Add(this.ImmaginePianta1);
+            this.Controls.Add(this.ImmaginePianta2);
             this.Name = "Form1";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "Form1";
