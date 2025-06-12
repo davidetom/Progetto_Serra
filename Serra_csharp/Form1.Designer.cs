@@ -104,19 +104,21 @@ namespace Serra_csharp
             this.BraccioMain = new System.Windows.Forms.PictureBox();
             this.Rullo = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.ImmaginePianta = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Gancio = new System.Windows.Forms.PictureBox();
+            this.Laser = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.Braccio2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Braccio1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BraccioMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Rullo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImmaginePianta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Gancio)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Laser)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // AttuatBraccioGiu
@@ -708,7 +710,7 @@ namespace Serra_csharp
             // Braccio2
             // 
             this.Braccio2.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.Braccio2.Location = new System.Drawing.Point(523, 491);
+            this.Braccio2.Location = new System.Drawing.Point(617, 491);
             this.Braccio2.Name = "Braccio2";
             this.Braccio2.Size = new System.Drawing.Size(24, 138);
             this.Braccio2.TabIndex = 35;
@@ -717,7 +719,7 @@ namespace Serra_csharp
             // Braccio1
             // 
             this.Braccio1.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.Braccio1.Location = new System.Drawing.Point(225, 492);
+            this.Braccio1.Location = new System.Drawing.Point(319, 492);
             this.Braccio1.Name = "Braccio1";
             this.Braccio1.Size = new System.Drawing.Size(24, 137);
             this.Braccio1.TabIndex = 34;
@@ -726,7 +728,7 @@ namespace Serra_csharp
             // BraccioMain
             // 
             this.BraccioMain.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.BraccioMain.Location = new System.Drawing.Point(225, 491);
+            this.BraccioMain.Location = new System.Drawing.Point(319, 491);
             this.BraccioMain.Name = "BraccioMain";
             this.BraccioMain.Size = new System.Drawing.Size(322, 20);
             this.BraccioMain.TabIndex = 32;
@@ -745,26 +747,16 @@ namespace Serra_csharp
             // pictureBox3
             // 
             this.pictureBox3.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pictureBox3.Location = new System.Drawing.Point(187, 743);
+            this.pictureBox3.Location = new System.Drawing.Point(281, 743);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(109, 14);
             this.pictureBox3.TabIndex = 3;
             this.pictureBox3.TabStop = false;
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(29, 541);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(159, 236);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 2;
-            this.pictureBox2.TabStop = false;
-            // 
             // ImmaginePianta
             // 
-            this.ImmaginePianta.Image = global::Serra_csharp.Properties.Resources.Pianta1;
-            this.ImmaginePianta.Location = new System.Drawing.Point(291, 627);
+            this.ImmaginePianta.Image = global::Serra_csharp.Properties.Resources.Pianta2;
+            this.ImmaginePianta.Location = new System.Drawing.Point(385, 627);
             this.ImmaginePianta.Name = "ImmaginePianta";
             this.ImmaginePianta.Size = new System.Drawing.Size(190, 131);
             this.ImmaginePianta.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -783,17 +775,38 @@ namespace Serra_csharp
             // Gancio
             // 
             this.Gancio.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.Gancio.Location = new System.Drawing.Point(370, 439);
+            this.Gancio.Location = new System.Drawing.Point(464, 439);
             this.Gancio.Name = "Gancio";
             this.Gancio.Size = new System.Drawing.Size(32, 56);
             this.Gancio.TabIndex = 83;
             this.Gancio.TabStop = false;
             // 
+            // Laser
+            // 
+            this.Laser.BackColor = System.Drawing.Color.Crimson;
+            this.Laser.Location = new System.Drawing.Point(267, 657);
+            this.Laser.Name = "Laser";
+            this.Laser.Size = new System.Drawing.Size(300, 4);
+            this.Laser.TabIndex = 85;
+            this.Laser.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.InitialImage")));
+            this.pictureBox2.Location = new System.Drawing.Point(73, 522);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(159, 236);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 2;
+            this.pictureBox2.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1352, 813);
+            this.ClientSize = new System.Drawing.Size(1356, 782);
+            this.Controls.Add(this.Laser);
             this.Controls.Add(this.Gancio);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.SensorePiantaPronta);
@@ -878,17 +891,17 @@ namespace Serra_csharp
             ((System.ComponentModel.ISupportInitialize)(this.BraccioMain)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Rullo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImmaginePianta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Gancio)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Laser)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.TextBox AttuatBraccioGiu;
         private System.Windows.Forms.Label label1;
@@ -965,6 +978,8 @@ namespace Serra_csharp
         private System.Windows.Forms.PictureBox ImmaginePianta;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox Gancio;
+        private System.Windows.Forms.PictureBox Laser;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
 

@@ -133,6 +133,7 @@ namespace Serra_csharp
             {
                 crescita++;
                 Crescita_Pianta();
+                Laser_Check();
             }
 
             // Movimento braccio e pianta
@@ -419,6 +420,15 @@ namespace Serra_csharp
         {
             AttuatBraccioPresa.Text = "";
             AttuatBraccioRilascio.Text = "";
+        }
+
+        private void Laser_Check()
+        {
+            if(crescita == 3)
+            {
+                Laser.SendToBack();
+                SensorePiantaPronta.Text = "True";
+            }
         }
 
     }
