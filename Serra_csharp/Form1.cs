@@ -14,6 +14,7 @@ namespace Serra_csharp
     {
         int[] statoInizialeBraccio = new int[10];
         int[] statoInizialePianta = new int[4];
+        int[] statoInizialeRecipienti = new int[4];
         int delta; // delta tempo
         int initBraccioMainY; // posizione verticale braccio main
         int initBraccioMainX; // posizione orizzontale braccio main
@@ -48,7 +49,18 @@ namespace Serra_csharp
         int FCD;
         int maxAperturaBraccio;
         int minAperturaBraccio;
+        int altezzaVasca;
+        int altezzaSerbatoio;
+        bool serbatoioNonVuoto = true;
+        bool svuotamento = false;
+        int quantitaSerbatoio;
+        int quantitaVasca;
+        int vasca_top;
+
+        Color coloreTubi;
         List<TextBox> sensori; // lista dei sensori
+        List<TextBox> attuatori; // lista degli attuatori
+        List<PictureBox> tubi; // lista dei tubi
         public Form1()
         {
             InitializeComponent();
@@ -67,16 +79,40 @@ namespace Serra_csharp
             statoInizialeBraccio[8] = Gancio.Top;
             statoInizialeBraccio[9] = Gancio.Height;
 
-            // Raccolta poszione iniziale pianta
+            // Raccolta posizione iniziale pianta
             statoInizialePianta[0] = ImmaginePianta1.Left;
             statoInizialePianta[1] = ImmaginePianta1.Top;
             statoInizialePianta[2] = ImmaginePianta2.Left;
             statoInizialePianta[3] = ImmaginePianta2.Top;
 
+            // Raccolta posizione iniziale serbatoio e vasca
+            statoInizialeRecipienti[0] = Acqua.Top;
+            statoInizialeRecipienti[1] = Acqua.Height;
+            statoInizialeRecipienti[2] = Vasca.Top;
+            statoInizialeRecipienti[3] = Vasca.Height;
+
             // Raccolta lista sensori
             sensori = this.Controls
             .OfType<TextBox>()
             .Where(tb => tb.Name.StartsWith("Sensore"))
+            .ToList();
+
+            SensoreSerbatoioFull.Text = "True";
+            SensoreSerbatoioFull.ForeColor = Color.Red;
+            SensoreVascaPienaVuota.Text = "True";
+            SensoreVascaPienaVuota.ForeColor = Color.Red;
+
+            attuatori = this.Controls
+            .OfType<TextBox>()
+            .Where(tb => tb.Name.StartsWith("Attuat"))
+            .ToList();
+
+
+            coloreTubi = TuboVasca.BackColor;
+            Flusso.Visible = false;
+            tubi = this.Controls
+            .OfType<PictureBox>()
+            .Where(tb => tb.Name.StartsWith("Tubo"))
             .ToList();
 
             crescita1 = 1;
@@ -89,7 +125,9 @@ namespace Serra_csharp
             FCD = (int) Rullo.Left + (BraccioMain.Width / 2);
             maxAperturaBraccio = Braccio1.Left;
             minAperturaBraccio = ImmaginePianta1.Left - (BraccioMain.Left + Braccio1.Width);
-            Vasca.Height = 0;
+
+            altezzaVasca = Vasca.Height;
+            altezzaSerbatoio = Acqua.Height;
         }
 
         // **** START, STOP, RESET ****
@@ -127,7 +165,21 @@ namespace Serra_csharp
             Crescita_Pianta(ImmaginePianta1, 1);
             Crescita_Pianta(ImmaginePianta2, 2);
 
+            Acqua.Top = statoInizialeRecipienti[0];
+            Acqua.Height = statoInizialeRecipienti[1];
+            Vasca.Top = statoInizialeRecipienti[2];
+            Vasca.Height = statoInizialeRecipienti[3];
+            serbatoioNonVuoto = true;
+
             Reset_Sensori();
+            SensoreSerbatoioFull.Text = "True";
+            SensoreSerbatoioFull.ForeColor = Color.Red;
+            SensoreVascaPienaVuota.Text = "True";
+            SensoreVascaPienaVuota.ForeColor = Color.Red;
+
+            Reset_Attuatori();
+            Reset_Tubi();
+            Flusso.Visible = false;
 
             AttuatBraccioSu.Text = "";
             AttuatBraccioSx.Text = "";
@@ -142,19 +194,18 @@ namespace Serra_csharp
         // **** MASTER TIMER ****
         private void MasterTimer_Tick(object sender, EventArgs e)
         {
-
+            Svuotamento_Vasca();
             Serbatoio_Svuota();
+            Serbatoio_Riempi();
+
             // Crescita pianta
-            Random rand = new Random();
-            int probCrescita1 = rand.Next(1, 101);
-            int probCrescita2 = rand.Next(1, 101);
-            if (probCrescita1 < 10 && crescita1 < 3)
+            if (Prob_Evento(10) && crescita1 < 3)
             {
                 crescita1++;
                 Crescita_Pianta(ImmaginePianta1, 1);
                 Laser_Check();
             }
-            else if(probCrescita2 < 10 && crescita2 < 3)
+            else if(Prob_Evento(10) && crescita2 < 3)
             {
                 crescita2++;
                 Crescita_Pianta(ImmaginePianta2, 2);
@@ -351,7 +402,23 @@ namespace Serra_csharp
                 sensore.Text = "False";
                 sensore.ForeColor = Color.Black;
             }
+        }
 
+        private void Reset_Attuatori()
+        {
+            foreach (TextBox attuatore in attuatori)
+            {
+                attuatore.Text = "";
+                attuatore.ForeColor = Color.Black;
+            }
+        }
+
+        private void Reset_Tubi()
+        {
+            foreach (PictureBox tubo in tubi)
+            {
+                tubo.BackColor = coloreTubi;
+            }
         }
 
         // **** GESTIONE RULLO ****
@@ -522,27 +589,102 @@ namespace Serra_csharp
             }
         }
 
+        private void Svuotamento_Vasca()
+        {
+            if (Vasca.Height > 0)
+            {
+                if (Prob_Evento(50))
+                {
+                    Vasca.Height -= 1;
+                    Vasca.Top += 1;
+                }
+            }
+            else
+            {
+                SensoreVascaPienaVuota.Text = "False";
+                SensoreVascaPienaVuota.ForeColor = Color.Black;
+            }
+        }
+
         private void Serbatoio_Svuota()
         {
-            if (SensoreVascaPienaVuota.Text == "False")
+            if (Acqua.Height <= 0)
             {
-                Acqua.Height -= 2;
-                Acqua.Top += 2;
-                Vasca.Height += 2;
-                Vasca.Top -= 2;
-                TuboVasca.BackColor = Color.Aqua;
+                serbatoioNonVuoto = false;
+                return;
             }
-            if(Vasca.Height == 58)
+            if (serbatoioNonVuoto)
             {
-                SensoreVascaPienaVuota.Text = "True";
-                TuboVasca.BackColor = Color.Gray;
+                if (SensoreVascaPienaVuota.Text == "False")
+                {
+                    if (!svuotamento)
+                    {
+                        quantitaSerbatoio = Acqua.Height;
+                        quantitaVasca = 0;
+                        vasca_top = Vasca.Top;
+                    }
+                    svuotamento = true;
+
+                    quantitaSerbatoio -= 2;
+                    quantitaVasca += 2;
+                    vasca_top -= 2;
+
+                    Acqua.Height = quantitaSerbatoio;
+                    Acqua.Top += 2;
+                    Console.WriteLine("Livello serbatoio: " + Acqua.Height);
+                    Vasca.Height = quantitaVasca;
+                    Vasca.Top = vasca_top;
+                    Console.WriteLine("Livello Vasca: " + Vasca.Height);
+
+                    TuboVasca.BackColor = Color.SkyBlue;
+                    SensoreSerbatoioFull.Text = "False";
+                    SensoreSerbatoioFull.ForeColor = Color.Black;
+                }
+                if (Vasca.Height >= altezzaVasca)
+                {
+                    svuotamento = false;
+                    SensoreVascaPienaVuota.Text = "True";
+                    SensoreVascaPienaVuota.ForeColor = Color.Red;
+                    TuboVasca.BackColor = coloreTubi;
+                }
+            }
+            if (Acqua.Height <= 5)
+            {
+                SensoreSerbatoioEmpty.Text = "True";
+                SensoreSerbatoioEmpty.ForeColor = Color.Red;
             }
         }
 
         private void Serbatoio_Riempi()
         {
-
+            if (!serbatoioNonVuoto)
+            {
+                Flusso.Visible = true;
+                Acqua.Height += 2;
+                Acqua.Top -= 2;
+                foreach (PictureBox tubo in tubi)
+                {
+                    tubo.BackColor = Color.SkyBlue;
+                }
+                TuboVasca.BackColor = coloreTubi;
+                SensoreSerbatoioEmpty.Text = "False";
+                SensoreSerbatoioEmpty.ForeColor = Color.Black;
+            }
+            if (Acqua.Height >= altezzaSerbatoio)
+            {
+                Flusso.Visible = false;
+                serbatoioNonVuoto = true;
+                SensoreSerbatoioFull.Text = "True";
+                SensoreSerbatoioFull.ForeColor = Color.Red;
+                Reset_Tubi();
+            }
         }
 
+        private bool Prob_Evento(int prob)
+        {
+            Random rand = new Random();
+            int probabilita = rand.Next(1, 101);
+            return probabilita <= prob;
+        }
     }
 }
