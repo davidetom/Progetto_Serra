@@ -13,7 +13,7 @@ namespace Serra_csharp
     public partial class Form1 : Form
     {
         int[] statoInizialeBraccio = new int[10];
-        int[] statoInizialePianta = new int[2];
+        int[] statoInizialePianta = new int[4];
         int delta; // delta tempo
         int initBraccioMainY; // posizione verticale braccio main
         int initBraccioMainX; // posizione orizzontale braccio main
@@ -22,8 +22,10 @@ namespace Serra_csharp
         int initBraccio2Y; // posizione verticale braccio 2
         int initBraccio2X; // posizione orizzontale braccio 2
         int initGancioX; // posizione orizzontale gancio
-        int initPiantaY; //posizione verticale pianta
-        int initPiantaX; //posizione orizzontale pianta
+        int initPianta1Y; //posizione verticale pianta
+        int initPianta1X; //posizione orizzontale pianta
+        int initPianta2X; //posizione orizzontale pianta 2
+        int initPianta2Y; //posiziono orizzontale pianta 2
         int spostamentoBraccioY = 80; // spostamento in pixel verticale
         int spostamentoBraccioX = 240; // spostamento in pixel verticale
         int duratay = 2000; // durata spostamento verticale
@@ -31,11 +33,14 @@ namespace Serra_csharp
         int ypos = 0; // delta spostamento verticale
         int xpos = 0; // delta spostamento orizzontale
         bool presa = false;
-        bool sulRullo = false;
+        bool sulRullo1 = false;
+        bool sulRullo2 = false;
         bool consentiMovimento = false;
         //Variabili di controllo
-        int crescita;
-        bool grasped;
+        int crescita1; //indice di crescita pianta 1
+        int crescita2; //indice di crescita pianta 2
+        bool grasped1;
+        bool grasped2;
 
         int altezzaPianta;
         int maxHeightBraccio;
@@ -63,8 +68,10 @@ namespace Serra_csharp
             statoInizialeBraccio[9] = Gancio.Height;
 
             // Raccolta poszione iniziale pianta
-            statoInizialePianta[0] = ImmaginePianta.Left;
-            statoInizialePianta[1] = ImmaginePianta.Top;
+            statoInizialePianta[0] = ImmaginePianta1.Left;
+            statoInizialePianta[1] = ImmaginePianta1.Top;
+            statoInizialePianta[2] = ImmaginePianta2.Left;
+            statoInizialePianta[3] = ImmaginePianta2.Top;
 
             // Raccolta lista sensori
             sensori = this.Controls
@@ -72,14 +79,17 @@ namespace Serra_csharp
             .Where(tb => tb.Name.StartsWith("Sensore"))
             .ToList();
 
-            crescita = 1;
-            grasped = false;
-            altezzaPianta = ImmaginePianta.Top;
+            crescita1 = 1;
+            crescita2 = 1;
+            grasped1 = false;
+            grasped2 = false;
+            altezzaPianta = ImmaginePianta1.Top;
             maxHeightBraccio = BraccioMain.Top;
-            FCS = (int) ImmaginePianta.Left + (ImmaginePianta.Width / 2) - (Gancio.Width / 2);
+            FCS = (int) ImmaginePianta1.Left + (ImmaginePianta1.Width / 2) - (Gancio.Width / 2);
             FCD = (int) Rullo.Left + (BraccioMain.Width / 2);
             maxAperturaBraccio = Braccio1.Left;
-            minAperturaBraccio = ImmaginePianta.Left - (BraccioMain.Left + Braccio1.Width);
+            minAperturaBraccio = ImmaginePianta1.Left - (BraccioMain.Left + Braccio1.Width);
+            Vasca.Height = 0;
         }
 
         // **** START, STOP, RESET ****
@@ -108,10 +118,14 @@ namespace Serra_csharp
             Gancio.Top = statoInizialeBraccio[8];
             Gancio.Height = statoInizialeBraccio[9];
 
-            ImmaginePianta.Left = statoInizialePianta[0];
-            ImmaginePianta.Top = statoInizialePianta[1];
-            crescita = 1;
-            Crescita_Pianta();
+            ImmaginePianta1.Left = statoInizialePianta[0];
+            ImmaginePianta1.Top = statoInizialePianta[1];
+            ImmaginePianta2.Left = statoInizialePianta[2];
+            ImmaginePianta2.Top = statoInizialePianta[3];
+            crescita1 = 1;
+            crescita2 = 1;
+            Crescita_Pianta(ImmaginePianta1, 1);
+            Crescita_Pianta(ImmaginePianta2, 2);
 
             Reset_Sensori();
 
@@ -121,18 +135,29 @@ namespace Serra_csharp
             AttuatBraccioGiu.Text = "";
             AttuatBraccioPresa.Text = "";
             AttuatBraccioRilascio.Text = "";
+            grasped1 = false;
+            grasped2 = false;
         }
 
         // **** MASTER TIMER ****
         private void MasterTimer_Tick(object sender, EventArgs e)
         {
+
+            Serbatoio_Svuota();
             // Crescita pianta
             Random rand = new Random();
-            int probCrescita = rand.Next(1, 101);
-            if (probCrescita < 10 && crescita < 3)
+            int probCrescita1 = rand.Next(1, 101);
+            int probCrescita2 = rand.Next(1, 101);
+            if (probCrescita1 < 10 && crescita1 < 3)
             {
-                crescita++;
-                Crescita_Pianta();
+                crescita1++;
+                Crescita_Pianta(ImmaginePianta1, 1);
+                Laser_Check();
+            }
+            else if(probCrescita2 < 10 && crescita2 < 3)
+            {
+                crescita2++;
+                Crescita_Pianta(ImmaginePianta2, 2);
                 Laser_Check();
             }
 
@@ -145,8 +170,10 @@ namespace Serra_csharp
             initBraccio2X = Braccio2.Left;
             initBraccio2Y = Braccio2.Top;
             initGancioX = Gancio.Left;
-            initPiantaX = ImmaginePianta.Left;
-            initPiantaY = ImmaginePianta.Top;
+            initPianta1X = ImmaginePianta1.Left;
+            initPianta1Y = ImmaginePianta1.Top;
+            initPianta2X = ImmaginePianta2.Left;
+            initPianta2Y = ImmaginePianta2.Top;
 
             // Calcolo velocità di spostamento
             ypos = (int)spostamentoBraccioY * delta / duratay;
@@ -160,9 +187,13 @@ namespace Serra_csharp
                     Braccio1.Top = initBraccio1Y + ypos;
                     Braccio2.Top = initBraccio2Y + ypos;
                     Gancio.Height += ypos;
-                    if (grasped)
+                    if (grasped1)
                     {
-                        ImmaginePianta.Top = initPiantaY + ypos;
+                        ImmaginePianta1.Top = initPianta1Y + ypos;
+                    }
+                    if (grasped2)
+                    {
+                        ImmaginePianta2.Top = initPianta2Y + ypos;
                     }
                 }
             }
@@ -174,9 +205,13 @@ namespace Serra_csharp
                     Braccio1.Top = initBraccio1Y - ypos;
                     Braccio2.Top = initBraccio2Y - ypos;
                     Gancio.Height -= ypos;
-                    if (grasped)
+                    if (grasped1)
                     {
-                        ImmaginePianta.Top = initPiantaY - ypos;
+                        ImmaginePianta1.Top = initPianta1Y - ypos;
+                    }
+                    if (grasped2)
+                    {
+                        ImmaginePianta2.Top = initPianta2Y - ypos;
                     }
                 }
             }
@@ -188,9 +223,13 @@ namespace Serra_csharp
                     Braccio1.Left = initBraccio1X - xpos;
                     Braccio2.Left = initBraccio2X - xpos;
                     Gancio.Left = initGancioX - xpos;
-                    if (grasped)
+                    if (grasped1)
                     {
-                        ImmaginePianta.Left = initPiantaX - xpos;
+                        ImmaginePianta1.Left = initPianta1X - xpos;
+                    }
+                    if (grasped2)
+                    {
+                        ImmaginePianta2.Left = initPianta2X - xpos;
                     }
                 }
             }
@@ -202,9 +241,13 @@ namespace Serra_csharp
                     Braccio1.Left = initBraccio1X + xpos;
                     Braccio2.Left = initBraccio2X + xpos;
                     Gancio.Left = initGancioX + xpos;
-                    if (grasped)
+                    if (grasped1)
                     {
-                        ImmaginePianta.Left = initPiantaX + xpos;
+                        ImmaginePianta1.Left = initPianta1X + xpos;
+                    }
+                    if (grasped2)
+                    {
+                        ImmaginePianta2.Left = initPianta2X + xpos;
                     }
                 }
             }
@@ -231,15 +274,21 @@ namespace Serra_csharp
                 }
             }
 
-            Movimento_Rullo(initPiantaX);
+            Movimento_Rullo(initPianta1X, ImmaginePianta1, 1);
+            Movimento_Rullo(initPianta2X, ImmaginePianta2, 2);
 
             // Gestione sensori
             Check_Sensori();
 
             if (initBraccio1X <= (initGancioX + Gancio.Width / 2) - (statoInizialeBraccio[2] / 2))
             {
-                grasped = false;
+                grasped1 = false;
             }
+            if (initBraccio1X == (initGancioX + Gancio.Width / 2) - (statoInizialeBraccio[2] / 2))
+            {
+                grasped2 = false;
+            }
+
         }
 
         // **** SEZIONE SENSORI ****
@@ -259,9 +308,19 @@ namespace Serra_csharp
 
             if (initBraccio1X >= ((initGancioX + Gancio.Width / 2) - (statoInizialeBraccio[2] / 2) + minAperturaBraccio) && SensoreFCBottom.Text == "True")
             {
-                SensoreGrasp.Text = "True";
-                SensoreGrasp.ForeColor = Color.Red;
-                grasped = true;
+                if((initGancioX + Gancio.Width / 2) == (initPianta1X + ImmaginePianta1.Width / 2))
+                {
+                    SensoreGrasp.Text = "True";
+                    SensoreGrasp.ForeColor = Color.Red;
+                    grasped1 = true;
+                }
+                if((initGancioX + Gancio.Width / 2) == (initPianta2X + ImmaginePianta2.Width / 2))
+                {
+                    SensoreGrasp.Text = "True";
+                    SensoreGrasp.ForeColor = Color.Red;
+                    grasped2 = true;
+                }
+
 
             }
             else
@@ -270,7 +329,7 @@ namespace Serra_csharp
                 SensoreGrasp.ForeColor = Color.Black;
             }
 
-            if (grasped && AttuatBraccioRilascio.Text == "True"  && initBraccio1X > (initGancioX + Gancio.Width / 2) - (statoInizialeBraccio[2] / 2))
+            if (grasped1 && AttuatBraccioRilascio.Text == "True"  && initBraccio1X > (initGancioX + Gancio.Width / 2) - (statoInizialeBraccio[2] / 2))
             {
                 SensoreRelease.Text = "True";
                 SensoreRelease.ForeColor = Color.Red;
@@ -281,8 +340,8 @@ namespace Serra_csharp
                 SensoreRelease.ForeColor = Color.Black;
             }
 
-            SensoreNastroOccupato.Text = sulRullo ? "True" : "False";
-            SensoreNastroOccupato.ForeColor = sulRullo ? Color.Red : Color.Black;
+            SensoreNastroOccupato.Text = sulRullo1 ? "True" : "False";
+            SensoreNastroOccupato.ForeColor = sulRullo1 ? Color.Red : Color.Black;
         }
 
         private void Reset_Sensori()
@@ -296,56 +355,83 @@ namespace Serra_csharp
         }
 
         // **** GESTIONE RULLO ****
-        private void Movimento_Rullo(int posPianta)
+        private void Movimento_Rullo(int posPianta, PictureBox pianta, int numPianta)
         {
-            if ((ImmaginePianta.Top + ImmaginePianta.Height >= Rullo.Top) && (ImmaginePianta.Left >= Rullo.Left))
+            if ((pianta.Top + pianta.Height >= Rullo.Top) && (pianta.Left >= Rullo.Left))
             {
-                sulRullo = true;
+                sulRullo1 = true;
             }
-            if (sulRullo && SensoreFCTop.Text == "True")
+            if (sulRullo1 && SensoreFCTop.Text == "True")
             {
                 consentiMovimento = true;
             }
-            if (sulRullo && consentiMovimento)
+            if (sulRullo1 && consentiMovimento)
             {
-                ImmaginePianta.Left = posPianta + xpos;
-                if (ImmaginePianta.Right >= this.ClientSize.Width)
+                pianta.Left = posPianta + xpos;
+                if (pianta.Right >= this.ClientSize.Width)
                 {
-                    Rigenera_Pianta();
-                    sulRullo = false;
+                    Rigenera_Pianta(pianta, numPianta);
+                    sulRullo1 = false;
                     consentiMovimento = false;
                 }
             }
         }
 
         // **** GESTIONE SMALTIMENTO E RIPOSIZIONAMENTO PIANTA ****
-        private void Rigenera_Pianta()
+        private void Rigenera_Pianta(PictureBox pianta, int numPianta)
         {
             // Rimuovila "visivamente"
-            ImmaginePianta.Visible = false;
+            pianta.Visible = false;
 
             // ... Poi "ricreala" nel punto iniziale
-            ImmaginePianta.Left = statoInizialePianta[0];
-            ImmaginePianta.Top = statoInizialePianta[1];
-            crescita = 1;
-            Crescita_Pianta();
-            ImmaginePianta.Visible = true;
+            numPianta = numPianta * 2;
+            pianta.Left = statoInizialePianta[numPianta-2];
+            pianta.Top = statoInizialePianta[numPianta-1];
+            if(numPianta == 1)
+            {
+                crescita1 = 1;
+            }
+            else
+            {
+                crescita2 = 1;
+            }
+            Crescita_Pianta(pianta, numPianta);
+            pianta.Visible = true;
         }
 
-        private void Crescita_Pianta()
+        private void Crescita_Pianta(PictureBox pianta, int numPianta)
         {
-            switch (crescita)
+            if (numPianta == 1)
             {
-                case 1:
-                    ImmaginePianta.Image = Properties.Resources.Pianta1;
-                    break;
-                case 2:
-                    ImmaginePianta.Image = Properties.Resources.Pianta2;
-                    break;
-                case 3:
-                    ImmaginePianta.Image = Properties.Resources.Pianta3;
-                    break;
+                switch (crescita1)
+                {
+                    case 1:
+                        pianta.Image = Properties.Resources.Pianta1;
+                        break;
+                    case 2:
+                        pianta.Image = Properties.Resources.Pianta2;
+                        break;
+                    case 3:
+                        pianta.Image = Properties.Resources.Pianta3;
+                        break;
+                }
             }
+            else
+            {
+                switch (crescita2)
+                {
+                    case 1:
+                        pianta.Image = Properties.Resources.Pianta1;
+                        break;
+                    case 2:
+                        pianta.Image = Properties.Resources.Pianta2;
+                        break;
+                    case 3:
+                        pianta.Image = Properties.Resources.Pianta3;
+                        break;
+                }
+            }
+
         }
 
         // **** COMANDI BRACCIO ****
@@ -424,11 +510,38 @@ namespace Serra_csharp
 
         private void Laser_Check()
         {
-            if(crescita == 3)
+            if(crescita1 == 3)
             {
-                Laser.SendToBack();
-                SensorePiantaPronta.Text = "True";
+                Laser1.SendToBack();
+                SensorePianta1Pronta.Text = "True";
             }
+            else if(crescita2 == 3)
+            {
+                Laser2.SendToBack();
+                SensorePianta1Pronta.Text = "True";
+            }
+        }
+
+        private void Serbatoio_Svuota()
+        {
+            if (SensoreVascaPienaVuota.Text == "False")
+            {
+                Acqua.Height -= 2;
+                Acqua.Top += 2;
+                Vasca.Height += 2;
+                Vasca.Top -= 2;
+                TuboVasca.BackColor = Color.Aqua;
+            }
+            if(Vasca.Height == 58)
+            {
+                SensoreVascaPienaVuota.Text = "True";
+                TuboVasca.BackColor = Color.Gray;
+            }
+        }
+
+        private void Serbatoio_Riempi()
+        {
+
         }
 
     }

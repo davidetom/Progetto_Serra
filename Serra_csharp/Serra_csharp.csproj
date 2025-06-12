@@ -89,5 +89,11 @@
   <ItemGroup>
     <None Include="Resources\Pianta3.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Condizionatore_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Condizionatore_off.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

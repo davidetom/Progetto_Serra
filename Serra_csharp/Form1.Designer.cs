@@ -91,7 +91,7 @@ namespace Serra_csharp
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.SensoreFCBottom = new System.Windows.Forms.TextBox();
-            this.SensorePiantaPronta = new System.Windows.Forms.TextBox();
+            this.SensorePianta1Pronta = new System.Windows.Forms.TextBox();
             this.SensoreTempMax = new System.Windows.Forms.TextBox();
             this.SensoreTempMin = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
@@ -99,26 +99,52 @@ namespace Serra_csharp
             this.label30 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.SensoreFinestra = new System.Windows.Forms.TextBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.Laser2 = new System.Windows.Forms.PictureBox();
+            this.ImmaginePianta2 = new System.Windows.Forms.PictureBox();
+            this.Acqua = new System.Windows.Forms.PictureBox();
+            this.TuboRefill2 = new System.Windows.Forms.PictureBox();
+            this.TuboRefill1 = new System.Windows.Forms.PictureBox();
+            this.TuboRefill3 = new System.Windows.Forms.PictureBox();
+            this.Laser1 = new System.Windows.Forms.PictureBox();
+            this.Gancio = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Braccio2 = new System.Windows.Forms.PictureBox();
             this.Braccio1 = new System.Windows.Forms.PictureBox();
             this.BraccioMain = new System.Windows.Forms.PictureBox();
             this.Rullo = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.ImmaginePianta = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.Gancio = new System.Windows.Forms.PictureBox();
-            this.Laser = new System.Windows.Forms.PictureBox();
+            this.TuboVasca = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.ImmaginePianta1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.SensorePianta2Pronta = new System.Windows.Forms.TextBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.SensoreFineCorsaPianta2 = new System.Windows.Forms.TextBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.SensoreVascaPienaVuota = new System.Windows.Forms.TextBox();
+            this.label34 = new System.Windows.Forms.Label();
+            this.Vasca = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Laser2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImmaginePianta2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Acqua)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TuboRefill2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TuboRefill1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TuboRefill3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Laser1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Gancio)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Braccio2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Braccio1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BraccioMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Rullo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ImmaginePianta)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Gancio)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Laser)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TuboVasca)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImmaginePianta1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Vasca)).BeginInit();
             this.SuspendLayout();
             // 
             // AttuatBraccioGiu
@@ -639,13 +665,13 @@ namespace Serra_csharp
             this.SensoreFCBottom.TabIndex = 49;
             this.SensoreFCBottom.Text = "False";
             // 
-            // SensorePiantaPronta
+            // SensorePianta1Pronta
             // 
-            this.SensorePiantaPronta.Location = new System.Drawing.Point(1290, 209);
-            this.SensorePiantaPronta.Name = "SensorePiantaPronta";
-            this.SensorePiantaPronta.Size = new System.Drawing.Size(48, 20);
-            this.SensorePiantaPronta.TabIndex = 81;
-            this.SensorePiantaPronta.Text = "False";
+            this.SensorePianta1Pronta.Location = new System.Drawing.Point(1290, 209);
+            this.SensorePianta1Pronta.Name = "SensorePianta1Pronta";
+            this.SensorePianta1Pronta.Size = new System.Drawing.Size(48, 20);
+            this.SensorePianta1Pronta.TabIndex = 81;
+            this.SensorePianta1Pronta.Text = "False";
             // 
             // SensoreTempMax
             // 
@@ -668,9 +694,9 @@ namespace Serra_csharp
             this.label28.AutoSize = true;
             this.label28.Location = new System.Drawing.Point(1205, 212);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(71, 13);
+            this.label28.Size = new System.Drawing.Size(77, 13);
             this.label28.TabIndex = 78;
-            this.label28.Text = "Plant READY";
+            this.label28.Text = "Plant1 READY";
             // 
             // label29
             // 
@@ -707,10 +733,113 @@ namespace Serra_csharp
             this.SensoreFinestra.TabIndex = 74;
             this.SensoreFinestra.Text = "False";
             // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+            this.pictureBox4.Location = new System.Drawing.Point(915, 645);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(68, 25);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 93;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(240, 645);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(68, 25);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 92;
+            this.pictureBox3.TabStop = false;
+            // 
+            // Laser2
+            // 
+            this.Laser2.BackColor = System.Drawing.Color.Crimson;
+            this.Laser2.Location = new System.Drawing.Point(645, 657);
+            this.Laser2.Name = "Laser2";
+            this.Laser2.Size = new System.Drawing.Size(275, 4);
+            this.Laser2.TabIndex = 91;
+            this.Laser2.TabStop = false;
+            // 
+            // ImmaginePianta2
+            // 
+            this.ImmaginePianta2.Image = global::Serra_csharp.Properties.Resources.Pianta2;
+            this.ImmaginePianta2.Location = new System.Drawing.Point(643, 627);
+            this.ImmaginePianta2.Name = "ImmaginePianta2";
+            this.ImmaginePianta2.Size = new System.Drawing.Size(190, 131);
+            this.ImmaginePianta2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ImmaginePianta2.TabIndex = 90;
+            this.ImmaginePianta2.TabStop = false;
+            // 
+            // Acqua
+            // 
+            this.Acqua.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.Acqua.Location = new System.Drawing.Point(88, 612);
+            this.Acqua.Name = "Acqua";
+            this.Acqua.Size = new System.Drawing.Size(95, 174);
+            this.Acqua.TabIndex = 89;
+            this.Acqua.TabStop = false;
+            // 
+            // TuboRefill2
+            // 
+            this.TuboRefill2.Location = new System.Drawing.Point(110, 492);
+            this.TuboRefill2.Name = "TuboRefill2";
+            this.TuboRefill2.Size = new System.Drawing.Size(33, 18);
+            this.TuboRefill2.TabIndex = 88;
+            this.TuboRefill2.TabStop = false;
+            // 
+            // TuboRefill1
+            // 
+            this.TuboRefill1.BackColor = System.Drawing.SystemColors.Control;
+            this.TuboRefill1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TuboRefill1.Location = new System.Drawing.Point(125, 491);
+            this.TuboRefill1.Name = "TuboRefill1";
+            this.TuboRefill1.Size = new System.Drawing.Size(20, 91);
+            this.TuboRefill1.TabIndex = 87;
+            this.TuboRefill1.TabStop = false;
+            // 
+            // TuboRefill3
+            // 
+            this.TuboRefill3.BackColor = System.Drawing.SystemColors.Control;
+            this.TuboRefill3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TuboRefill3.Location = new System.Drawing.Point(-1, 491);
+            this.TuboRefill3.Name = "TuboRefill3";
+            this.TuboRefill3.Size = new System.Drawing.Size(129, 20);
+            this.TuboRefill3.TabIndex = 86;
+            this.TuboRefill3.TabStop = false;
+            // 
+            // Laser1
+            // 
+            this.Laser1.BackColor = System.Drawing.Color.Crimson;
+            this.Laser1.Location = new System.Drawing.Point(300, 657);
+            this.Laser1.Name = "Laser1";
+            this.Laser1.Size = new System.Drawing.Size(275, 4);
+            this.Laser1.TabIndex = 85;
+            this.Laser1.TabStop = false;
+            // 
+            // Gancio
+            // 
+            this.Gancio.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.Gancio.Location = new System.Drawing.Point(464, 419);
+            this.Gancio.Name = "Gancio";
+            this.Gancio.Size = new System.Drawing.Size(32, 56);
+            this.Gancio.TabIndex = 83;
+            this.Gancio.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.pictureBox1.Location = new System.Drawing.Point(-1, 382);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1381, 40);
+            this.pictureBox1.TabIndex = 82;
+            this.pictureBox1.TabStop = false;
+            // 
             // Braccio2
             // 
             this.Braccio2.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.Braccio2.Location = new System.Drawing.Point(617, 491);
+            this.Braccio2.Location = new System.Drawing.Point(617, 472);
             this.Braccio2.Name = "Braccio2";
             this.Braccio2.Size = new System.Drawing.Size(24, 138);
             this.Braccio2.TabIndex = 35;
@@ -719,7 +848,7 @@ namespace Serra_csharp
             // Braccio1
             // 
             this.Braccio1.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.Braccio1.Location = new System.Drawing.Point(319, 492);
+            this.Braccio1.Location = new System.Drawing.Point(319, 472);
             this.Braccio1.Name = "Braccio1";
             this.Braccio1.Size = new System.Drawing.Size(24, 137);
             this.Braccio1.TabIndex = 34;
@@ -728,7 +857,7 @@ namespace Serra_csharp
             // BraccioMain
             // 
             this.BraccioMain.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.BraccioMain.Location = new System.Drawing.Point(319, 491);
+            this.BraccioMain.Location = new System.Drawing.Point(319, 471);
             this.BraccioMain.Name = "BraccioMain";
             this.BraccioMain.Size = new System.Drawing.Size(322, 20);
             this.BraccioMain.TabIndex = 32;
@@ -737,79 +866,139 @@ namespace Serra_csharp
             // Rullo
             // 
             this.Rullo.Image = ((System.Drawing.Image)(resources.GetObject("Rullo.Image")));
-            this.Rullo.Location = new System.Drawing.Point(944, 758);
+            this.Rullo.Location = new System.Drawing.Point(975, 758);
             this.Rullo.Name = "Rullo";
             this.Rullo.Size = new System.Drawing.Size(398, 54);
             this.Rullo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.Rullo.TabIndex = 26;
             this.Rullo.TabStop = false;
             // 
-            // pictureBox3
+            // TuboVasca
             // 
-            this.pictureBox3.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pictureBox3.Location = new System.Drawing.Point(281, 743);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(109, 14);
-            this.pictureBox3.TabIndex = 3;
-            this.pictureBox3.TabStop = false;
-            // 
-            // ImmaginePianta
-            // 
-            this.ImmaginePianta.Image = global::Serra_csharp.Properties.Resources.Pianta2;
-            this.ImmaginePianta.Location = new System.Drawing.Point(385, 627);
-            this.ImmaginePianta.Name = "ImmaginePianta";
-            this.ImmaginePianta.Size = new System.Drawing.Size(190, 131);
-            this.ImmaginePianta.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ImmaginePianta.TabIndex = 1;
-            this.ImmaginePianta.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.pictureBox1.Location = new System.Drawing.Point(-1, 402);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1355, 40);
-            this.pictureBox1.TabIndex = 82;
-            this.pictureBox1.TabStop = false;
-            // 
-            // Gancio
-            // 
-            this.Gancio.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.Gancio.Location = new System.Drawing.Point(464, 439);
-            this.Gancio.Name = "Gancio";
-            this.Gancio.Size = new System.Drawing.Size(32, 56);
-            this.Gancio.TabIndex = 83;
-            this.Gancio.TabStop = false;
-            // 
-            // Laser
-            // 
-            this.Laser.BackColor = System.Drawing.Color.Crimson;
-            this.Laser.Location = new System.Drawing.Point(267, 657);
-            this.Laser.Name = "Laser";
-            this.Laser.Size = new System.Drawing.Size(300, 4);
-            this.Laser.TabIndex = 85;
-            this.Laser.TabStop = false;
+            this.TuboVasca.BackColor = System.Drawing.SystemColors.Control;
+            this.TuboVasca.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TuboVasca.Location = new System.Drawing.Point(184, 772);
+            this.TuboVasca.Name = "TuboVasca";
+            this.TuboVasca.Size = new System.Drawing.Size(200, 10);
+            this.TuboVasca.TabIndex = 3;
+            this.TuboVasca.TabStop = false;
             // 
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.InitialImage")));
-            this.pictureBox2.Location = new System.Drawing.Point(73, 522);
+            this.pictureBox2.Location = new System.Drawing.Point(55, 576);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(159, 236);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 2;
             this.pictureBox2.TabStop = false;
             // 
+            // ImmaginePianta1
+            // 
+            this.ImmaginePianta1.Image = global::Serra_csharp.Properties.Resources.Pianta2;
+            this.ImmaginePianta1.Location = new System.Drawing.Point(385, 627);
+            this.ImmaginePianta1.Name = "ImmaginePianta1";
+            this.ImmaginePianta1.Size = new System.Drawing.Size(190, 131);
+            this.ImmaginePianta1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ImmaginePianta1.TabIndex = 1;
+            this.ImmaginePianta1.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = global::Serra_csharp.Properties.Resources.Condizionatore_off;
+            this.pictureBox5.Location = new System.Drawing.Point(790, 269);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(180, 107);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox5.TabIndex = 94;
+            this.pictureBox5.TabStop = false;
+            // 
+            // SensorePianta2Pronta
+            // 
+            this.SensorePianta2Pronta.Location = new System.Drawing.Point(1290, 243);
+            this.SensorePianta2Pronta.Name = "SensorePianta2Pronta";
+            this.SensorePianta2Pronta.Size = new System.Drawing.Size(48, 20);
+            this.SensorePianta2Pronta.TabIndex = 96;
+            this.SensorePianta2Pronta.Text = "False";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(1205, 246);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(77, 13);
+            this.label32.TabIndex = 95;
+            this.label32.Text = "Plant2 READY";
+            // 
+            // SensoreFineCorsaPianta2
+            // 
+            this.SensoreFineCorsaPianta2.Location = new System.Drawing.Point(873, 240);
+            this.SensoreFineCorsaPianta2.Name = "SensoreFineCorsaPianta2";
+            this.SensoreFineCorsaPianta2.Size = new System.Drawing.Size(48, 20);
+            this.SensoreFineCorsaPianta2.TabIndex = 98;
+            this.SensoreFineCorsaPianta2.Text = "False";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(837, 243);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(27, 13);
+            this.label33.TabIndex = 97;
+            this.label33.Text = "FCP";
+            // 
+            // SensoreVascaPienaVuota
+            // 
+            this.SensoreVascaPienaVuota.Location = new System.Drawing.Point(998, 241);
+            this.SensoreVascaPienaVuota.Name = "SensoreVascaPienaVuota";
+            this.SensoreVascaPienaVuota.Size = new System.Drawing.Size(48, 20);
+            this.SensoreVascaPienaVuota.TabIndex = 100;
+            this.SensoreVascaPienaVuota.Text = "False";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(927, 243);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(58, 13);
+            this.label34.TabIndex = 99;
+            this.label34.Text = "Vasca F/E";
+            // 
+            // Vasca
+            // 
+            this.Vasca.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.Vasca.Location = new System.Drawing.Point(375, 758);
+            this.Vasca.Name = "Vasca";
+            this.Vasca.Size = new System.Drawing.Size(489, 58);
+            this.Vasca.TabIndex = 101;
+            this.Vasca.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1356, 782);
-            this.Controls.Add(this.Laser);
+            this.ClientSize = new System.Drawing.Size(1385, 835);
+            this.Controls.Add(this.Vasca);
+            this.Controls.Add(this.SensoreVascaPienaVuota);
+            this.Controls.Add(this.label34);
+            this.Controls.Add(this.SensoreFineCorsaPianta2);
+            this.Controls.Add(this.label33);
+            this.Controls.Add(this.SensorePianta2Pronta);
+            this.Controls.Add(this.label32);
+            this.Controls.Add(this.pictureBox5);
+            this.Controls.Add(this.pictureBox4);
+            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.Laser2);
+            this.Controls.Add(this.ImmaginePianta2);
+            this.Controls.Add(this.Acqua);
+            this.Controls.Add(this.TuboRefill2);
+            this.Controls.Add(this.TuboRefill1);
+            this.Controls.Add(this.TuboRefill3);
+            this.Controls.Add(this.Laser1);
             this.Controls.Add(this.Gancio);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.SensorePiantaPronta);
+            this.Controls.Add(this.SensorePianta1Pronta);
             this.Controls.Add(this.SensoreTempMax);
             this.Controls.Add(this.SensoreTempMin);
             this.Controls.Add(this.label28);
@@ -880,29 +1069,40 @@ namespace Serra_csharp
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.AttuatBraccioGiu);
-            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.TuboVasca);
             this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.ImmaginePianta);
+            this.Controls.Add(this.ImmaginePianta1);
             this.Name = "Form1";
+            this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Laser2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImmaginePianta2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Acqua)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TuboRefill2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TuboRefill1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TuboRefill3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Laser1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Gancio)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Braccio2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Braccio1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BraccioMain)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Rullo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ImmaginePianta)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Gancio)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Laser)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TuboVasca)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImmaginePianta1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Vasca)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox TuboVasca;
         private System.Windows.Forms.TextBox AttuatBraccioGiu;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -967,7 +1167,7 @@ namespace Serra_csharp
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.TextBox SensoreFCBottom;
-        private System.Windows.Forms.TextBox SensorePiantaPronta;
+        private System.Windows.Forms.TextBox SensorePianta1Pronta;
         private System.Windows.Forms.TextBox SensoreTempMax;
         private System.Windows.Forms.TextBox SensoreTempMin;
         private System.Windows.Forms.Label label28;
@@ -975,11 +1175,27 @@ namespace Serra_csharp
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.TextBox SensoreFinestra;
-        private System.Windows.Forms.PictureBox ImmaginePianta;
+        private System.Windows.Forms.PictureBox ImmaginePianta1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox Gancio;
-        private System.Windows.Forms.PictureBox Laser;
+        private System.Windows.Forms.PictureBox Laser1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox TuboRefill3;
+        private System.Windows.Forms.PictureBox TuboRefill1;
+        private System.Windows.Forms.PictureBox TuboRefill2;
+        private System.Windows.Forms.PictureBox Acqua;
+        private System.Windows.Forms.PictureBox ImmaginePianta2;
+        private System.Windows.Forms.PictureBox Laser2;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.TextBox SensorePianta2Pronta;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.TextBox SensoreFineCorsaPianta2;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.TextBox SensoreVascaPienaVuota;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.PictureBox Vasca;
     }
 }
 

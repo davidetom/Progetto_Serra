@@ -63,6 +63,26 @@ namespace Serra_csharp.Properties {
         /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Condizionatore_off {
+            get {
+                object obj = ResourceManager.GetObject("Condizionatore_off", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Condizionatore_on {
+            get {
+                object obj = ResourceManager.GetObject("Condizionatore_on", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Pianta1 {
             get {
                 object obj = ResourceManager.GetObject("Pianta1", resourceCulture);
