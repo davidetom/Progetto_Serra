@@ -120,6 +120,7 @@ namespace Serra_csharp
 
             coloreTubi = TuboVasca.BackColor;
             Flusso.Visible = false;
+            Flusso2.Visible = false;
             tubi = this.Controls
             .OfType<PictureBox>()
             .Where(tb => tb.Name.StartsWith("Tubo"))
@@ -187,6 +188,7 @@ namespace Serra_csharp
             Reset_Attuatori();
             Reset_Tubi();
             Flusso.Visible = false;
+            Flusso2.Visible = false;
 
             AttuatBraccioSu.Text = "";
             AttuatBraccioSx.Text = "";
@@ -490,8 +492,8 @@ namespace Serra_csharp
                 SensoreRelease.ForeColor = Color.Black;
             }
 
-            SensoreNastroOccupato.Text = sulRullo ? "True" : "False";
-            SensoreNastroOccupato.ForeColor = sulRullo ? Color.Red : Color.Black;
+            SensoreRulloOccupato.Text = sulRullo ? "True" : "False";
+            SensoreRulloOccupato.ForeColor = sulRullo ? Color.Red : Color.Black;
         }
 
         private void Reset_Sensori()
@@ -778,6 +780,7 @@ namespace Serra_csharp
             if (!serbatoioNonVuoto)
             {
                 Flusso.Visible = true;
+                Flusso2.Visible = true;
                 Acqua.Height += 2;
                 Acqua.Top -= 2;
                 foreach (PictureBox tubo in tubi)
@@ -791,6 +794,7 @@ namespace Serra_csharp
             if (Acqua.Height >= altezzaSerbatoio)
             {
                 Flusso.Visible = false;
+                Flusso2.Visible = false;
                 serbatoioNonVuoto = true;
                 SensoreSerbatoioFull.Text = "True";
                 SensoreSerbatoioFull.ForeColor = Color.Red;
@@ -804,5 +808,7 @@ namespace Serra_csharp
             int probabilita = rand.Next(1, 101);
             return probabilita <= prob;
         }
+
+
     }
 }

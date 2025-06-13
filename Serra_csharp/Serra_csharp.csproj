@@ -95,5 +95,17 @@
   <ItemGroup>
     <None Include="Resources\Condizionatore_off.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lampada_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lampada_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Finestra_closed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Finestra_open.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
