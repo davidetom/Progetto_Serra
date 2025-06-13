@@ -206,6 +206,7 @@ namespace Serra_csharp
         // **** MASTER TIMER ****
         private void MasterTimer_Tick(object sender, EventArgs e)
         {
+            Console.WriteLine("Prelievo2 : " + prelievo2);
             Svuotamento_Vasca();
             Serbatoio_Svuota();
             Serbatoio_Riempi();
@@ -325,7 +326,7 @@ namespace Serra_csharp
                     }
                 }
                 // OPZIONALE : SE AUTOMATIZZIAMO IL BRACCIO PER MUOVERLO SOLO IN CASO DI CRESCITA PIANTE NON SERVE
-                else if ((initGancioX + metaGancio) > FCS)
+                else if (!prelievo1 && !prelievo2 && (initGancioX + metaGancio) > FCS)
                 {
                     dist = (initGancioX + metaGancio) - FCS;
                     if (dist >= 0 && dist <= xpos)
@@ -436,24 +437,24 @@ namespace Serra_csharp
             SensoreFCS.Text = (prelievo1 && (initGancioX + metaGancio) <= FCS) ? "True" : "False";
             if (SensoreFCS.Text == "True")
             {
-                Console.WriteLine("Pos Gancio = " + (Gancio.Left + metaGancio));
-                Console.WriteLine("FCS = " + FCS);
+                //Console.WriteLine("Pos Gancio = " + (Gancio.Left + metaGancio));
+                //Console.WriteLine("FCS = " + FCS);
             }
             SensoreFCS.ForeColor = (prelievo1 && (initGancioX + metaGancio) <= FCS) ? Color.Red : Color.Black;
 
             SensoreFineCorsaPianta2.Text = (prelievo2 && (initGancioX + metaGancio) <= FCP) ? "True" : "False";
             if (SensoreFineCorsaPianta2.Text == "True")
             {
-                Console.WriteLine("Pos Gancio = " + (Gancio.Left + metaGancio));
-                Console.WriteLine("FCP = " + FCP);
+                //Console.WriteLine("Pos Gancio = " + (Gancio.Left + metaGancio));
+                //Console.WriteLine("FCP = " + FCP);
             }
             SensoreFineCorsaPianta2.ForeColor = (prelievo2 && (initGancioX + metaGancio) <= FCP) ? Color.Red : Color.Black;
 
             SensoreFCD.Text = (initGancioX + (Gancio.Width / 2)) < FCD ? "False" : "True";
             if (SensoreFCD.Text == "True")
             {
-                Console.WriteLine("Pos Gancio = " + (Gancio.Left + metaGancio));
-                Console.WriteLine("FCD = " + FCD);
+                //Console.WriteLine("Pos Gancio = " + (Gancio.Left + metaGancio));
+                //Console.WriteLine("FCD = " + FCD);
             }
             SensoreFCD.ForeColor = (initGancioX + metaGancio) < FCD ? Color.Black : Color.Red;
 
@@ -563,7 +564,7 @@ namespace Serra_csharp
                 prelievo1 = false;
                 Laser1.BringToFront();
             }
-            else if (prelievo2)
+            if (prelievo2)
             {
                 prelievo2 = false;
                 Laser2.BringToFront();
