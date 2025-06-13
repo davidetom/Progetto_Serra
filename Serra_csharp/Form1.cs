@@ -45,6 +45,17 @@ namespace Serra_csharp
         bool grasped1;
         bool grasped2;
 
+        double temperatura;
+        bool finestraAperta;
+        bool condizionatoreOn;
+        bool luceOn;
+        int deltaTemp = 5;
+        double tempOttimale = 36;
+        int tickPerGiorno;
+        int cambioMese;
+        bool giornataCorta;
+        int tickLuce;
+
         int altezzaPianta;
         int maxHeightBraccio;
         int FCS;
@@ -136,6 +147,20 @@ namespace Serra_csharp
 
             altezzaVasca = Vasca.Height;
             altezzaSerbatoio = Acqua.Height;
+
+            finestraAperta = false;
+            condizionatoreOn = false;
+            luceOn = false;
+            int temp = Mese_Check();
+            int delta = Temperatura.Height - temp;
+            Temperatura.Height = (int) temp;
+            Temperatura.Top += (int) delta;
+            temperatura = temp;
+
+            tickPerGiorno = 0;
+            cambioMese = 0;
+            Calendario.Value = new DateTime(2025, 1, 1);
+            giornataCorta = true;
         }
 
         // **** START, STOP, RESET ****
@@ -190,6 +215,8 @@ namespace Serra_csharp
             Flusso.Visible = false;
             Flusso2.Visible = false;
 
+            svuotamento = false;
+
             AttuatBraccioSu.Text = "";
             AttuatBraccioSx.Text = "";
             AttuatBraccioDx.Text = "";
@@ -200,26 +227,49 @@ namespace Serra_csharp
             grasped2 = false;
             prelievo1 = false;
             prelievo2 = false;
+            presa = false;
+            sulRullo = false;
+            consentiMovimento = false;
 
             Laser1.BringToFront();
             Laser2.BringToFront();
+
+            finestraAperta = false;
+            condizionatoreOn = false;
+            luceOn = false;
+            int temp = Mese_Check();
+            int delta = Temperatura.Height - temp;
+            Temperatura.Height = (int) temp;
+            Temperatura.Top += (int) delta;
+            temperatura = temp;
+
+            tickPerGiorno = 0;
+            cambioMese = 0;
+            Calendario.Value = new DateTime(2025, 1, 1);
+            giornataCorta = true;
         }
 
         // **** MASTER TIMER ****
         private void MasterTimer_Tick(object sender, EventArgs e)
         {
-            Console.WriteLine("Prelievo2 : " + prelievo2);
             Svuotamento_Vasca();
             Serbatoio_Svuota();
             Serbatoio_Riempi();
 
+            Update_Data();
+            Lampada_Check();
+
+            Temperatura_Check();
+            Finestra_Check();
+            Condizionatore_Check();
+
             // Crescita pianta
-            if (Prob_Evento(10) && crescita1 < 3)
+            if (Prob_Evento(Probabilita_Crescita()) && crescita1 < 3)
             {
                 crescita1++;
                 Crescita_Pianta(ImmaginePianta1, 1);
             }
-            else if(Prob_Evento(10) && crescita2 < 3)
+            else if(Prob_Evento(Probabilita_Crescita()) && crescita2 < 3)
             {
                 crescita2++;
                 Crescita_Pianta(ImmaginePianta2, 2);
@@ -802,13 +852,159 @@ namespace Serra_csharp
             }
         }
 
-        private bool Prob_Evento(int prob)
+        private bool Prob_Evento(double prob)
         {
             Random rand = new Random();
             int probabilita = rand.Next(1, 101);
             return probabilita <= prob;
         }
 
+        private void Finestra_Check()
+        {
+            double delta = 0.1;
+            if (finestraAperta)
+            {
+                temperatura = temperatura - delta;
+                Update_Temp();
+            }
+        }
 
+        private void Condizionatore_Check()
+        {
+            double delta = 0.1;
+            if (condizionatoreOn)
+            {
+                temperatura = temperatura + delta;
+                Update_Temp();
+            }
+        }
+
+        private void Update_Temp()
+        {
+            int temp = (int)temperatura;
+            int altezza = Temperatura.Height - temp;
+            Temperatura.Height = temp;
+            Temperatura.Top += altezza;
+        }
+
+        private void Temperatura_Check()
+        {
+            if (temperatura < (tempOttimale - deltaTemp))
+            {
+                Conditioner.Image = Properties.Resources.Condizionatore_on;
+                condizionatoreOn = true;
+                Finestra.Image = Properties.Resources.Finestra_closed;
+                finestraAperta = false;
+            }
+            if (temperatura > (tempOttimale + deltaTemp))
+            {
+                Finestra.Image = Properties.Resources.Finestra_open;
+                finestraAperta = true;
+                Conditioner.Image = Properties.Resources.Condizionatore_off;
+                condizionatoreOn = false;
+            }
+            if (temperatura >= (tempOttimale - deltaTemp) && temperatura <= (tempOttimale + deltaTemp))
+            {
+                Conditioner.Image = Properties.Resources.Condizionatore_off;
+                condizionatoreOn = false;
+                Finestra.Image = Properties.Resources.Finestra_closed;
+                finestraAperta = false;
+            }
+        }
+
+        private void Update_Data()
+        {
+            int mese = Calendario.Value.Month;
+            if (tickPerGiorno >= 18)
+            {
+                Calendario.Value = Calendario.Value.AddDays(1);
+                tickPerGiorno = 0;
+            }
+            else
+            {
+                tickPerGiorno++;
+            }
+
+            if (mese != Calendario.Value.Month)
+            {
+                cambioMese++;
+            }
+
+            if (cambioMese >= 12)
+            {
+                cambioMese = 0;
+            }
+            if (cambioMese % 3 == 0)
+            {
+                temperatura = Mese_Check();
+            }
+            if (cambioMese % 6 == 0)
+            {
+                giornataCorta = Luce_Check();
+            }
+        }
+
+        private int Mese_Check()
+        {
+            int mese = Calendario.Value.Month;
+
+            switch (mese)
+            {
+                case 1: case 2: case 3:
+                    return 5;
+                case 4: case 5: case 6:
+                    return 25;
+                case 7: case 8: case 9:
+                    return 67;
+                case 10: case 11: case 12:
+                    return 47;
+                default: return 36;
+            }
+        }
+
+        private bool Luce_Check()
+        {
+            int mese = Calendario.Value.Month;
+
+            switch (mese)
+            {
+                case 1: case 2: case 3:
+                case 4: case 5: case 6:
+                    return true;
+                case 7: case 8: case 9:
+                case 10: case 11: case 12:
+                    return false;
+                default: return true;
+            }
+        }
+        private void Lampada_Check()
+        {
+            if (giornataCorta && tickLuce <= 6 || !giornataCorta && tickLuce <= 9)
+            {
+                tickLuce++;
+            }
+            else
+            {
+                if (luceOn)
+                {
+                    Lampada.Image = Properties.Resources.Lampada_off;
+                    luceOn = false;
+                }
+                else
+                {
+                    Lampada.Image = Properties.Resources.Lampada_on;
+                    luceOn = true;
+                }
+                tickLuce = 0;
+            }
+        }
+
+        private double Probabilita_Crescita()
+        {
+            double probVasca = Vasca.Height / altezzaVasca;
+            double deltaT = Math.Abs(temperatura - tempOttimale);
+            double probTemp = deltaT / tempOttimale;
+            return probVasca * probTemp;
+        }
     }
 }

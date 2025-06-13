@@ -113,7 +113,7 @@ namespace Serra_csharp
             this.Acqua = new System.Windows.Forms.PictureBox();
             this.TuboRefill1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.Conditioner = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.Laser2 = new System.Windows.Forms.PictureBox();
@@ -130,6 +130,7 @@ namespace Serra_csharp
             this.Vasca = new System.Windows.Forms.PictureBox();
             this.ContenitoreVasca = new System.Windows.Forms.PictureBox();
             this.Finestra = new System.Windows.Forms.PictureBox();
+            this.Calendario = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.Lampada)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Temperatura)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Flusso2)).BeginInit();
@@ -140,7 +141,7 @@ namespace Serra_csharp
             ((System.ComponentModel.ISupportInitialize)(this.Acqua)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TuboRefill1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Conditioner)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Laser2)).BeginInit();
@@ -785,7 +786,7 @@ namespace Serra_csharp
             // 
             this.label34.AutoSize = true;
             this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(1055, 203);
+            this.label34.Location = new System.Drawing.Point(1054, 211);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(67, 13);
             this.label34.TabIndex = 99;
@@ -821,9 +822,9 @@ namespace Serra_csharp
             // Temperatura
             // 
             this.Temperatura.BackColor = System.Drawing.Color.Red;
-            this.Temperatura.Location = new System.Drawing.Point(183, 444);
+            this.Temperatura.Location = new System.Drawing.Point(183, 440);
             this.Temperatura.Name = "Temperatura";
-            this.Temperatura.Size = new System.Drawing.Size(8, 69);
+            this.Temperatura.Size = new System.Drawing.Size(8, 72);
             this.Temperatura.TabIndex = 108;
             this.Temperatura.TabStop = false;
             // 
@@ -904,15 +905,15 @@ namespace Serra_csharp
             this.pictureBox2.TabIndex = 2;
             this.pictureBox2.TabStop = false;
             // 
-            // pictureBox5
+            // Conditioner
             // 
-            this.pictureBox5.Image = global::Serra_csharp.Properties.Resources.Condizionatore_off;
-            this.pictureBox5.Location = new System.Drawing.Point(790, 266);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(180, 107);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox5.TabIndex = 94;
-            this.pictureBox5.TabStop = false;
+            this.Conditioner.Image = global::Serra_csharp.Properties.Resources.Condizionatore_off;
+            this.Conditioner.Location = new System.Drawing.Point(790, 266);
+            this.Conditioner.Name = "Conditioner";
+            this.Conditioner.Size = new System.Drawing.Size(180, 107);
+            this.Conditioner.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Conditioner.TabIndex = 94;
+            this.Conditioner.TabStop = false;
             // 
             // pictureBox4
             // 
@@ -927,7 +928,7 @@ namespace Serra_csharp
             // pictureBox3
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(240, 645);
+            this.pictureBox3.Location = new System.Drawing.Point(235, 645);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(68, 25);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1066,11 +1067,19 @@ namespace Serra_csharp
             this.Finestra.TabIndex = 110;
             this.Finestra.TabStop = false;
             // 
+            // Calendario
+            // 
+            this.Calendario.Location = new System.Drawing.Point(13, 255);
+            this.Calendario.Name = "Calendario";
+            this.Calendario.Size = new System.Drawing.Size(217, 20);
+            this.Calendario.TabIndex = 112;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1385, 835);
+            this.Controls.Add(this.Calendario);
             this.Controls.Add(this.Finestra);
             this.Controls.Add(this.Lampada);
             this.Controls.Add(this.Temperatura);
@@ -1090,7 +1099,7 @@ namespace Serra_csharp
             this.Controls.Add(this.label33);
             this.Controls.Add(this.SensorePianta2Pronta);
             this.Controls.Add(this.label32);
-            this.Controls.Add(this.pictureBox5);
+            this.Controls.Add(this.Conditioner);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.Laser2);
@@ -1183,7 +1192,7 @@ namespace Serra_csharp
             ((System.ComponentModel.ISupportInitialize)(this.Acqua)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TuboRefill1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Conditioner)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Laser2)).EndInit();
@@ -1288,7 +1297,7 @@ namespace Serra_csharp
         private System.Windows.Forms.PictureBox Laser2;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.PictureBox Conditioner;
         private System.Windows.Forms.TextBox SensorePianta2Pronta;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.TextBox SensoreFineCorsaPianta2;
@@ -1305,6 +1314,7 @@ namespace Serra_csharp
         private System.Windows.Forms.PictureBox Temperatura;
         private System.Windows.Forms.PictureBox Lampada;
         private System.Windows.Forms.PictureBox Finestra;
+        private System.Windows.Forms.DateTimePicker Calendario;
     }
 }
 
