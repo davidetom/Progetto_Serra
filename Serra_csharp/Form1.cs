@@ -614,11 +614,15 @@ namespace Serra_csharp
             if (prelievo1)
             {
                 prelievo1 = false;
+                SensorePianta1Pronta.Text = "False";
+                SensorePianta1Pronta.ForeColor = Color.Black;
                 Laser1.BringToFront();
             }
             if (prelievo2)
             {
                 prelievo2 = false;
+                SensorePianta2Pronta.Text = "False";
+                SensorePianta2Pronta.ForeColor = Color.Black;
                 Laser2.BringToFront();
             }
 
@@ -733,6 +737,7 @@ namespace Serra_csharp
             {
                 Laser1.SendToBack();
                 SensorePianta1Pronta.Text = "True";
+                SensorePianta1Pronta.ForeColor = Color.Red;
                 if (!prelievo2)
                 {
                     prel1 = true;
@@ -742,6 +747,7 @@ namespace Serra_csharp
             {
                 Laser2.SendToBack();
                 SensorePianta1Pronta.Text = "True";
+                SensorePianta2Pronta.ForeColor = Color.Red;
                 if (!prelievo1)
                 {
                     prel2 = true;
@@ -891,6 +897,8 @@ namespace Serra_csharp
         {
             if (temperatura < (tempOttimale - deltaTemp))
             {
+                SensoreTempFredda.Text = "True";
+                SensoreTempFredda.ForeColor = Color.Red;
                 Conditioner.Image = Properties.Resources.Condizionatore_on;
                 condizionatoreOn = true;
                 Finestra.Image = Properties.Resources.Finestra_closed;
@@ -898,6 +906,8 @@ namespace Serra_csharp
             }
             if (temperatura > (tempOttimale + deltaTemp))
             {
+                SensoreTempCalda.Text = "True";
+                SensoreTempCalda.ForeColor = Color.Red;
                 Finestra.Image = Properties.Resources.Finestra_open;
                 finestraAperta = true;
                 Conditioner.Image = Properties.Resources.Condizionatore_off;
@@ -905,11 +915,20 @@ namespace Serra_csharp
             }
             if (temperatura >= (tempOttimale - deltaTemp) && temperatura <= (tempOttimale + deltaTemp))
             {
+                SensoreTempFredda.Text = "False";
+                SensoreTempFredda.ForeColor = Color.Black;
+                SensoreTempCalda.Text = "False";
+                SensoreTempCalda.ForeColor = Color.Black;
                 Conditioner.Image = Properties.Resources.Condizionatore_off;
                 condizionatoreOn = false;
                 Finestra.Image = Properties.Resources.Finestra_closed;
                 finestraAperta = false;
             }
+
+            SensoreCondizionatore.Text = condizionatoreOn ? "True" : "False";
+            SensoreCondizionatore.ForeColor = condizionatoreOn ? Color.Red : Color.Black;
+            SensoreFinestra.Text = finestraAperta ? "True" : "False";
+            SensoreFinestra.ForeColor = finestraAperta ? Color.Red : Color.Black;
         }
 
         private void Update_Data()
@@ -997,6 +1016,9 @@ namespace Serra_csharp
                 }
                 tickLuce = 0;
             }
+
+            SensoreLuci.Text = luceOn ? "True" : "False";
+            SensoreLuci.ForeColor = luceOn ? Color.Red : Color.Black;
         }
 
         private double Probabilita_Crescita()

@@ -88,8 +88,8 @@ namespace Serra_csharp
             this.label27 = new System.Windows.Forms.Label();
             this.SensoreFCBottom = new System.Windows.Forms.TextBox();
             this.SensorePianta1Pronta = new System.Windows.Forms.TextBox();
-            this.SensoreTempMax = new System.Windows.Forms.TextBox();
-            this.SensoreTempMin = new System.Windows.Forms.TextBox();
+            this.SensoreTempCalda = new System.Windows.Forms.TextBox();
+            this.SensoreTempFredda = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
@@ -131,6 +131,8 @@ namespace Serra_csharp
             this.ContenitoreVasca = new System.Windows.Forms.PictureBox();
             this.Finestra = new System.Windows.Forms.PictureBox();
             this.Calendario = new System.Windows.Forms.DateTimePicker();
+            this.SensoreCondizionatore = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Lampada)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Temperatura)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Flusso2)).BeginInit();
@@ -479,7 +481,7 @@ namespace Serra_csharp
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(921, 211);
+            this.label16.Location = new System.Drawing.Point(921, 212);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(70, 13);
             this.label16.TabIndex = 71;
@@ -487,7 +489,7 @@ namespace Serra_csharp
             // 
             // SensoreRulloOccupato
             // 
-            this.SensoreRulloOccupato.Location = new System.Drawing.Point(1000, 208);
+            this.SensoreRulloOccupato.Location = new System.Drawing.Point(1000, 210);
             this.SensoreRulloOccupato.Name = "SensoreRulloOccupato";
             this.SensoreRulloOccupato.Size = new System.Drawing.Size(48, 20);
             this.SensoreRulloOccupato.TabIndex = 70;
@@ -560,7 +562,7 @@ namespace Serra_csharp
             // 
             // SensoreRelease
             // 
-            this.SensoreRelease.Location = new System.Drawing.Point(1000, 171);
+            this.SensoreRelease.Location = new System.Drawing.Point(1000, 173);
             this.SensoreRelease.Name = "SensoreRelease";
             this.SensoreRelease.Size = new System.Drawing.Size(48, 20);
             this.SensoreRelease.TabIndex = 60;
@@ -570,7 +572,7 @@ namespace Serra_csharp
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(921, 171);
+            this.label22.Location = new System.Drawing.Point(921, 176);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(63, 13);
             this.label22.TabIndex = 59;
@@ -580,7 +582,7 @@ namespace Serra_csharp
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(921, 136);
+            this.label23.Location = new System.Drawing.Point(934, 140);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(49, 13);
             this.label23.TabIndex = 58;
@@ -674,21 +676,21 @@ namespace Serra_csharp
             this.SensorePianta1Pronta.TabIndex = 81;
             this.SensorePianta1Pronta.Text = "False";
             // 
-            // SensoreTempMax
+            // SensoreTempCalda
             // 
-            this.SensoreTempMax.Location = new System.Drawing.Point(1316, 136);
-            this.SensoreTempMax.Name = "SensoreTempMax";
-            this.SensoreTempMax.Size = new System.Drawing.Size(48, 20);
-            this.SensoreTempMax.TabIndex = 80;
-            this.SensoreTempMax.Text = "False";
+            this.SensoreTempCalda.Location = new System.Drawing.Point(1316, 136);
+            this.SensoreTempCalda.Name = "SensoreTempCalda";
+            this.SensoreTempCalda.Size = new System.Drawing.Size(48, 20);
+            this.SensoreTempCalda.TabIndex = 80;
+            this.SensoreTempCalda.Text = "False";
             // 
-            // SensoreTempMin
+            // SensoreTempFredda
             // 
-            this.SensoreTempMin.Location = new System.Drawing.Point(1316, 173);
-            this.SensoreTempMin.Name = "SensoreTempMin";
-            this.SensoreTempMin.Size = new System.Drawing.Size(48, 20);
-            this.SensoreTempMin.TabIndex = 79;
-            this.SensoreTempMin.Text = "False";
+            this.SensoreTempFredda.Location = new System.Drawing.Point(1316, 173);
+            this.SensoreTempFredda.Name = "SensoreTempFredda";
+            this.SensoreTempFredda.Size = new System.Drawing.Size(48, 20);
+            this.SensoreTempFredda.TabIndex = 79;
+            this.SensoreTempFredda.Text = "False";
             // 
             // label28
             // 
@@ -706,9 +708,9 @@ namespace Serra_csharp
             this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label29.Location = new System.Drawing.Point(1220, 173);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(42, 13);
+            this.label29.Size = new System.Drawing.Size(52, 13);
             this.label29.TabIndex = 77;
-            this.label29.Text = "T MIN";
+            this.label29.Text = "T COLD";
             // 
             // label30
             // 
@@ -718,7 +720,7 @@ namespace Serra_csharp
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(45, 13);
             this.label30.TabIndex = 76;
-            this.label30.Text = "T MAX";
+            this.label30.Text = "T HOT";
             // 
             // label31
             // 
@@ -768,7 +770,7 @@ namespace Serra_csharp
             // 
             this.label33.AutoSize = true;
             this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(929, 101);
+            this.label33.Location = new System.Drawing.Point(940, 104);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(30, 13);
             this.label33.TabIndex = 97;
@@ -776,7 +778,7 @@ namespace Serra_csharp
             // 
             // SensoreVascaPienaVuota
             // 
-            this.SensoreVascaPienaVuota.Location = new System.Drawing.Point(1166, 205);
+            this.SensoreVascaPienaVuota.Location = new System.Drawing.Point(1000, 243);
             this.SensoreVascaPienaVuota.Name = "SensoreVascaPienaVuota";
             this.SensoreVascaPienaVuota.Size = new System.Drawing.Size(48, 20);
             this.SensoreVascaPienaVuota.TabIndex = 100;
@@ -786,7 +788,7 @@ namespace Serra_csharp
             // 
             this.label34.AutoSize = true;
             this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(1054, 211);
+            this.label34.Location = new System.Drawing.Point(921, 247);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(67, 13);
             this.label34.TabIndex = 99;
@@ -1074,11 +1076,31 @@ namespace Serra_csharp
             this.Calendario.Size = new System.Drawing.Size(217, 20);
             this.Calendario.TabIndex = 112;
             // 
+            // SensoreCondizionatore
+            // 
+            this.SensoreCondizionatore.Location = new System.Drawing.Point(1166, 206);
+            this.SensoreCondizionatore.Name = "SensoreCondizionatore";
+            this.SensoreCondizionatore.Size = new System.Drawing.Size(48, 20);
+            this.SensoreCondizionatore.TabIndex = 114;
+            this.SensoreCondizionatore.Text = "False";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(1054, 209);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(93, 13);
+            this.label9.TabIndex = 113;
+            this.label9.Text = "Conditioner ON";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1385, 835);
+            this.Controls.Add(this.SensoreCondizionatore);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.Calendario);
             this.Controls.Add(this.Finestra);
             this.Controls.Add(this.Lampada);
@@ -1108,8 +1130,8 @@ namespace Serra_csharp
             this.Controls.Add(this.Gancio);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.SensorePianta1Pronta);
-            this.Controls.Add(this.SensoreTempMax);
-            this.Controls.Add(this.SensoreTempMin);
+            this.Controls.Add(this.SensoreTempCalda);
+            this.Controls.Add(this.SensoreTempFredda);
             this.Controls.Add(this.label28);
             this.Controls.Add(this.label29);
             this.Controls.Add(this.label30);
@@ -1277,8 +1299,8 @@ namespace Serra_csharp
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.TextBox SensoreFCBottom;
         private System.Windows.Forms.TextBox SensorePianta1Pronta;
-        private System.Windows.Forms.TextBox SensoreTempMax;
-        private System.Windows.Forms.TextBox SensoreTempMin;
+        private System.Windows.Forms.TextBox SensoreTempCalda;
+        private System.Windows.Forms.TextBox SensoreTempFredda;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label30;
@@ -1315,6 +1337,8 @@ namespace Serra_csharp
         private System.Windows.Forms.PictureBox Lampada;
         private System.Windows.Forms.PictureBox Finestra;
         private System.Windows.Forms.DateTimePicker Calendario;
+        private System.Windows.Forms.TextBox SensoreCondizionatore;
+        private System.Windows.Forms.Label label9;
     }
 }
 
