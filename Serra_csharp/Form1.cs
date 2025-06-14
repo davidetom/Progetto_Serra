@@ -150,7 +150,12 @@ namespace Serra_csharp
 
             finestraAperta = false;
             condizionatoreOn = false;
+            Condizionatore_On_Off(false);
+            Finestra_Open_Close(false);
+            luceOn = true;
+            Luce_Check();
             luceOn = false;
+
             int temp = 5;
             int delta = Temperatura.Height - temp;
             Temperatura.Height = (int) temp;
@@ -224,7 +229,12 @@ namespace Serra_csharp
 
             finestraAperta = false;
             condizionatoreOn = false;
+            Condizionatore_On_Off(false);
+            Finestra_Open_Close(false);
+            luceOn = true;
+            Lampada_Check();
             luceOn = false;
+
             int temp = 5;
             int delta = Temperatura.Height - temp;
             Temperatura.Height = (int) temp;
@@ -927,45 +937,72 @@ namespace Serra_csharp
             {
                 SensoreTempFredda.Text = "True";
                 SensoreTempFredda.ForeColor = Color.Red;
-                AttuatCondizionatore.Text = "True";
-                AttuatCondizionatore.ForeColor = Color.Red;
 
-                Conditioner.Image = Properties.Resources.Condizionatore_on;
-                condizionatoreOn = true;
-                Finestra.Image = Properties.Resources.Finestra_closed;
-                finestraAperta = false;
+                Condizionatore_On_Off(true);
+                Finestra_Open_Close(false);
             }
             if (temperatura > (tempOttimale + deltaTemp))
             {
                 SensoreTempCalda.Text = "True";
                 SensoreTempCalda.ForeColor = Color.Red;
-                AttuatFinestra.Text = "True";
-                AttuatFinestra.ForeColor = Color.Red;
 
-                Finestra.Image = Properties.Resources.Finestra_open;
-                finestraAperta = true;
-                Conditioner.Image = Properties.Resources.Condizionatore_off;
-                condizionatoreOn = false;
+                Condizionatore_On_Off(false);
+                Finestra_Open_Close(true);
             }
             if (temperatura >= (tempOttimale - deltaTemp) && temperatura <= (tempOttimale + deltaTemp))
             {
                 SensoreTempFredda.Text = "False";
                 SensoreTempFredda.ForeColor = Color.Black;
-                AttuatFinestra.Text = "False";
-                AttuatFinestra.ForeColor = Color.Black;
                 SensoreTempCalda.Text = "False";
                 SensoreTempCalda.ForeColor = Color.Black;
+
+                Condizionatore_On_Off(false);
+                Finestra_Open_Close(false);
+            }
+        }
+
+        private void Condizionatore_On_Off(bool accendi)
+        {
+            if (accendi)
+            {
+                AttuatCondizionatore.Text = "True";
+                AttuatCondizionatore.ForeColor = Color.Red;
+
+                Conditioner.Image = Properties.Resources.Condizionatore_on;
+                condizionatoreOn = true;
+            }
+            else
+            {
                 AttuatCondizionatore.Text = "False";
                 AttuatCondizionatore.ForeColor = Color.Black;
 
                 Conditioner.Image = Properties.Resources.Condizionatore_off;
                 condizionatoreOn = false;
-                Finestra.Image = Properties.Resources.Finestra_closed;
-                finestraAperta = false;
             }
 
             SensoreCondizionatore.Text = condizionatoreOn ? "True" : "False";
             SensoreCondizionatore.ForeColor = condizionatoreOn ? Color.Red : Color.Black;
+        }
+
+        private void Finestra_Open_Close(bool apri)
+        {
+            if (apri)
+            {
+                AttuatFinestra.Text = "True";
+                AttuatFinestra.ForeColor = Color.Red;
+
+                Finestra.Image = Properties.Resources.Finestra_open;
+                finestraAperta = true;
+            }
+            else
+            {
+                AttuatFinestra.Text = "False";
+                AttuatFinestra.ForeColor = Color.Black;
+
+                Finestra.Image = Properties.Resources.Finestra_closed;
+                finestraAperta = false;
+            }
+
             SensoreFinestra.Text = finestraAperta ? "True" : "False";
             SensoreFinestra.ForeColor = finestraAperta ? Color.Red : Color.Black;
         }
