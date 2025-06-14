@@ -15,6 +15,7 @@ namespace Serra_csharp
         int[] statoInizialeBraccio = new int[10];
         int[] statoInizialePianta = new int[4];
         int[] statoInizialeRecipienti = new int[4];
+        Random rand = new Random();
         int delta; // delta tempo
         int initBraccioMainY; // posizione verticale braccio main
         int initBraccioMainX; // posizione orizzontale braccio main
@@ -118,16 +119,15 @@ namespace Serra_csharp
             .Where(tb => tb.Name.StartsWith("Sensore"))
             .ToList();
 
-            SensoreSerbatoioFull.Text = "True";
-            SensoreSerbatoioFull.ForeColor = Color.Red;
-            SensoreVascaPienaVuota.Text = "True";
-            SensoreVascaPienaVuota.ForeColor = Color.Red;
+            Reset_Sensori();
 
+            // Raccolta lista attuatori
             attuatori = this.Controls
             .OfType<TextBox>()
             .Where(tb => tb.Name.StartsWith("Attuat"))
             .ToList();
 
+            Reset_Attuatori();
 
             coloreTubi = TuboVasca.BackColor;
             Flusso.Visible = false;
@@ -151,7 +151,7 @@ namespace Serra_csharp
             finestraAperta = false;
             condizionatoreOn = false;
             luceOn = false;
-            int temp = Mese_Check();
+            int temp = 5;
             int delta = Temperatura.Height - temp;
             Temperatura.Height = (int) temp;
             Temperatura.Top += (int) delta;
@@ -205,24 +205,12 @@ namespace Serra_csharp
             serbatoioNonVuoto = true;
 
             Reset_Sensori();
-            SensoreSerbatoioFull.Text = "True";
-            SensoreSerbatoioFull.ForeColor = Color.Red;
-            SensoreVascaPienaVuota.Text = "True";
-            SensoreVascaPienaVuota.ForeColor = Color.Red;
-
             Reset_Attuatori();
             Reset_Tubi();
+
             Flusso.Visible = false;
             Flusso2.Visible = false;
-
             svuotamento = false;
-
-            AttuatBraccioSu.Text = "";
-            AttuatBraccioSx.Text = "";
-            AttuatBraccioDx.Text = "";
-            AttuatBraccioGiu.Text = "";
-            AttuatBraccioPresa.Text = "";
-            AttuatBraccioRilascio.Text = "";
             grasped1 = false;
             grasped2 = false;
             prelievo1 = false;
@@ -237,7 +225,7 @@ namespace Serra_csharp
             finestraAperta = false;
             condizionatoreOn = false;
             luceOn = false;
-            int temp = Mese_Check();
+            int temp = 5;
             int delta = Temperatura.Height - temp;
             Temperatura.Height = (int) temp;
             Temperatura.Top += (int) delta;
@@ -264,12 +252,13 @@ namespace Serra_csharp
             Condizionatore_Check();
 
             // Crescita pianta
-            if (Prob_Evento(Probabilita_Crescita()) && crescita1 < 3)
+            double probabilita = Probabilita_Crescita();
+            if (Prob_Evento(probabilita) && crescita1 < 3)
             {
                 crescita1++;
                 Crescita_Pianta(ImmaginePianta1, 1);
             }
-            else if(Prob_Evento(Probabilita_Crescita()) && crescita2 < 3)
+            if(Prob_Evento(probabilita) && crescita2 < 3)
             {
                 crescita2++;
                 Crescita_Pianta(ImmaginePianta2, 2);
@@ -559,7 +548,7 @@ namespace Serra_csharp
         {
             foreach (TextBox attuatore in attuatori)
             {
-                attuatore.Text = "";
+                attuatore.Text = "False";
                 attuatore.ForeColor = Color.Black;
             }
         }
@@ -585,9 +574,14 @@ namespace Serra_csharp
             }
             if (sulRullo && consentiMovimento)
             {
+                AttuatRullo.Text = "True";
+                AttuatRullo.ForeColor = Color.Red;
                 pianta.Left = posPianta + xpos;
+
                 if (pianta.Right >= this.ClientSize.Width)
                 {
+                    AttuatRullo.Text = "False";
+                    AttuatRullo.ForeColor = Color.Black;
                     Rigenera_Pianta(pianta);
                     sulRullo = false;
                     consentiMovimento = false;
@@ -671,9 +665,13 @@ namespace Serra_csharp
             Reset_PresaRilascio_Braccio();
 
             AttuatBraccioSu.Text = "True";
+            AttuatBraccioSu.ForeColor = Color.Red;
             AttuatBraccioSx.Text = "False";
+            AttuatBraccioSx.ForeColor = Color.Black;
             AttuatBraccioDx.Text = "False";
+            AttuatBraccioDx.ForeColor = Color.Black;
             AttuatBraccioGiu.Text = "False";
+            AttuatBraccioGiu.ForeColor = Color.Black;
         }
 
         private void LeftButton_Click(object sender, EventArgs e)
@@ -681,9 +679,13 @@ namespace Serra_csharp
             Reset_PresaRilascio_Braccio();
 
             AttuatBraccioSu.Text = "False";
+            AttuatBraccioSu.ForeColor = Color.Black;
             AttuatBraccioSx.Text = "True";
+            AttuatBraccioSx.ForeColor = Color.Red;
             AttuatBraccioDx.Text = "False";
+            AttuatBraccioDx.ForeColor = Color.Black;
             AttuatBraccioGiu.Text = "False";
+            AttuatBraccioGiu.ForeColor = Color.Black;
         }
 
         private void RightButton_Click(object sender, EventArgs e)
@@ -691,9 +693,13 @@ namespace Serra_csharp
             Reset_PresaRilascio_Braccio();
 
             AttuatBraccioSu.Text = "False";
+            AttuatBraccioSu.ForeColor = Color.Black;
             AttuatBraccioSx.Text = "False";
+            AttuatBraccioSx.ForeColor = Color.Black;
             AttuatBraccioDx.Text = "True";
+            AttuatBraccioDx.ForeColor = Color.Red;
             AttuatBraccioGiu.Text = "False";
+            AttuatBraccioGiu.ForeColor = Color.Black;
         }
 
         private void DownButton_Click(object sender, EventArgs e)
@@ -701,9 +707,13 @@ namespace Serra_csharp
             Reset_PresaRilascio_Braccio();
 
             AttuatBraccioSu.Text = "False";
+            AttuatBraccioSu.ForeColor = Color.Black;
             AttuatBraccioSx.Text = "False";
+            AttuatBraccioSx.ForeColor = Color.Black;
             AttuatBraccioDx.Text = "False";
+            AttuatBraccioDx.ForeColor = Color.Black;
             AttuatBraccioGiu.Text = "True";
+            AttuatBraccioGiu.ForeColor = Color.Red;
         }
 
         private void Presa_Rilascio_Click(object sender, EventArgs e)
@@ -712,21 +722,29 @@ namespace Serra_csharp
 
             presa = !presa;
             AttuatBraccioPresa.Text = presa ? "True" : "False";
+            AttuatBraccioPresa.ForeColor = presa ? Color.Red : Color.Black;
             AttuatBraccioRilascio.Text = presa ? "False" : "True";
+            AttuatBraccioRilascio.ForeColor = presa ? Color.Black : Color.Red;
         }
 
         private void Reset_Comandi_Braccio()
         {
             AttuatBraccioSu.Text = "False";
+            AttuatBraccioSu.ForeColor = Color.Black;
             AttuatBraccioSx.Text = "False";
+            AttuatBraccioSx.ForeColor = Color.Black;
             AttuatBraccioDx.Text = "False";
+            AttuatBraccioDx.ForeColor = Color.Black;
             AttuatBraccioGiu.Text = "False";
+            AttuatBraccioGiu.ForeColor = Color.Black;
         }
 
         private void Reset_PresaRilascio_Braccio()
         {
-            AttuatBraccioPresa.Text = "";
-            AttuatBraccioRilascio.Text = "";
+            AttuatBraccioPresa.Text = "False";
+            AttuatBraccioPresa.ForeColor = Color.Black;
+            AttuatBraccioRilascio.Text = "False";
+            AttuatBraccioRilascio.ForeColor = Color.Black;
         }
 
         private void Laser_Check()
@@ -771,7 +789,7 @@ namespace Serra_csharp
         {
             if (Vasca.Height > 0)
             {
-                if (Prob_Evento(50))
+                if (Prob_Evento(30))
                 {
                     Vasca.Height -= 1;
                     Vasca.Top += 1;
@@ -779,8 +797,8 @@ namespace Serra_csharp
             }
             else
             {
-                SensoreVascaPienaVuota.Text = "False";
-                SensoreVascaPienaVuota.ForeColor = Color.Black;
+                SensoreVascaPienaVuota.Text = "True";
+                SensoreVascaPienaVuota.ForeColor = Color.Red;
             }
         }
 
@@ -793,7 +811,7 @@ namespace Serra_csharp
             }
             if (serbatoioNonVuoto)
             {
-                if (SensoreVascaPienaVuota.Text == "False")
+                if (SensoreVascaPienaVuota.Text == "True")
                 {
                     if (!svuotamento)
                     {
@@ -802,6 +820,8 @@ namespace Serra_csharp
                         vasca_top = Vasca.Top;
                     }
                     svuotamento = true;
+                    AttuatSvuotaSerbatoio.Text = "True";
+                    AttuatSvuotaSerbatoio.ForeColor = Color.Red;
 
                     quantitaSerbatoio -= 2;
                     quantitaVasca += 2;
@@ -819,8 +839,11 @@ namespace Serra_csharp
                 if (Vasca.Height >= altezzaVasca)
                 {
                     svuotamento = false;
-                    SensoreVascaPienaVuota.Text = "True";
-                    SensoreVascaPienaVuota.ForeColor = Color.Red;
+                    AttuatSvuotaSerbatoio.Text = "False";
+                    AttuatSvuotaSerbatoio.ForeColor = Color.Black;
+
+                    SensoreVascaPienaVuota.Text = "False";
+                    SensoreVascaPienaVuota.ForeColor = Color.Black;
                     TuboVasca.BackColor = coloreTubi;
                 }
             }
@@ -837,6 +860,9 @@ namespace Serra_csharp
             {
                 Flusso.Visible = true;
                 Flusso2.Visible = true;
+                AttuatRiempiSerbatoio.Text = "True";
+                AttuatRiempiSerbatoio.ForeColor = Color.Red;
+
                 Acqua.Height += 2;
                 Acqua.Top -= 2;
                 foreach (PictureBox tubo in tubi)
@@ -852,6 +878,9 @@ namespace Serra_csharp
                 Flusso.Visible = false;
                 Flusso2.Visible = false;
                 serbatoioNonVuoto = true;
+                AttuatRiempiSerbatoio.Text = "False";
+                AttuatRiempiSerbatoio.ForeColor = Color.Black;
+
                 SensoreSerbatoioFull.Text = "True";
                 SensoreSerbatoioFull.ForeColor = Color.Red;
                 Reset_Tubi();
@@ -860,7 +889,6 @@ namespace Serra_csharp
 
         private bool Prob_Evento(double prob)
         {
-            Random rand = new Random();
             int probabilita = rand.Next(1, 101);
             return probabilita <= prob;
         }
@@ -899,6 +927,9 @@ namespace Serra_csharp
             {
                 SensoreTempFredda.Text = "True";
                 SensoreTempFredda.ForeColor = Color.Red;
+                AttuatCondizionatore.Text = "True";
+                AttuatCondizionatore.ForeColor = Color.Red;
+
                 Conditioner.Image = Properties.Resources.Condizionatore_on;
                 condizionatoreOn = true;
                 Finestra.Image = Properties.Resources.Finestra_closed;
@@ -908,6 +939,9 @@ namespace Serra_csharp
             {
                 SensoreTempCalda.Text = "True";
                 SensoreTempCalda.ForeColor = Color.Red;
+                AttuatFinestra.Text = "True";
+                AttuatFinestra.ForeColor = Color.Red;
+
                 Finestra.Image = Properties.Resources.Finestra_open;
                 finestraAperta = true;
                 Conditioner.Image = Properties.Resources.Condizionatore_off;
@@ -917,8 +951,13 @@ namespace Serra_csharp
             {
                 SensoreTempFredda.Text = "False";
                 SensoreTempFredda.ForeColor = Color.Black;
+                AttuatFinestra.Text = "False";
+                AttuatFinestra.ForeColor = Color.Black;
                 SensoreTempCalda.Text = "False";
                 SensoreTempCalda.ForeColor = Color.Black;
+                AttuatCondizionatore.Text = "False";
+                AttuatCondizionatore.ForeColor = Color.Black;
+
                 Conditioner.Image = Properties.Resources.Condizionatore_off;
                 condizionatoreOn = false;
                 Finestra.Image = Properties.Resources.Finestra_closed;
@@ -934,7 +973,8 @@ namespace Serra_csharp
         private void Update_Data()
         {
             int mese = Calendario.Value.Month;
-            if (tickPerGiorno >= 18)
+            bool meseCambiato = false;
+            if (tickPerGiorno >= 9)
             {
                 Calendario.Value = Calendario.Value.AddDays(1);
                 tickPerGiorno = 0;
@@ -947,17 +987,19 @@ namespace Serra_csharp
             if (mese != Calendario.Value.Month)
             {
                 cambioMese++;
+                meseCambiato = true;
             }
 
             if (cambioMese >= 12)
             {
                 cambioMese = 0;
             }
-            if (cambioMese % 3 == 0)
+            if (cambioMese % 3 == 0 && meseCambiato)
             {
+                Console.WriteLine("Mese_Chech()");
                 temperatura = Mese_Check();
             }
-            if (cambioMese % 6 == 0)
+            if (cambioMese % 6 == 0 && meseCambiato)
             {
                 giornataCorta = Luce_Check();
             }
@@ -1006,11 +1048,15 @@ namespace Serra_csharp
             {
                 if (luceOn)
                 {
+                    AttuatLampada.Text = "False";
+                    AttuatLampada.ForeColor = Color.Black;
                     Lampada.Image = Properties.Resources.Lampada_off;
                     luceOn = false;
                 }
                 else
                 {
+                    AttuatLampada.Text = "True";
+                    AttuatLampada.ForeColor = Color.Red;
                     Lampada.Image = Properties.Resources.Lampada_on;
                     luceOn = true;
                 }
@@ -1026,7 +1072,12 @@ namespace Serra_csharp
             double probVasca = Vasca.Height / altezzaVasca;
             double deltaT = Math.Abs(temperatura - tempOttimale);
             double probTemp = deltaT / tempOttimale;
-            return probVasca * probTemp;
+            double probabilita = probVasca * probTemp;
+            if (probabilita <= 0.33)
+            {
+                probabilita = 0.33;
+            }
+            return probabilita * 30;
         }
     }
 }

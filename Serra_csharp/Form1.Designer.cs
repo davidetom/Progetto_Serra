@@ -54,7 +54,7 @@ namespace Serra_csharp
             this.AttuatBraccioPresa = new System.Windows.Forms.TextBox();
             this.Presa_Rilascio = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
-            this.AttuatoreCondizionatore = new System.Windows.Forms.TextBox();
+            this.AttuatCondizionatore = new System.Windows.Forms.TextBox();
             this.AttuatLampada = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -374,12 +374,12 @@ namespace Serra_csharp
             this.label8.TabIndex = 36;
             this.label8.Text = "ATTUATORI";
             // 
-            // AttuatoreCondizionatore
+            // AttuatCondizionatore
             // 
-            this.AttuatoreCondizionatore.Location = new System.Drawing.Point(356, 136);
-            this.AttuatoreCondizionatore.Name = "AttuatoreCondizionatore";
-            this.AttuatoreCondizionatore.Size = new System.Drawing.Size(48, 20);
-            this.AttuatoreCondizionatore.TabIndex = 43;
+            this.AttuatCondizionatore.Location = new System.Drawing.Point(356, 136);
+            this.AttuatCondizionatore.Name = "AttuatCondizionatore";
+            this.AttuatCondizionatore.Size = new System.Drawing.Size(48, 20);
+            this.AttuatCondizionatore.TabIndex = 43;
             // 
             // AttuatLampada
             // 
@@ -792,7 +792,7 @@ namespace Serra_csharp
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(67, 13);
             this.label34.TabIndex = 99;
-            this.label34.Text = "Vasca F/E";
+            this.label34.Text = "Vasca E/F";
             // 
             // AttuatSvuotaSerbatoio
             // 
@@ -1164,7 +1164,7 @@ namespace Serra_csharp
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.AttuatRullo);
-            this.Controls.Add(this.AttuatoreCondizionatore);
+            this.Controls.Add(this.AttuatCondizionatore);
             this.Controls.Add(this.AttuatLampada);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label11);
@@ -1265,7 +1265,7 @@ namespace Serra_csharp
         private System.Windows.Forms.PictureBox Braccio1;
         private System.Windows.Forms.PictureBox Braccio2;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox AttuatoreCondizionatore;
+        private System.Windows.Forms.TextBox AttuatCondizionatore;
         private System.Windows.Forms.TextBox AttuatLampada;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
