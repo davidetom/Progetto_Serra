@@ -12,7 +12,7 @@ namespace Serra_csharp
 {
     public partial class Form1 : Form
     {
-        int[] statoInizialeBraccio = new int[10];
+        int[] statoInizialeBraccio = new int[12];
         int[] statoInizialePianta = new int[4];
         int[] statoInizialeRecipienti = new int[4];
         Random rand = new Random();
@@ -23,6 +23,7 @@ namespace Serra_csharp
         int initBraccio1X; // posizione orizzontale braccio 1
         int initBraccio2Y; // posizione verticale braccio 2
         int initBraccio2X; // posizione orizzontale braccio 2
+        int initCarrelloX; // posizione orizzontale carrello
         int initGancioX; // posizione orizzontale gancio
         int metaGancio;
         int initPianta1Y; //posizione verticale pianta
@@ -93,6 +94,8 @@ namespace Serra_csharp
             statoInizialeBraccio[7] = Gancio.Left;
             statoInizialeBraccio[8] = Gancio.Top;
             statoInizialeBraccio[9] = Gancio.Height;
+            statoInizialeBraccio[10] = Carrello.Left;
+            statoInizialeBraccio[11] = Carrello.Top;
 
             metaGancio = (int) Gancio.Width / 2;
 
@@ -193,6 +196,8 @@ namespace Serra_csharp
             Gancio.Left = statoInizialeBraccio[7];
             Gancio.Top = statoInizialeBraccio[8];
             Gancio.Height = statoInizialeBraccio[9];
+            Carrello.Left = statoInizialeBraccio[10];
+            Carrello.Top = statoInizialeBraccio[11];
 
             ImmaginePianta1.Left = statoInizialePianta[0];
             ImmaginePianta1.Top = statoInizialePianta[1];
@@ -285,6 +290,7 @@ namespace Serra_csharp
             initBraccio2X = Braccio2.Left;
             initBraccio2Y = Braccio2.Top;
             initGancioX = Gancio.Left;
+            initCarrelloX = Carrello.Left;
             initPianta1X = ImmaginePianta1.Left;
             initPianta1Y = ImmaginePianta1.Top;
             initPianta2X = ImmaginePianta2.Left;
@@ -367,6 +373,7 @@ namespace Serra_csharp
                     Braccio1.Left = initBraccio1X - xpos;
                     Braccio2.Left = initBraccio2X - xpos;
                     Gancio.Left = initGancioX - xpos;
+                    Carrello.Left = initCarrelloX - xpos;
                     if (grasped1)
                     {
                         ImmaginePianta1.Left = initPianta1X - xpos;
@@ -388,6 +395,7 @@ namespace Serra_csharp
                     Braccio1.Left = initBraccio1X - xpos;
                     Braccio2.Left = initBraccio2X - xpos;
                     Gancio.Left = initGancioX - xpos;
+                    Carrello.Left = initCarrelloX - xpos;
                     if (grasped1)
                     {
                         ImmaginePianta1.Left = initPianta1X - xpos;
@@ -412,6 +420,7 @@ namespace Serra_csharp
                     Braccio1.Left = initBraccio1X + xpos;
                     Braccio2.Left = initBraccio2X + xpos;
                     Gancio.Left = initGancioX + xpos;
+                    Carrello.Left = initCarrelloX + xpos;
                     if (grasped1)
                     {
                         ImmaginePianta1.Left = initPianta1X + xpos;
@@ -832,6 +841,8 @@ namespace Serra_csharp
                     svuotamento = true;
                     AttuatSvuotaSerbatoio.Text = "True";
                     AttuatSvuotaSerbatoio.ForeColor = Color.Red;
+                    SensoreSerbatoioOn.Text = "True";
+                    SensoreSerbatoioOn.ForeColor = Color.Red;
 
                     quantitaSerbatoio -= 2;
                     quantitaVasca += 2;
@@ -851,6 +862,8 @@ namespace Serra_csharp
                     svuotamento = false;
                     AttuatSvuotaSerbatoio.Text = "False";
                     AttuatSvuotaSerbatoio.ForeColor = Color.Black;
+                    SensoreSerbatoioOn.Text = "False";
+                    SensoreSerbatoioOn.ForeColor = Color.Black;
 
                     SensoreVascaPienaVuota.Text = "False";
                     SensoreVascaPienaVuota.ForeColor = Color.Black;

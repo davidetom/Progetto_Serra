@@ -133,6 +133,7 @@ namespace Serra_csharp
             this.Calendario = new System.Windows.Forms.DateTimePicker();
             this.SensoreCondizionatore = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.Carrello = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.Lampada)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Temperatura)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Flusso2)).BeginInit();
@@ -160,6 +161,7 @@ namespace Serra_csharp
             ((System.ComponentModel.ISupportInitialize)(this.Vasca)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ContenitoreVasca)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Finestra)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Carrello)).BeginInit();
             this.SuspendLayout();
             // 
             // AttuatBraccioGiu
@@ -814,7 +816,7 @@ namespace Serra_csharp
             // Lampada
             // 
             this.Lampada.Image = global::Serra_csharp.Properties.Resources.Lampada_off;
-            this.Lampada.Location = new System.Drawing.Point(551, 255);
+            this.Lampada.Location = new System.Drawing.Point(551, 244);
             this.Lampada.Name = "Lampada";
             this.Lampada.Size = new System.Drawing.Size(117, 112);
             this.Lampada.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -910,7 +912,7 @@ namespace Serra_csharp
             // Conditioner
             // 
             this.Conditioner.Image = global::Serra_csharp.Properties.Resources.Condizionatore_off;
-            this.Conditioner.Location = new System.Drawing.Point(789, 255);
+            this.Conditioner.Location = new System.Drawing.Point(789, 244);
             this.Conditioner.Name = "Conditioner";
             this.Conditioner.Size = new System.Drawing.Size(180, 107);
             this.Conditioner.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -967,46 +969,56 @@ namespace Serra_csharp
             // 
             // Gancio
             // 
-            this.Gancio.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.Gancio.Location = new System.Drawing.Point(1134, 413);
+            this.Gancio.BackColor = System.Drawing.SystemColors.Control;
+            this.Gancio.Image = ((System.Drawing.Image)(resources.GetObject("Gancio.Image")));
+            this.Gancio.Location = new System.Drawing.Point(1140, 418);
             this.Gancio.Name = "Gancio";
-            this.Gancio.Size = new System.Drawing.Size(32, 56);
+            this.Gancio.Size = new System.Drawing.Size(20, 42);
+            this.Gancio.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.Gancio.TabIndex = 83;
             this.Gancio.TabStop = false;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.pictureBox1.Location = new System.Drawing.Point(-1, 373);
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(-1, 374);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1482, 40);
+            this.pictureBox1.Size = new System.Drawing.Size(1480, 25);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 82;
             this.pictureBox1.TabStop = false;
             // 
             // Braccio2
             // 
-            this.Braccio2.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.Braccio2.Location = new System.Drawing.Point(1287, 469);
+            this.Braccio2.BackColor = System.Drawing.SystemColors.Control;
+            this.Braccio2.Image = ((System.Drawing.Image)(resources.GetObject("Braccio2.Image")));
+            this.Braccio2.Location = new System.Drawing.Point(1281, 460);
             this.Braccio2.Name = "Braccio2";
-            this.Braccio2.Size = new System.Drawing.Size(24, 138);
+            this.Braccio2.Size = new System.Drawing.Size(30, 147);
+            this.Braccio2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.Braccio2.TabIndex = 35;
             this.Braccio2.TabStop = false;
             // 
             // Braccio1
             // 
-            this.Braccio1.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.Braccio1.Location = new System.Drawing.Point(989, 469);
+            this.Braccio1.BackColor = System.Drawing.SystemColors.Control;
+            this.Braccio1.Image = ((System.Drawing.Image)(resources.GetObject("Braccio1.Image")));
+            this.Braccio1.Location = new System.Drawing.Point(989, 460);
             this.Braccio1.Name = "Braccio1";
-            this.Braccio1.Size = new System.Drawing.Size(24, 137);
+            this.Braccio1.Size = new System.Drawing.Size(30, 146);
+            this.Braccio1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.Braccio1.TabIndex = 34;
             this.Braccio1.TabStop = false;
             // 
             // BraccioMain
             // 
-            this.BraccioMain.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.BraccioMain.Location = new System.Drawing.Point(989, 469);
+            this.BraccioMain.BackColor = System.Drawing.SystemColors.Control;
+            this.BraccioMain.Image = ((System.Drawing.Image)(resources.GetObject("BraccioMain.Image")));
+            this.BraccioMain.Location = new System.Drawing.Point(989, 460);
             this.BraccioMain.Name = "BraccioMain";
-            this.BraccioMain.Size = new System.Drawing.Size(322, 20);
+            this.BraccioMain.Size = new System.Drawing.Size(322, 30);
+            this.BraccioMain.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.BraccioMain.TabIndex = 32;
             this.BraccioMain.TabStop = false;
             // 
@@ -1062,7 +1074,7 @@ namespace Serra_csharp
             // Finestra
             // 
             this.Finestra.Image = global::Serra_csharp.Properties.Resources.Finestra_closed;
-            this.Finestra.Location = new System.Drawing.Point(300, 255);
+            this.Finestra.Location = new System.Drawing.Point(300, 244);
             this.Finestra.Name = "Finestra";
             this.Finestra.Size = new System.Drawing.Size(151, 112);
             this.Finestra.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1094,11 +1106,22 @@ namespace Serra_csharp
             this.label9.TabIndex = 113;
             this.label9.Text = "Conditioner ON";
             // 
+            // Carrello
+            // 
+            this.Carrello.Image = ((System.Drawing.Image)(resources.GetObject("Carrello.Image")));
+            this.Carrello.Location = new System.Drawing.Point(1120, 362);
+            this.Carrello.Name = "Carrello";
+            this.Carrello.Size = new System.Drawing.Size(60, 56);
+            this.Carrello.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Carrello.TabIndex = 115;
+            this.Carrello.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1474, 835);
+            this.Controls.Add(this.Carrello);
             this.Controls.Add(this.SensoreCondizionatore);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.Calendario);
@@ -1231,6 +1254,7 @@ namespace Serra_csharp
             ((System.ComponentModel.ISupportInitialize)(this.Vasca)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ContenitoreVasca)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Finestra)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Carrello)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1339,6 +1363,7 @@ namespace Serra_csharp
         private System.Windows.Forms.DateTimePicker Calendario;
         private System.Windows.Forms.TextBox SensoreCondizionatore;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.PictureBox Carrello;
     }
 }
 
