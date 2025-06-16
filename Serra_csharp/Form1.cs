@@ -533,16 +533,26 @@ namespace Serra_csharp
                     grasped2 = true;
                 }
             }
-            else
-            {
-                SensoreGrasp.Text = "False";
-                SensoreGrasp.ForeColor = Color.Black;
-            }
 
             if (grasped1 && AttuatBraccioRilascio.Text == "True"  && (initBraccio2X - initBraccio1X) > minAperturaBraccio)
             {
                 SensoreRelease.Text = "True";
                 SensoreRelease.ForeColor = Color.Red;
+                SensoreGrasp.Text = "False";
+                SensoreGrasp.ForeColor = Color.Black;
+            }
+            else
+            {
+                SensoreRelease.Text = "False";
+                SensoreRelease.ForeColor = Color.Black;
+            }
+
+            if (grasped2 && AttuatBraccioRilascio.Text == "True" && (initBraccio2X - initBraccio1X) > minAperturaBraccio)
+            {
+                SensoreRelease.Text = "True";
+                SensoreRelease.ForeColor = Color.Red;
+                SensoreGrasp.Text = "False";
+                SensoreGrasp.ForeColor = Color.Black;
             }
             else
             {
@@ -783,7 +793,7 @@ namespace Serra_csharp
             if(crescita2 == 3)
             {
                 Laser2.SendToBack();
-                SensorePianta1Pronta.Text = "True";
+                SensorePianta2Pronta.Text = "True";
                 SensorePianta2Pronta.ForeColor = Color.Red;
                 if (!prelievo1)
                 {
