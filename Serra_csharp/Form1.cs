@@ -108,14 +108,14 @@ namespace Serra_csharp
         private int NUM_ELEMENTS_BOOL = 34;
         private int[] hvar_name;
 
-        private string[] dataPLC = {"MAIN.AttuatBraccioGiu", "MAIN.AttuatBraccioSu", "MAIN.AttuatBraccioSx", "MAIN.AttuatBraccioDx", "MAIN.AttuatBraccioPresa",
-                                    "MAIN.AttuatBraccioRilascio", "MAIN.AttuatRiempiSerbatoio", "MAIN.AttuatSvuotaSerbatoio", "MAIN.AttuatFinestra", "MAIN.AttuatCondizionatore",
-                                    "MAIN.AttuatRullo", "MAIN.AttuatLampada",
-                                    "MAIN.SensoreStart", "MAIN.SensoreReset", "MAIN.SensoreFCBottom", "MAIN.SensoreFCTop", "MAIN.SensoreFCS",
+        private string[] dataPLC = {"MAIN.SensoreStart", "MAIN.SensoreReset", "MAIN.SensoreFCBottom", "MAIN.SensoreFCTop", "MAIN.SensoreFCS",
                                     "MAIN.SensoreFCD", "MAIN.SensoreFCP", "MAIN.SensoreGrasp", "MAIN.SensoreRelease", "MAIN.SensoreRulloOccupato",
                                     "MAIN.SensoreVascaVuota", "MAIN.SensoreIsGiorno", "MAIN.SensoreSerbatoioOn", "MAIN.SensoreSerbatoioFull", "MAIN.SensoreSerbatoioEmpty",
                                     "MAIN.SensoreCondizionatore", "MAIN.SensoreApriFinestra", "MAIN.SensoreTempCalda", "MAIN.SensoreTempFredda", "MAIN.SensoreO2Low",
-                                    "MAIN.SensorePianta1Pronta", "MAIN.SensorePianta2Pronta"};
+                                    "MAIN.SensorePianta1Pronta", "MAIN.SensorePianta2Pronta",
+                                    "MAIN.AttuatBraccioGiu", "MAIN.AttuatBraccioSu", "MAIN.AttuatBraccioSx", "MAIN.AttuatBraccioDx", "MAIN.AttuatBraccioPresa",
+                                    "MAIN.AttuatBraccioRilascio", "MAIN.AttuatRiempiSerbatoio", "MAIN.AttuatSvuotaSerbatoio", "MAIN.AttuatFinestra", "MAIN.AttuatCondizionatore",
+                                    "MAIN.AttuatRullo", "MAIN.AttuatLampada",};
         // FINE VARIABILI X TWINCAT
 
 
@@ -1162,40 +1162,41 @@ namespace Serra_csharp
             binRead = new AdsBinaryReader(dataStream);
 
             hConnect = new int[NUM_ELEMENTS_BOOL];
-            hConnect[0] = tcClient.AddDeviceNotification(dataPLC[0], dataStream, 0, 1, AdsTransMode.OnChange, 100, 0, AttuatBraccioGiu);
-            hConnect[1] = tcClient.AddDeviceNotification(dataPLC[1], dataStream, 1, 1, AdsTransMode.OnChange, 100, 0, AttuatBraccioSu);
-            hConnect[2] = tcClient.AddDeviceNotification(dataPLC[2], dataStream, 2, 1, AdsTransMode.OnChange, 100, 0, AttuatBraccioSx);
-            hConnect[3] = tcClient.AddDeviceNotification(dataPLC[3], dataStream, 3, 1, AdsTransMode.OnChange, 100, 0, AttuatBraccioDx);
-            hConnect[4] = tcClient.AddDeviceNotification(dataPLC[4], dataStream, 4, 1, AdsTransMode.OnChange, 100, 0, AttuatBraccioPresa);
-            hConnect[5] = tcClient.AddDeviceNotification(dataPLC[5], dataStream, 5, 1, AdsTransMode.OnChange, 100, 0, AttuatBraccioRilascio);
-            hConnect[6] = tcClient.AddDeviceNotification(dataPLC[6], dataStream, 6, 1, AdsTransMode.OnChange, 100, 0, AttuatRiempiSerbatoio);
-            hConnect[7] = tcClient.AddDeviceNotification(dataPLC[7], dataStream, 7, 1, AdsTransMode.OnChange, 100, 0, AttuatSvuotaSerbatoio);
-            hConnect[8] = tcClient.AddDeviceNotification(dataPLC[8], dataStream, 8, 1, AdsTransMode.OnChange, 100, 0, AttuatFinestra);
-            hConnect[9] = tcClient.AddDeviceNotification(dataPLC[9], dataStream, 9, 1, AdsTransMode.OnChange, 100, 0, AttuatCondizionatore);
-            hConnect[10] = tcClient.AddDeviceNotification(dataPLC[10], dataStream, 10, 1, AdsTransMode.OnChange, 100, 0, AttuatRullo);
-            hConnect[11] = tcClient.AddDeviceNotification(dataPLC[11], dataStream, 11, 1, AdsTransMode.OnChange, 100, 0, AttuatLampada);
-            hConnect[12] = tcClient.AddDeviceNotification(dataPLC[12], dataStream, 12, 1, AdsTransMode.OnChange, 100, 0, SensoreStart);
-            hConnect[13] = tcClient.AddDeviceNotification(dataPLC[13], dataStream, 13, 1, AdsTransMode.OnChange, 100, 0, SensoreReset);
-            hConnect[14] = tcClient.AddDeviceNotification(dataPLC[14], dataStream, 14, 1, AdsTransMode.OnChange, 100, 0, SensoreFCBottom);
-            hConnect[15] = tcClient.AddDeviceNotification(dataPLC[15], dataStream, 15, 1, AdsTransMode.OnChange, 100, 0, SensoreFCTop);
-            hConnect[16] = tcClient.AddDeviceNotification(dataPLC[16], dataStream, 16, 1, AdsTransMode.OnChange, 100, 0, SensoreFCS);
-            hConnect[17] = tcClient.AddDeviceNotification(dataPLC[17], dataStream, 17, 1, AdsTransMode.OnChange, 100, 0, SensoreFCD);
-            hConnect[18] = tcClient.AddDeviceNotification(dataPLC[18], dataStream, 18, 1, AdsTransMode.OnChange, 100, 0, SensoreFineCorsaPianta2);
-            hConnect[19] = tcClient.AddDeviceNotification(dataPLC[19], dataStream, 19, 1, AdsTransMode.OnChange, 100, 0, SensoreGrasp);
-            hConnect[20] = tcClient.AddDeviceNotification(dataPLC[20], dataStream, 20, 1, AdsTransMode.OnChange, 100, 0, SensoreRelease);
-            hConnect[21] = tcClient.AddDeviceNotification(dataPLC[21], dataStream, 21, 1, AdsTransMode.OnChange, 100, 0, SensoreRulloOccupato);
-            hConnect[22] = tcClient.AddDeviceNotification(dataPLC[22], dataStream, 22, 1, AdsTransMode.OnChange, 100, 0, SensoreVascaVuota);
-            hConnect[23] = tcClient.AddDeviceNotification(dataPLC[23], dataStream, 23, 1, AdsTransMode.OnChange, 100, 0, SensoreIsGiorno);
-            hConnect[24] = tcClient.AddDeviceNotification(dataPLC[24], dataStream, 24, 1, AdsTransMode.OnChange, 100, 0, SensoreSerbatoioOn);
-            hConnect[25] = tcClient.AddDeviceNotification(dataPLC[25], dataStream, 25, 1, AdsTransMode.OnChange, 100, 0, SensoreSerbatoioFull);
-            hConnect[26] = tcClient.AddDeviceNotification(dataPLC[26], dataStream, 26, 1, AdsTransMode.OnChange, 100, 0, SensoreSerbatoioEmpty);
-            hConnect[27] = tcClient.AddDeviceNotification(dataPLC[27], dataStream, 27, 1, AdsTransMode.OnChange, 100, 0, SensoreCondizionatore);
-            hConnect[28] = tcClient.AddDeviceNotification(dataPLC[28], dataStream, 28, 1, AdsTransMode.OnChange, 100, 0, SensoreApriFinestra);
-            hConnect[29] = tcClient.AddDeviceNotification(dataPLC[29], dataStream, 29, 1, AdsTransMode.OnChange, 100, 0, SensoreTempCalda);
-            hConnect[30] = tcClient.AddDeviceNotification(dataPLC[30], dataStream, 30, 1, AdsTransMode.OnChange, 100, 0, SensoreTempFredda);
-            hConnect[31] = tcClient.AddDeviceNotification(dataPLC[31], dataStream, 31, 1, AdsTransMode.OnChange, 100, 0, SensoreO2Low);
-            hConnect[32] = tcClient.AddDeviceNotification(dataPLC[32], dataStream, 32, 1, AdsTransMode.OnChange, 100, 0, SensorePianta1Pronta);
-            hConnect[33] = tcClient.AddDeviceNotification(dataPLC[33], dataStream, 33, 1, AdsTransMode.OnChange, 100, 0, SensorePianta2Pronta);
+            hConnect[0] = tcClient.AddDeviceNotification(dataPLC[0], dataStream, 0, 1, AdsTransMode.OnChange, 100, 0, SensoreStart);
+            hConnect[1] = tcClient.AddDeviceNotification(dataPLC[1], dataStream, 1, 1, AdsTransMode.OnChange, 100, 0, SensoreReset);
+            hConnect[2] = tcClient.AddDeviceNotification(dataPLC[2], dataStream, 2, 1, AdsTransMode.OnChange, 100, 0, SensoreFCBottom);
+            hConnect[3] = tcClient.AddDeviceNotification(dataPLC[3], dataStream, 3, 1, AdsTransMode.OnChange, 100, 0, SensoreFCTop);
+            hConnect[4] = tcClient.AddDeviceNotification(dataPLC[4], dataStream, 4, 1, AdsTransMode.OnChange, 100, 0, SensoreFCS);
+            hConnect[5] = tcClient.AddDeviceNotification(dataPLC[5], dataStream, 5, 1, AdsTransMode.OnChange, 100, 0, SensoreFCD);
+            hConnect[6] = tcClient.AddDeviceNotification(dataPLC[6], dataStream, 6, 1, AdsTransMode.OnChange, 100, 0, SensoreFineCorsaPianta2);
+            hConnect[7] = tcClient.AddDeviceNotification(dataPLC[7], dataStream, 7, 1, AdsTransMode.OnChange, 100, 0, SensoreGrasp);
+            hConnect[8] = tcClient.AddDeviceNotification(dataPLC[8], dataStream, 8, 1, AdsTransMode.OnChange, 100, 0, SensoreRelease);
+            hConnect[9] = tcClient.AddDeviceNotification(dataPLC[9], dataStream, 9, 1, AdsTransMode.OnChange, 100, 0, SensoreRulloOccupato);
+            hConnect[10] = tcClient.AddDeviceNotification(dataPLC[10], dataStream, 10, 1, AdsTransMode.OnChange, 100, 0, SensoreVascaVuota);
+            hConnect[11] = tcClient.AddDeviceNotification(dataPLC[11], dataStream, 11, 1, AdsTransMode.OnChange, 100, 0, SensoreIsGiorno);
+            hConnect[12] = tcClient.AddDeviceNotification(dataPLC[12], dataStream, 12, 1, AdsTransMode.OnChange, 100, 0, SensoreSerbatoioOn);
+            hConnect[13] = tcClient.AddDeviceNotification(dataPLC[13], dataStream, 13, 1, AdsTransMode.OnChange, 100, 0, SensoreSerbatoioFull);
+            hConnect[14] = tcClient.AddDeviceNotification(dataPLC[14], dataStream, 14, 1, AdsTransMode.OnChange, 100, 0, SensoreSerbatoioEmpty);
+            hConnect[15] = tcClient.AddDeviceNotification(dataPLC[15], dataStream, 15, 1, AdsTransMode.OnChange, 100, 0, SensoreCondizionatore);
+            hConnect[16] = tcClient.AddDeviceNotification(dataPLC[16], dataStream, 16, 1, AdsTransMode.OnChange, 100, 0, SensoreApriFinestra);
+            hConnect[17] = tcClient.AddDeviceNotification(dataPLC[17], dataStream, 17, 1, AdsTransMode.OnChange, 100, 0, SensoreTempCalda);
+            hConnect[18] = tcClient.AddDeviceNotification(dataPLC[18], dataStream, 18, 1, AdsTransMode.OnChange, 100, 0, SensoreTempFredda);
+            hConnect[19] = tcClient.AddDeviceNotification(dataPLC[19], dataStream, 19, 1, AdsTransMode.OnChange, 100, 0, SensoreO2Low);
+            hConnect[20] = tcClient.AddDeviceNotification(dataPLC[20], dataStream, 20, 1, AdsTransMode.OnChange, 100, 0, SensorePianta1Pronta);
+            hConnect[21] = tcClient.AddDeviceNotification(dataPLC[21], dataStream, 21, 1, AdsTransMode.OnChange, 100, 0, SensorePianta2Pronta);
+            hConnect[22] = tcClient.AddDeviceNotification(dataPLC[22], dataStream, 22, 1, AdsTransMode.OnChange, 100, 0, AttuatBraccioGiu);
+            hConnect[23] = tcClient.AddDeviceNotification(dataPLC[23], dataStream, 23, 1, AdsTransMode.OnChange, 100, 0, AttuatBraccioSu);
+            hConnect[24] = tcClient.AddDeviceNotification(dataPLC[24], dataStream, 24, 1, AdsTransMode.OnChange, 100, 0, AttuatBraccioSx);
+            hConnect[25] = tcClient.AddDeviceNotification(dataPLC[25], dataStream, 25, 1, AdsTransMode.OnChange, 100, 0, AttuatBraccioDx);
+            hConnect[26] = tcClient.AddDeviceNotification(dataPLC[26], dataStream, 26, 1, AdsTransMode.OnChange, 100, 0, AttuatBraccioPresa);
+            hConnect[27] = tcClient.AddDeviceNotification(dataPLC[27], dataStream, 27, 1, AdsTransMode.OnChange, 100, 0, AttuatBraccioRilascio);
+            hConnect[28] = tcClient.AddDeviceNotification(dataPLC[28], dataStream, 28, 1, AdsTransMode.OnChange, 100, 0, AttuatRiempiSerbatoio);
+            hConnect[29] = tcClient.AddDeviceNotification(dataPLC[29], dataStream, 29, 1, AdsTransMode.OnChange, 100, 0, AttuatSvuotaSerbatoio);
+            hConnect[30] = tcClient.AddDeviceNotification(dataPLC[30], dataStream, 30, 1, AdsTransMode.OnChange, 100, 0, AttuatFinestra);
+            hConnect[31] = tcClient.AddDeviceNotification(dataPLC[31], dataStream, 31, 1, AdsTransMode.OnChange, 100, 0, AttuatCondizionatore);
+            hConnect[32] = tcClient.AddDeviceNotification(dataPLC[32], dataStream, 32, 1, AdsTransMode.OnChange, 100, 0, AttuatRullo);
+            hConnect[33] = tcClient.AddDeviceNotification(dataPLC[33], dataStream, 33, 1, AdsTransMode.OnChange, 100, 0, AttuatLampada);
+
 
             tcClient.AdsNotification += new AdsNotificationEventHandler(OnNotification);
             ConnText.Text = "Connnected!";
@@ -1256,6 +1257,174 @@ namespace Serra_csharp
             {
                 if (SensoreStart.Text.Equals("True"))
                 {
+                    tcClient.WriteAny(hvar_name[0], true);
+                }
+                else
+                {
+                    tcClient.WriteAny(hvar_name[0], false);
+                }
+            }
+        }
+        private void SensoreReset_TextChanged(object sender, EventArgs e)
+        {
+            if (hvar_name != null)
+            {
+                if (SensoreStart.Text.Equals("True"))
+                {
+                    tcClient.WriteAny(hvar_name[1], true);
+                }
+                else
+                {
+                    tcClient.WriteAny(hvar_name[1], false);
+                }
+            }
+        }
+        private void SensoreFCBottom_TextChanged(object sender, EventArgs e)
+        {
+            if (hvar_name != null)
+            {
+                if (SensoreStart.Text.Equals("True"))
+                {
+                    tcClient.WriteAny(hvar_name[2], true);
+                }
+                else
+                {
+                    tcClient.WriteAny(hvar_name[2], false);
+                }
+            }
+        }
+        private void SensoreFCTop_TextChanged(object sender, EventArgs e)
+        {
+            if (hvar_name != null)
+            {
+                if (SensoreStart.Text.Equals("True"))
+                {
+                    tcClient.WriteAny(hvar_name[3], true);
+                }
+                else
+                {
+                    tcClient.WriteAny(hvar_name[3], false);
+                }
+            }
+        }
+        private void SensoreFCS_TextChanged(object sender, EventArgs e)
+        {
+            if (hvar_name != null)
+            {
+                if (SensoreStart.Text.Equals("True"))
+                {
+                    tcClient.WriteAny(hvar_name[4], true);
+                }
+                else
+                {
+                    tcClient.WriteAny(hvar_name[4], false);
+                }
+            }
+        }
+        private void SensoreFCD_TextChanged(object sender, EventArgs e)
+        {
+            if (hvar_name != null)
+            {
+                if (SensoreStart.Text.Equals("True"))
+                {
+                    tcClient.WriteAny(hvar_name[5], true);
+                }
+                else
+                {
+                    tcClient.WriteAny(hvar_name[5], false);
+                }
+            }
+        }
+        private void SensoreFineCorsaPianta2_TextChanged(object sender, EventArgs e)
+        {
+            if (hvar_name != null)
+            {
+                if (SensoreStart.Text.Equals("True"))
+                {
+                    tcClient.WriteAny(hvar_name[6], true);
+                }
+                else
+                {
+                    tcClient.WriteAny(hvar_name[6], false);
+                }
+            }
+        }
+        private void SensoreGrasp_TextChanged(object sender, EventArgs e)
+        {
+            if (hvar_name != null)
+            {
+                if (SensoreStart.Text.Equals("True"))
+                {
+                    tcClient.WriteAny(hvar_name[7], true);
+                }
+                else
+                {
+                    tcClient.WriteAny(hvar_name[7], false);
+                }
+            }
+        }
+        private void SensoreRelease_TextChanged(object sender, EventArgs e)
+        {
+            if (hvar_name != null)
+            {
+                if (SensoreStart.Text.Equals("True"))
+                {
+                    tcClient.WriteAny(hvar_name[8], true);
+                }
+                else
+                {
+                    tcClient.WriteAny(hvar_name[8], false);
+                }
+            }
+        }
+        private void SensoreRulloOccupato_TextChanged(object sender, EventArgs e)
+        {
+            if (hvar_name != null)
+            {
+                if (SensoreStart.Text.Equals("True"))
+                {
+                    tcClient.WriteAny(hvar_name[9], true);
+                }
+                else
+                {
+                    tcClient.WriteAny(hvar_name[9], false);
+                }
+            }
+        }
+        private void SensoreVascaVuota_TextChanged(object sender, EventArgs e)
+        {
+            if (hvar_name != null)
+            {
+                if (SensoreStart.Text.Equals("True"))
+                {
+                    tcClient.WriteAny(hvar_name[10], true);
+                }
+                else
+                {
+                    tcClient.WriteAny(hvar_name[10], false);
+                }
+            }
+        }
+        private void SensoreIsGiorno_TextChanged(object sender, EventArgs e)
+        {
+            if (hvar_name != null)
+            {
+                if (SensoreStart.Text.Equals("True"))
+                {
+                    tcClient.WriteAny(hvar_name[11], true);
+                }
+                else
+                {
+                    tcClient.WriteAny(hvar_name[11], false);
+                }
+            }
+        }
+        private void SensoreSerbatoioOn_TextChanged(object sender, EventArgs e)
+        {
+            if (hvar_name != null)
+            {
+                if (SensoreStart.Text.Equals("True"))
+                {
                     tcClient.WriteAny(hvar_name[12], true);
                 }
                 else
@@ -1264,7 +1433,7 @@ namespace Serra_csharp
                 }
             }
         }
-        private void SensoreReset_TextChanged(object sender, EventArgs e)
+        private void SensoreSerbatoioFull_TextChanged(object sender, EventArgs e)
         {
             if (hvar_name != null)
             {
@@ -1278,7 +1447,7 @@ namespace Serra_csharp
                 }
             }
         }
-        private void SensoreFCBottom_TextChanged(object sender, EventArgs e)
+        private void SensoreSerbatoioEmpty_TextChanged(object sender, EventArgs e)
         {
             if (hvar_name != null)
             {
@@ -1292,7 +1461,7 @@ namespace Serra_csharp
                 }
             }
         }
-        private void SensoreFCTop_TextChanged(object sender, EventArgs e)
+        private void SensoreCondizionatore_TextChanged(object sender, EventArgs e)
         {
             if (hvar_name != null)
             {
@@ -1306,7 +1475,7 @@ namespace Serra_csharp
                 }
             }
         }
-        private void SensoreFCS_TextChanged(object sender, EventArgs e)
+        private void SensoreApriFinestra_TextChanged(object sender, EventArgs e)
         {
             if (hvar_name != null)
             {
@@ -1320,7 +1489,7 @@ namespace Serra_csharp
                 }
             }
         }
-        private void SensoreFCD_TextChanged(object sender, EventArgs e)
+        private void SensoreTempCalda_TextChanged(object sender, EventArgs e)
         {
             if (hvar_name != null)
             {
@@ -1334,7 +1503,7 @@ namespace Serra_csharp
                 }
             }
         }
-        private void SensoreFineCorsaPianta2_TextChanged(object sender, EventArgs e)
+        private void SensoreTempFredda_TextChanged(object sender, EventArgs e)
         {
             if (hvar_name != null)
             {
@@ -1348,7 +1517,7 @@ namespace Serra_csharp
                 }
             }
         }
-        private void SensoreGrasp_TextChanged(object sender, EventArgs e)
+        private void SensoreO2Low_TextChanged(object sender, EventArgs e)
         {
             if (hvar_name != null)
             {
@@ -1362,7 +1531,7 @@ namespace Serra_csharp
                 }
             }
         }
-        private void SensoreRelease_TextChanged(object sender, EventArgs e)
+        private void SensorePianta1Pronta_TextChanged(object sender, EventArgs e)
         {
             if (hvar_name != null)
             {
@@ -1376,7 +1545,7 @@ namespace Serra_csharp
                 }
             }
         }
-        private void SensoreRulloOccupato_TextChanged(object sender, EventArgs e)
+        private void SensorePianta2Pronta_TextChanged(object sender, EventArgs e)
         {
             if (hvar_name != null)
             {
@@ -1387,174 +1556,6 @@ namespace Serra_csharp
                 else
                 {
                     tcClient.WriteAny(hvar_name[21], false);
-                }
-            }
-        }
-        private void SensoreVascaVuota_TextChanged(object sender, EventArgs e)
-        {
-            if (hvar_name != null)
-            {
-                if (SensoreStart.Text.Equals("True"))
-                {
-                    tcClient.WriteAny(hvar_name[22], true);
-                }
-                else
-                {
-                    tcClient.WriteAny(hvar_name[22], false);
-                }
-            }
-        }
-        private void SensoreIsGiorno_TextChanged(object sender, EventArgs e)
-        {
-            if (hvar_name != null)
-            {
-                if (SensoreStart.Text.Equals("True"))
-                {
-                    tcClient.WriteAny(hvar_name[23], true);
-                }
-                else
-                {
-                    tcClient.WriteAny(hvar_name[23], false);
-                }
-            }
-        }
-        private void SensoreSerbatoioOn_TextChanged(object sender, EventArgs e)
-        {
-            if (hvar_name != null)
-            {
-                if (SensoreStart.Text.Equals("True"))
-                {
-                    tcClient.WriteAny(hvar_name[24], true);
-                }
-                else
-                {
-                    tcClient.WriteAny(hvar_name[24], false);
-                }
-            }
-        }
-        private void SensoreSerbatoioFull_TextChanged(object sender, EventArgs e)
-        {
-            if (hvar_name != null)
-            {
-                if (SensoreStart.Text.Equals("True"))
-                {
-                    tcClient.WriteAny(hvar_name[25], true);
-                }
-                else
-                {
-                    tcClient.WriteAny(hvar_name[25], false);
-                }
-            }
-        }
-        private void SensoreSerbatoioEmpty_TextChanged(object sender, EventArgs e)
-        {
-            if (hvar_name != null)
-            {
-                if (SensoreStart.Text.Equals("True"))
-                {
-                    tcClient.WriteAny(hvar_name[26], true);
-                }
-                else
-                {
-                    tcClient.WriteAny(hvar_name[26], false);
-                }
-            }
-        }
-        private void SensoreCondizionatore_TextChanged(object sender, EventArgs e)
-        {
-            if (hvar_name != null)
-            {
-                if (SensoreStart.Text.Equals("True"))
-                {
-                    tcClient.WriteAny(hvar_name[27], true);
-                }
-                else
-                {
-                    tcClient.WriteAny(hvar_name[27], false);
-                }
-            }
-        }
-        private void SensoreApriFinestra_TextChanged(object sender, EventArgs e)
-        {
-            if (hvar_name != null)
-            {
-                if (SensoreStart.Text.Equals("True"))
-                {
-                    tcClient.WriteAny(hvar_name[28], true);
-                }
-                else
-                {
-                    tcClient.WriteAny(hvar_name[28], false);
-                }
-            }
-        }
-        private void SensoreTempCalda_TextChanged(object sender, EventArgs e)
-        {
-            if (hvar_name != null)
-            {
-                if (SensoreStart.Text.Equals("True"))
-                {
-                    tcClient.WriteAny(hvar_name[29], true);
-                }
-                else
-                {
-                    tcClient.WriteAny(hvar_name[29], false);
-                }
-            }
-        }
-        private void SensoreTempFredda_TextChanged(object sender, EventArgs e)
-        {
-            if (hvar_name != null)
-            {
-                if (SensoreStart.Text.Equals("True"))
-                {
-                    tcClient.WriteAny(hvar_name[30], true);
-                }
-                else
-                {
-                    tcClient.WriteAny(hvar_name[30], false);
-                }
-            }
-        }
-        private void SensoreO2Low_TextChanged(object sender, EventArgs e)
-        {
-            if (hvar_name != null)
-            {
-                if (SensoreStart.Text.Equals("True"))
-                {
-                    tcClient.WriteAny(hvar_name[31], true);
-                }
-                else
-                {
-                    tcClient.WriteAny(hvar_name[31], false);
-                }
-            }
-        }
-        private void SensorePianta1Pronta_TextChanged(object sender, EventArgs e)
-        {
-            if (hvar_name != null)
-            {
-                if (SensoreStart.Text.Equals("True"))
-                {
-                    tcClient.WriteAny(hvar_name[32], true);
-                }
-                else
-                {
-                    tcClient.WriteAny(hvar_name[32], false);
-                }
-            }
-        }
-        private void SensorePianta2Pronta_TextChanged(object sender, EventArgs e)
-        {
-            if (hvar_name != null)
-            {
-                if (SensoreStart.Text.Equals("True"))
-                {
-                    tcClient.WriteAny(hvar_name[33], true);
-                }
-                else
-                {
-                    tcClient.WriteAny(hvar_name[33], false);
                 }
             }
         }
