@@ -86,6 +86,7 @@ namespace Serra_csharp
         int altezzaSerbatoio; // altezza massima acqua
         bool svuotamento = false; // svuotamento attivo o no
         int quantitaSerbatoio; // altezza acqua
+        bool riempimentoInCorso = false; // riempimento serbatoio
         Color coloreTubi;
 
         // Variabili vasca
@@ -201,6 +202,7 @@ namespace Serra_csharp
             coloreTubi = TuboVasca.BackColor;
             Flusso.Visible = false;
             Flusso2.Visible = false;
+            riempimentoInCorso = false;
 
             // Calibrazione vasca
             altezzaVasca = Vasca.Height;
@@ -286,7 +288,7 @@ namespace Serra_csharp
             Crescita_Pianta(ImmaginePianta1, 1);
             Crescita_Pianta(ImmaginePianta2, 2);
 
-            //Reset laseer
+            //Reset laser
             Laser1.BringToFront();
             Laser2.BringToFront();
 
@@ -308,6 +310,7 @@ namespace Serra_csharp
             Flusso.Visible = false;
             Flusso2.Visible = false;
             svuotamento = false;
+            riempimentoInCorso = false;
 
             // Reset temperatura
             temperatura = 36;
@@ -567,18 +570,6 @@ namespace Serra_csharp
             if (sulRullo && AttuatRullo.Text == "True")
             {
                 consentiMovimento = true;
-                if (prelievo1)
-                {
-                    Attiva_Sensore("SensorePianta1Pronta", false);
-                    prelievo1 = false;
-                    Laser1.BringToFront();
-                }
-                else if (prelievo2)
-                {
-                    Attiva_Sensore("SensorePianta2Pronta", false);
-                    prelievo2 = false;
-                    Laser2.BringToFront();
-                }
             }
             if (AttuatRullo.Text == "False")
             {
@@ -619,16 +610,18 @@ namespace Serra_csharp
 
             Crescita_Pianta(pianta, numPianta);
 
-            /*if (prelievo1)
+            if (prelievo1)
             {
+                Attiva_Sensore("SensorePianta1Pronta", false);
                 prelievo1 = false;
                 Laser1.BringToFront();
             }
             if (prelievo2)
             {
+                Attiva_Sensore("SensorePianta2Pronta", false);
                 prelievo2 = false;
                 Laser2.BringToFront();
-            }*/
+            }
 
             pianta.Visible = true;
         }
@@ -778,6 +771,7 @@ namespace Serra_csharp
 
         private void Serbatoio_Svuota()
         {
+            if (riempimentoInCorso) return;
             if (AttuatSvuotaSerbatoio.Text == "True")
             {
                 if (!svuotamento)
@@ -818,6 +812,7 @@ namespace Serra_csharp
             if (AttuatRiempiSerbatoio.Text == "True")
             {
                 Attiva_Sensore("SensoreSerbatoioEmpty", false);
+                riempimentoInCorso = true;
                 Flusso.Visible = true;
                 Flusso2.Visible = true;
 
@@ -831,6 +826,7 @@ namespace Serra_csharp
             }
             else if (AttuatRiempiSerbatoio.Text == "False")
             {
+                riempimentoInCorso = false;
                 Flusso.Visible = false;
                 Flusso2.Visible = false;
                 Reset_Tubi();
