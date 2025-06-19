@@ -1259,7 +1259,7 @@ namespace Serra_csharp
                 {
                     tcClient.WriteAny(hvar_name[0], true);
                 }
-                else
+                else if (SensoreStart.Text.Equals("False"))
                 {
                     tcClient.WriteAny(hvar_name[0], false);
                 }
@@ -1269,11 +1269,11 @@ namespace Serra_csharp
         {
             if (hvar_name != null)
             {
-                if (SensoreStart.Text.Equals("True"))
+                if (SensoreReset.Text.Equals("True"))
                 {
                     tcClient.WriteAny(hvar_name[1], true);
                 }
-                else
+                else if (SensoreReset.Text.Equals("False"))
                 {
                     tcClient.WriteAny(hvar_name[1], false);
                 }
@@ -1283,11 +1283,11 @@ namespace Serra_csharp
         {
             if (hvar_name != null)
             {
-                if (SensoreStart.Text.Equals("True"))
+                if (SensoreFCBottom.Text.Equals("True"))
                 {
                     tcClient.WriteAny(hvar_name[2], true);
                 }
-                else
+                else if (SensoreFCBottom.Text.Equals("False"))
                 {
                     tcClient.WriteAny(hvar_name[2], false);
                 }
@@ -1297,11 +1297,11 @@ namespace Serra_csharp
         {
             if (hvar_name != null)
             {
-                if (SensoreStart.Text.Equals("True"))
+                if (SensoreFCTop.Text.Equals("True"))
                 {
                     tcClient.WriteAny(hvar_name[3], true);
                 }
-                else
+                else if (SensoreFCTop.Text.Equals("False"))
                 {
                     tcClient.WriteAny(hvar_name[3], false);
                 }
@@ -1311,11 +1311,11 @@ namespace Serra_csharp
         {
             if (hvar_name != null)
             {
-                if (SensoreStart.Text.Equals("True"))
+                if (SensoreFCS.Text.Equals("True"))
                 {
                     tcClient.WriteAny(hvar_name[4], true);
                 }
-                else
+                else if (SensoreFCS.Text.Equals("False"))
                 {
                     tcClient.WriteAny(hvar_name[4], false);
                 }
@@ -1325,11 +1325,11 @@ namespace Serra_csharp
         {
             if (hvar_name != null)
             {
-                if (SensoreStart.Text.Equals("True"))
+                if (SensoreFCD.Text.Equals("True"))
                 {
                     tcClient.WriteAny(hvar_name[5], true);
                 }
-                else
+                else if (SensoreFCD.Text.Equals("False"))
                 {
                     tcClient.WriteAny(hvar_name[5], false);
                 }
@@ -1339,11 +1339,11 @@ namespace Serra_csharp
         {
             if (hvar_name != null)
             {
-                if (SensoreStart.Text.Equals("True"))
+                if (SensoreFineCorsaPianta2.Text.Equals("True"))
                 {
                     tcClient.WriteAny(hvar_name[6], true);
                 }
-                else
+                else if (SensoreFineCorsaPianta2.Text.Equals("False"))
                 {
                     tcClient.WriteAny(hvar_name[6], false);
                 }
@@ -1353,11 +1353,11 @@ namespace Serra_csharp
         {
             if (hvar_name != null)
             {
-                if (SensoreStart.Text.Equals("True"))
+                if (SensoreGrasp.Text.Equals("True"))
                 {
                     tcClient.WriteAny(hvar_name[7], true);
                 }
-                else
+                else if (SensoreGrasp.Text.Equals("False"))
                 {
                     tcClient.WriteAny(hvar_name[7], false);
                 }
@@ -1367,11 +1367,11 @@ namespace Serra_csharp
         {
             if (hvar_name != null)
             {
-                if (SensoreStart.Text.Equals("True"))
+                if (SensoreRelease.Text.Equals("True"))
                 {
                     tcClient.WriteAny(hvar_name[8], true);
                 }
-                else
+                else if (SensoreRelease.Text.Equals("False"))
                 {
                     tcClient.WriteAny(hvar_name[8], false);
                 }
@@ -1381,11 +1381,11 @@ namespace Serra_csharp
         {
             if (hvar_name != null)
             {
-                if (SensoreStart.Text.Equals("True"))
+                if (SensoreRulloOccupato.Text.Equals("True"))
                 {
                     tcClient.WriteAny(hvar_name[9], true);
                 }
-                else
+                else if (SensoreRulloOccupato.Text.Equals("False"))
                 {
                     tcClient.WriteAny(hvar_name[9], false);
                 }
@@ -1395,11 +1395,11 @@ namespace Serra_csharp
         {
             if (hvar_name != null)
             {
-                if (SensoreStart.Text.Equals("True"))
+                if (SensoreVascaVuota.Text.Equals("True"))
                 {
                     tcClient.WriteAny(hvar_name[10], true);
                 }
-                else
+                else if (SensoreVascaVuota.Text.Equals("False"))
                 {
                     tcClient.WriteAny(hvar_name[10], false);
                 }
@@ -1409,11 +1409,11 @@ namespace Serra_csharp
         {
             if (hvar_name != null)
             {
-                if (SensoreStart.Text.Equals("True"))
+                if (SensoreIsGiorno.Text.Equals("True"))
                 {
                     tcClient.WriteAny(hvar_name[11], true);
                 }
-                else
+                else if (SensoreIsGiorno.Text.Equals("False"))
                 {
                     tcClient.WriteAny(hvar_name[11], false);
                 }
@@ -1423,11 +1423,11 @@ namespace Serra_csharp
         {
             if (hvar_name != null)
             {
-                if (SensoreStart.Text.Equals("True"))
+                if (SensoreSerbatoioOn.Text.Equals("True"))
                 {
                     tcClient.WriteAny(hvar_name[12], true);
                 }
-                else
+                else if (SensoreSerbatoioOn.Text.Equals("False"))
                 {
                     tcClient.WriteAny(hvar_name[12], false);
                 }
@@ -1437,11 +1437,11 @@ namespace Serra_csharp
         {
             if (hvar_name != null)
             {
-                if (SensoreStart.Text.Equals("True"))
+                if (SensoreSerbatoioFull.Text.Equals("True"))
                 {
                     tcClient.WriteAny(hvar_name[13], true);
                 }
-                else
+                else if (SensoreSerbatoioFull.Text.Equals("False"))
                 {
                     tcClient.WriteAny(hvar_name[13], false);
                 }
@@ -1451,11 +1451,11 @@ namespace Serra_csharp
         {
             if (hvar_name != null)
             {
-                if (SensoreStart.Text.Equals("True"))
+                if (SensoreSerbatoioEmpty.Text.Equals("True"))
                 {
                     tcClient.WriteAny(hvar_name[14], true);
                 }
-                else
+                else if (SensoreSerbatoioEmpty.Text.Equals("False"))
                 {
                     tcClient.WriteAny(hvar_name[14], false);
                 }
@@ -1465,11 +1465,11 @@ namespace Serra_csharp
         {
             if (hvar_name != null)
             {
-                if (SensoreStart.Text.Equals("True"))
+                if (SensoreCondizionatore.Text.Equals("True"))
                 {
                     tcClient.WriteAny(hvar_name[15], true);
                 }
-                else
+                else if (SensoreCondizionatore.Text.Equals("False"))
                 {
                     tcClient.WriteAny(hvar_name[15], false);
                 }
@@ -1479,11 +1479,11 @@ namespace Serra_csharp
         {
             if (hvar_name != null)
             {
-                if (SensoreStart.Text.Equals("True"))
+                if (SensoreApriFinestra.Text.Equals("True"))
                 {
                     tcClient.WriteAny(hvar_name[16], true);
                 }
-                else
+                else if (SensoreApriFinestra.Text.Equals("False"))
                 {
                     tcClient.WriteAny(hvar_name[16], false);
                 }
@@ -1493,11 +1493,11 @@ namespace Serra_csharp
         {
             if (hvar_name != null)
             {
-                if (SensoreStart.Text.Equals("True"))
+                if (SensoreTempCalda.Text.Equals("True"))
                 {
                     tcClient.WriteAny(hvar_name[17], true);
                 }
-                else
+                else if (SensoreTempCalda.Text.Equals("False"))
                 {
                     tcClient.WriteAny(hvar_name[17], false);
                 }
@@ -1507,11 +1507,11 @@ namespace Serra_csharp
         {
             if (hvar_name != null)
             {
-                if (SensoreStart.Text.Equals("True"))
+                if (SensoreTempFredda.Text.Equals("True"))
                 {
                     tcClient.WriteAny(hvar_name[18], true);
                 }
-                else
+                else if (SensoreTempFredda.Text.Equals("False"))
                 {
                     tcClient.WriteAny(hvar_name[18], false);
                 }
@@ -1521,11 +1521,11 @@ namespace Serra_csharp
         {
             if (hvar_name != null)
             {
-                if (SensoreStart.Text.Equals("True"))
+                if (SensoreO2Low.Text.Equals("True"))
                 {
                     tcClient.WriteAny(hvar_name[19], true);
                 }
-                else
+                else if (SensoreO2Low.Text.Equals("False"))
                 {
                     tcClient.WriteAny(hvar_name[19], false);
                 }
@@ -1535,11 +1535,11 @@ namespace Serra_csharp
         {
             if (hvar_name != null)
             {
-                if (SensoreStart.Text.Equals("True"))
+                if (SensorePianta1Pronta.Text.Equals("True"))
                 {
                     tcClient.WriteAny(hvar_name[20], true);
                 }
-                else
+                else if (SensorePianta1Pronta.Text.Equals("False"))
                 {
                     tcClient.WriteAny(hvar_name[20], false);
                 }
@@ -1549,11 +1549,11 @@ namespace Serra_csharp
         {
             if (hvar_name != null)
             {
-                if (SensoreStart.Text.Equals("True"))
+                if (SensorePianta2Pronta.Text.Equals("True"))
                 {
                     tcClient.WriteAny(hvar_name[21], true);
                 }
-                else
+                else if (SensorePianta2Pronta.Text.Equals("False"))
                 {
                     tcClient.WriteAny(hvar_name[21], false);
                 }
