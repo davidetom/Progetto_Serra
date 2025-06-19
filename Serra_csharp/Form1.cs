@@ -567,6 +567,18 @@ namespace Serra_csharp
             if (sulRullo && AttuatRullo.Text == "True")
             {
                 consentiMovimento = true;
+                if (prelievo1)
+                {
+                    Attiva_Sensore("SensorePianta1Pronta", false);
+                    prelievo1 = false;
+                    Laser1.BringToFront();
+                }
+                else if (prelievo2)
+                {
+                    Attiva_Sensore("SensorePianta2Pronta", false);
+                    prelievo2 = false;
+                    Laser2.BringToFront();
+                }
             }
             if (AttuatRullo.Text == "False")
             {
@@ -607,18 +619,16 @@ namespace Serra_csharp
 
             Crescita_Pianta(pianta, numPianta);
 
-            if (prelievo1)
+            /*if (prelievo1)
             {
                 prelievo1 = false;
-                Attiva_Sensore("SensorePianta1Pronta", false);
                 Laser1.BringToFront();
             }
             if (prelievo2)
             {
                 prelievo2 = false;
-                Attiva_Sensore("SensorePianta2Pronta", false);
                 Laser2.BringToFront();
-            }
+            }*/
 
             pianta.Visible = true;
         }
