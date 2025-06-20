@@ -600,7 +600,7 @@ namespace Serra_csharp
                 pianta.Left = posPianta + xpos;
             }
 
-            if (pianta.Right >= this.ClientSize.Width)
+            if (pianta.Right >= Rullo.Right)
             {
                 Attiva_Sensore("SensoreRulloOccupato", false);
                 Rigenera_Pianta(pianta);
@@ -815,14 +815,17 @@ namespace Serra_csharp
             if (Vasca.Height >= altezzaVasca)
             {
                 Attiva_Sensore("SensoreSerbatoioOn", false);
-                TuboVasca.BackColor = coloreTubi;
+                if (svuotamento)
+                {
+                    TuboVasca.BackColor = coloreTubi;
+                }
             }
             if (AttuatSvuotaSerbatoio.Text == "False")
             {
                 if (svuotamento && tempoSvuotamento >= 10)
                 {
                     quanteVolteSvuota++;
-                    if (quanteVolteSvuota >= 3 && Acqua.Height < altezzaSerbatoio)
+                    if (quanteVolteSvuota >= 3 && Acqua.Height < altezzaSerbatoio && Acqua.Height < 10)
                     {
                         Acqua.Height = 0;
                         Acqua.Top = statoInizialeRecipienti[0] + altezzaSerbatoio;
@@ -850,9 +853,9 @@ namespace Serra_csharp
                 Acqua.Top -= 2;
                 foreach (PictureBox tubo in tubi)
                 {
+                    if (tubo != TuboVasca)
                     tubo.BackColor = Color.SkyBlue;
                 }
-                TuboVasca.BackColor = coloreTubi;
             }
             if (AttuatRiempiSerbatoio.Text == "False")
             {
@@ -864,7 +867,11 @@ namespace Serra_csharp
                 riempimentoInCorso = false;
                 Flusso.Visible = false;
                 Flusso2.Visible = false;
-                Reset_Tubi();
+                foreach (PictureBox tubo in tubi)
+                {
+                    if (tubo != TuboVasca)
+                        tubo.BackColor = coloreTubi;
+                }
             }
         }
 
