@@ -1247,13 +1247,8 @@ namespace Serra_csharp
             else if (e.NotificationHandle == hConnect[31]) strValue = binRead.ReadBoolean().ToString();
             else if (e.NotificationHandle == hConnect[32]) strValue = binRead.ReadBoolean().ToString();
             else if (e.NotificationHandle == hConnect[33]) strValue = binRead.ReadBoolean().ToString();
-            else if (e.NotificationHandle == hConnect[34]) strValue = binRead.ReadDouble().ToString();
-            else if (e.NotificationHandle == hConnect[35]) strValue = binRead.ReadDouble().ToString();
 
-            if (e.NotificationHandle != hConnect[34] || e.NotificationHandle != hConnect[35])
-            {
-                ((TextBox)e.UserData).Invoke(new Action(() => ((TextBox)e.UserData).Text = String.Format(strValue)));
-            }
+            ((TextBox)e.UserData).Invoke(new Action(() => ((TextBox)e.UserData).Text = String.Format(strValue)));
         }
 
         // **** SCRITTURA SU TWINCAT ****
