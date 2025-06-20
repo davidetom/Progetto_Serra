@@ -822,7 +822,7 @@ namespace Serra_csharp
                 if (svuotamento && tempoSvuotamento >= 10)
                 {
                     quanteVolteSvuota++;
-                    if (quanteVolteSvuota >= 3)
+                    if (quanteVolteSvuota >= 3 && Acqua.Height < altezzaSerbatoio)
                     {
                         Acqua.Height = 0;
                         Acqua.Top = statoInizialeRecipienti[0] + altezzaSerbatoio;
@@ -854,7 +854,7 @@ namespace Serra_csharp
                 }
                 TuboVasca.BackColor = coloreTubi;
             }
-            else if (AttuatRiempiSerbatoio.Text == "False")
+            if (AttuatRiempiSerbatoio.Text == "False")
             {
                 if (riempimentoInCorso)
                 {
