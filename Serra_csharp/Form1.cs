@@ -84,10 +84,11 @@ namespace Serra_csharp
 
         // Variabili serbatoio
         int altezzaSerbatoio; // altezza massima acqua
-        bool svuotamento = false; // svuotamento attivo o no
+        bool svuotamento; // svuotamento attivo o no
         int quantitaSerbatoio; // altezza acqua
         bool riempimentoInCorso = false; // riempimento serbatoio
         int quanteVolteSvuota;
+        int tempoSvuotamento;
         Color coloreTubi;
 
         // Variabili vasca
@@ -208,7 +209,9 @@ namespace Serra_csharp
             Flusso.Visible = false;
             Flusso2.Visible = false;
             riempimentoInCorso = false;
+            svuotamento = false;
             quanteVolteSvuota = 0;
+            tempoSvuotamento = 0;
 
             // Calibrazione vasca
             altezzaVasca = Vasca.Height;
@@ -318,6 +321,7 @@ namespace Serra_csharp
             svuotamento = false;
             riempimentoInCorso = false;
             quanteVolteSvuota = 0;
+            tempoSvuotamento = 0;
 
             // Reset temperatura
             temperatura = 36;
@@ -790,11 +794,13 @@ namespace Serra_csharp
                     quantitaVasca = 0;
                     vasca_top = Vasca.Top;
                     quanteVolteSvuota++;
+                    tempoSvuotamento = 0;
                 }
                 Attiva_Sensore("SensoreSerbatoioFull", false);
                 Attiva_Sensore("SensoreVascaVuota", false);
                 Attiva_Sensore("SensoreSerbatoioOn", true);
                 svuotamento = true;
+                tempoSvuotamento++;
 
                 quantitaSerbatoio -= 2;
                 quantitaVasca += 2;
@@ -820,13 +826,14 @@ namespace Serra_csharp
             }
             if (AttuatSvuotaSerbatoio.Text == "False")
             {
-                if (svuotamento)
+                if (svuotamento && tempoSvuotamento >= 10)
                 {
                     Vasca.Height = altezzaVasca;
                     Vasca.Top = statoInizialeRecipienti[2];
                 }
 
                 svuotamento = false;
+                tempoSvuotamento = 0;
             }
         }
 
@@ -1277,7 +1284,7 @@ namespace Serra_csharp
         private void Aggiorna_Temp_O2()
         {
             delay_invio_temp_o2++;
-            if (delay_invio_temp_o2 >= 5)
+            if (delay_invio_temp_o2 >= 5 && hvar_name != null)
             {
                 try
                 {
