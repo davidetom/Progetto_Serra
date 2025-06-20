@@ -1262,7 +1262,7 @@ namespace Serra_csharp
             {
                 try
                 {
-                    tcClient.WriteAny(hvar_name[34], temperatura);
+                    tcClient.WriteAny(hvar_name[34], (temperatura * 0.695));
                     tcClient.WriteAny(hvar_name[35], ossigeno);
 
                     delay_invio_temp_o2 = 0;
