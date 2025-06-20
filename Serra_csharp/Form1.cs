@@ -107,6 +107,7 @@ namespace Serra_csharp
         private AdsBinaryReader binRead;
 
         private int NUM_ELEMENTS_BOOL = 34;
+        private int NUM_ELEMENTS_DOUBLE = 2;
         private int[] hvar_name;
 
         private string[] dataPLC = {"MAIN.SensoreStart", "MAIN.SensoreReset", "MAIN.SensoreFCBottom", "MAIN.SensoreFCTop", "MAIN.SensoreFCS",
@@ -116,7 +117,10 @@ namespace Serra_csharp
                                     "MAIN.SensorePianta1Pronta", "MAIN.SensorePianta2Pronta",
                                     "MAIN.AttuatBraccioGiu", "MAIN.AttuatBraccioSu", "MAIN.AttuatBraccioSx", "MAIN.AttuatBraccioDx", "MAIN.AttuatBraccioPresa",
                                     "MAIN.AttuatBraccioRilascio", "MAIN.AttuatRiempiSerbatoio", "MAIN.AttuatSvuotaSerbatoio", "MAIN.AttuatFinestra", "MAIN.AttuatCondizionatore",
-                                    "MAIN.AttuatRullo", "MAIN.AttuatLampada",};
+                                    "MAIN.AttuatRullo", "MAIN.AttuatLampada",
+                                    "MAIN.Temperatura", "MAIN.Ossigeno"};
+
+        int delay_invio_temp_o2 = 0;
         // FINE VARIABILI X TWINCAT
 
 
@@ -343,6 +347,9 @@ namespace Serra_csharp
         // **** MASTER TIMER ****
         private void MasterTimer_Tick(object sender, EventArgs e)
         {
+            //Invio di temperatura e ossigeno
+            Aggiorna_Temp_O2();
+
             // AGGIORNAMENTI DI STATO
             Svuotamento_Vasca();
             Serbatoio_Check();
@@ -1151,10 +1158,10 @@ namespace Serra_csharp
             tcClient = new TcAdsClient();
             tcClient.Connect("127.0.0.1.1.1", 851);
 
-            dataStream = new AdsStream(NUM_ELEMENTS_BOOL);
+            dataStream = new AdsStream(NUM_ELEMENTS_BOOL + NUM_ELEMENTS_DOUBLE*8);
             binRead = new AdsBinaryReader(dataStream);
 
-            hConnect = new int[NUM_ELEMENTS_BOOL];
+            hConnect = new int[NUM_ELEMENTS_BOOL + NUM_ELEMENTS_DOUBLE];
             hConnect[0] = tcClient.AddDeviceNotification(dataPLC[0], dataStream, 0, 1, AdsTransMode.OnChange, 100, 0, SensoreStart);
             hConnect[1] = tcClient.AddDeviceNotification(dataPLC[1], dataStream, 1, 1, AdsTransMode.OnChange, 100, 0, SensoreReset);
             hConnect[2] = tcClient.AddDeviceNotification(dataPLC[2], dataStream, 2, 1, AdsTransMode.OnChange, 100, 0, SensoreFCBottom);
@@ -1189,13 +1196,14 @@ namespace Serra_csharp
             hConnect[31] = tcClient.AddDeviceNotification(dataPLC[31], dataStream, 31, 1, AdsTransMode.OnChange, 100, 0, AttuatCondizionatore);
             hConnect[32] = tcClient.AddDeviceNotification(dataPLC[32], dataStream, 32, 1, AdsTransMode.OnChange, 100, 0, AttuatRullo);
             hConnect[33] = tcClient.AddDeviceNotification(dataPLC[33], dataStream, 33, 1, AdsTransMode.OnChange, 100, 0, AttuatLampada);
-
+            hConnect[34] = tcClient.AddDeviceNotification(dataPLC[34], dataStream, 34, 8, AdsTransMode.OnChange, 100, 0, temperatura);
+            hConnect[35] = tcClient.AddDeviceNotification(dataPLC[35], dataStream, 42, 8, AdsTransMode.OnChange, 100, 0, ossigeno);
 
             tcClient.AdsNotification += new AdsNotificationEventHandler(OnNotification);
             ConnText.Text = "Connnected!";
 
-            hvar_name = new int[NUM_ELEMENTS_BOOL];
-            for (int i = 0; i < NUM_ELEMENTS_BOOL; i++)
+            hvar_name = new int[NUM_ELEMENTS_BOOL + NUM_ELEMENTS_DOUBLE];
+            for (int i = 0; i < NUM_ELEMENTS_BOOL + NUM_ELEMENTS_DOUBLE; i++)
             {
                 hvar_name[i] = tcClient.CreateVariableHandle(dataPLC[i]);
             }
@@ -1239,11 +1247,32 @@ namespace Serra_csharp
             else if (e.NotificationHandle == hConnect[31]) strValue = binRead.ReadBoolean().ToString();
             else if (e.NotificationHandle == hConnect[32]) strValue = binRead.ReadBoolean().ToString();
             else if (e.NotificationHandle == hConnect[33]) strValue = binRead.ReadBoolean().ToString();
+            else if (e.NotificationHandle == hConnect[34]) strValue = binRead.ReadDouble().ToString();
+            else if (e.NotificationHandle == hConnect[35]) strValue = binRead.ReadDouble().ToString();
 
             ((TextBox)e.UserData).Invoke(new Action(() => ((TextBox)e.UserData).Text = String.Format(strValue)));
         }
 
         // **** SCRITTURA SU TWINCAT ****
+
+        private void Aggiorna_Temp_O2()
+        {
+            delay_invio_temp_o2++;
+            if (delay_invio_temp_o2 >= 5)
+            {
+                try
+                {
+                    tcClient.WriteAny(hvar_name[34], temperatura);
+                    tcClient.WriteAny(hvar_name[35], ossigeno);
+
+                    delay_invio_temp_o2 = 0;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Errore invio ADS: " + ex.Message);
+                }
+            }
+        }
         private void SensoreStart_TextChanged(object sender, EventArgs e)
         {
             if (hvar_name != null)
