@@ -87,6 +87,7 @@ namespace Serra_csharp
         bool svuotamento = false; // svuotamento attivo o no
         int quantitaSerbatoio; // altezza acqua
         bool riempimentoInCorso = false; // riempimento serbatoio
+        int quanteVolteSvuota;
         Color coloreTubi;
 
         // Variabili vasca
@@ -207,6 +208,7 @@ namespace Serra_csharp
             Flusso.Visible = false;
             Flusso2.Visible = false;
             riempimentoInCorso = false;
+            quanteVolteSvuota = 0;
 
             // Calibrazione vasca
             altezzaVasca = Vasca.Height;
@@ -315,6 +317,7 @@ namespace Serra_csharp
             Flusso2.Visible = false;
             svuotamento = false;
             riempimentoInCorso = false;
+            quanteVolteSvuota = 0;
 
             // Reset temperatura
             temperatura = 36;
@@ -786,6 +789,7 @@ namespace Serra_csharp
                     quantitaSerbatoio = Acqua.Height;
                     quantitaVasca = 0;
                     vasca_top = Vasca.Top;
+                    quanteVolteSvuota++;
                 }
                 Attiva_Sensore("SensoreSerbatoioFull", false);
                 Attiva_Sensore("SensoreVascaVuota", false);
@@ -808,6 +812,12 @@ namespace Serra_csharp
                 svuotamento = false;
                 Attiva_Sensore("SensoreSerbatoioOn", false);
                 TuboVasca.BackColor = coloreTubi;
+                if (quanteVolteSvuota >= 3)
+                {
+                    Acqua.Height = 0;
+                    Acqua.Top = statoInizialeRecipienti[0] + 72;
+                    quanteVolteSvuota = 0;
+                }
             }
         }
 
