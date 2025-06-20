@@ -779,13 +779,10 @@ namespace Serra_csharp
                     quantitaSerbatoio = Acqua.Height;
                     quantitaVasca = 0;
                     vasca_top = Vasca.Top;
-                    if (Vasca.Height < altezzaVasca - 10)
-                    {
-                        Attiva_Sensore("SensoreSerbatoioOn", true);
-                    }
                 }
                 Attiva_Sensore("SensoreSerbatoioFull", false);
                 Attiva_Sensore("SensoreVascaVuota", false);
+                Attiva_Sensore("SensoreSerbatoioOn", true);
                 svuotamento = true;
 
                 quantitaSerbatoio -= 2;

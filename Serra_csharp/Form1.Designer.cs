@@ -949,7 +949,7 @@ namespace Serra_csharp
             this.Gancio.Image = ((System.Drawing.Image)(resources.GetObject("Gancio.Image")));
             this.Gancio.Location = new System.Drawing.Point(1140, 418);
             this.Gancio.Name = "Gancio";
-            this.Gancio.Size = new System.Drawing.Size(20, 42);
+            this.Gancio.Size = new System.Drawing.Size(20, 43);
             this.Gancio.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.Gancio.TabIndex = 83;
             this.Gancio.TabStop = false;
