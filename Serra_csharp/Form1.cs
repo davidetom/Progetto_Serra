@@ -815,7 +815,7 @@ namespace Serra_csharp
                 if (quanteVolteSvuota >= 3)
                 {
                     Acqua.Height = 0;
-                    Acqua.Top = statoInizialeRecipienti[0] + 72;
+                    Acqua.Top = statoInizialeRecipienti[0] + altezzaSerbatoio;
                     quanteVolteSvuota = 0;
                 }
             }
