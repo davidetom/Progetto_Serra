@@ -1196,8 +1196,8 @@ namespace Serra_csharp
             hConnect[31] = tcClient.AddDeviceNotification(dataPLC[31], dataStream, 31, 1, AdsTransMode.OnChange, 100, 0, AttuatCondizionatore);
             hConnect[32] = tcClient.AddDeviceNotification(dataPLC[32], dataStream, 32, 1, AdsTransMode.OnChange, 100, 0, AttuatRullo);
             hConnect[33] = tcClient.AddDeviceNotification(dataPLC[33], dataStream, 33, 1, AdsTransMode.OnChange, 100, 0, AttuatLampada);
-            hConnect[34] = tcClient.AddDeviceNotification(dataPLC[34], dataStream, 34, 8, AdsTransMode.OnChange, 100, 0, temperatura);
-            hConnect[35] = tcClient.AddDeviceNotification(dataPLC[35], dataStream, 42, 8, AdsTransMode.OnChange, 100, 0, ossigeno);
+            hConnect[34] = tcClient.AddDeviceNotification(dataPLC[34], dataStream, 34, 8, AdsTransMode.OnChange, 100, 0, SensTemperatura);
+            hConnect[35] = tcClient.AddDeviceNotification(dataPLC[35], dataStream, 42, 8, AdsTransMode.OnChange, 100, 0, SensOssigeno);
 
             tcClient.AdsNotification += new AdsNotificationEventHandler(OnNotification);
             ConnText.Text = "Connnected!";
@@ -1247,6 +1247,8 @@ namespace Serra_csharp
             else if (e.NotificationHandle == hConnect[31]) strValue = binRead.ReadBoolean().ToString();
             else if (e.NotificationHandle == hConnect[32]) strValue = binRead.ReadBoolean().ToString();
             else if (e.NotificationHandle == hConnect[33]) strValue = binRead.ReadBoolean().ToString();
+            else if (e.NotificationHandle == hConnect[34]) strValue = binRead.ReadDouble().ToString();
+            else if (e.NotificationHandle == hConnect[35]) strValue = binRead.ReadDouble().ToString();
 
             ((TextBox)e.UserData).Invoke(new Action(() => ((TextBox)e.UserData).Text = String.Format(strValue)));
         }
