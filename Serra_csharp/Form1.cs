@@ -793,7 +793,6 @@ namespace Serra_csharp
                     quantitaSerbatoio = Acqua.Height;
                     quantitaVasca = 0;
                     vasca_top = Vasca.Top;
-                    quanteVolteSvuota++;
                     tempoSvuotamento = 0;
                 }
                 Attiva_Sensore("SensoreSerbatoioFull", false);
@@ -817,6 +816,7 @@ namespace Serra_csharp
             {
                 Attiva_Sensore("SensoreSerbatoioOn", false);
                 TuboVasca.BackColor = coloreTubi;
+                quanteVolteSvuota++;
                 if (quanteVolteSvuota >= 3)
                 {
                     Acqua.Height = 0;
@@ -856,6 +856,11 @@ namespace Serra_csharp
             }
             else if (AttuatRiempiSerbatoio.Text == "False")
             {
+                if (riempimentoInCorso)
+                {
+                    Acqua.Height = altezzaSerbatoio;
+                    Acqua.Top = statoInizialeRecipienti[0];
+                }
                 riempimentoInCorso = false;
                 Flusso.Visible = false;
                 Flusso2.Visible = false;
